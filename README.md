@@ -3,13 +3,22 @@
 
 # LevelUpToast Backend Notify
 
-<br>
 
-## 🍞 프로젝트 소개
+ <img src="https://img.shields.io/badge/Spring boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white" alt="spring boot"/>
+ <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat&logo=IntelliJ IDEA&logoColor=white" alt="spring boot"/>
+ <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" alt="spring boot"/>
+ <img src="https://img.shields.io/badge/Rocky Linux-10B981?style=flat&logo=Rocky Linux&logoColor=white" alt="spring boot"/>
+ <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" alt="spring boot"/>
+
+## 팀원소개
 
 ---
++ 임성묵 (https://github.com/mookseong)
++ 김지용 (https://github.com/JiYongKim-A)
 
-<img width="165" alt="스크린샷 2022-07-28 오후 7 11 28" src="https://user-images.githubusercontent.com/81874493/181481422-54d76916-1689-4b8d-84c5-2192bc07f41a.png">
+## 🍞 어떤 프로젝트 인가요?
+
+---
 
 - LevelUpToast는 제품을 사고 파는 도소매 상황에서 중간에 발생하던 유통 과정을 단축하는 방법을 통해 소비자는 조금더 낮은 가격으로 산지유통업자는 조금 더 높은 가격으로 판매를 유도하여 직거래 방식과 같이 소비자와 산지 유통 업자와 연결 해주는 애플리케이션을 진행하는 프로젝트 이다.
 
