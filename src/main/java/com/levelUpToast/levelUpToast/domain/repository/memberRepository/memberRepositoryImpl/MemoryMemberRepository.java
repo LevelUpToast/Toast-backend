@@ -11,9 +11,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MemoryMemberRepository implements MemberRepository {
     private static Map<Long, Member> store = new ConcurrentHashMap<>();
     private static Map<String, Long> idList = new HashMap<>();
-
+    private Long manageSeq = 0L;
     @Override
     public Member save(Member member) {
+        member.setManageSeq(manageSeq++);
         store.put(member.getManageSeq(), member);
         idList.put(member.getId(), member.getManageSeq());
         return member;

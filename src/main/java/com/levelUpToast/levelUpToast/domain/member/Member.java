@@ -1,11 +1,23 @@
 package com.levelUpToast.levelUpToast.domain.member;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Data
 public class Member {
+    public Member(String id, String password, Authority authority, String name, String birth, String gender, String phoneNumber, String e_mail, String address) {
+        this.id = id;
+        this.password = password;
+        this.authority = authority;
+        this.name = name;
+        this.birth = birth;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.e_mail = e_mail;
+        this.address = address;
+    }
 
     private Long manageSeq; // 회원 고유 번호
 

@@ -17,7 +17,7 @@ public class SimpleLoginService implements LoginService {
     public Member login(String loginId, String password) throws Exception {
         Optional<Member> findMem = memberRepository.findByloginId(loginId);
         if (findMem.isEmpty()) {
-            return null;
+            throw new Exception("동일한 ID가 존재하지 않습니다.");
         }
         Member member = findMem.get();
 
