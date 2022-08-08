@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data @Getter @Setter
+@Data
 public class Member {
 
     private Long manageSeq; // 회원 고유 번호
