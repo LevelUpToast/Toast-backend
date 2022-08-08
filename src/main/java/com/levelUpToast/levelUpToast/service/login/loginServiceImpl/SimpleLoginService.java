@@ -6,14 +6,25 @@ import com.levelUpToast.levelUpToast.service.login.loginServiceInterface.LoginSe
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service @AllArgsConstructor
 public class SimpleLoginService implements LoginService {
 
     private final MemberRepository memberRepository;
 
     @Override
-    public Member login(String loginId, String password) {
+    public Member login(String loginId, String password) throws Exception {
+        Optional<Member> findMem = memberRepository.findByloginId(loginId);
+        if (findMem.isEmpty()) {
+            return null;
+        }
+        Member member = findMem.get();
 
-        return null;
+        if (member.getPassword().equals(password)) {
+            return member;
+        } else {
+            throw new Exception("ID와 PW가 일치하지 않습니다.");
+        }
     }
 }
