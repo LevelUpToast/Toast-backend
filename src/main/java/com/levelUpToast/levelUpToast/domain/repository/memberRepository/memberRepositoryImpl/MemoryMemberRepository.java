@@ -10,10 +10,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MemoryMemberRepository implements MemberRepository {
     private static Map<Long, Member> store = new ConcurrentHashMap<>();
+    private static Map<String, Long> idList = new HashMap<>();
 
     @Override
     public Member save(Member member) {
         store.put(member.getManageSeq(), member);
+        idList.put(member.getId(), member.getManageSeq());
         return member;
     }
 
@@ -27,6 +29,14 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAllMember() {
         return new ArrayList<>(store.values());
+    }
+
+    @Override
+    public Optional<Member> findByloginId(String loginId) {
+        if(idList.containsKey(loginId)){
+            return findByManageSeq(idList.get(loginId));
+        }
+        return Optional.empty();
     }
 
     @Override

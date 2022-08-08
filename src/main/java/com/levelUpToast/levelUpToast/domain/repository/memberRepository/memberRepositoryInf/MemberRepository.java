@@ -16,6 +16,9 @@ public interface MemberRepository {
     // 모든 회원 조회 (Read)
     List<Member> findAllMember();
 
+    // 회원 ID로 회원 조회
+    Optional<Member> findByloginId(String loginId);
+
     // 회원 정보 변경 (Update)
     Member update(Long memberSeq, Member updatedMember);
 
