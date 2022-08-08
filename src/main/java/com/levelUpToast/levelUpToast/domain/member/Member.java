@@ -11,6 +11,10 @@ public class Member {
 
     private String token; // 회원 확인용 토큰
 
+    private String id; // 회원 ID
+
+    private String password; // 회원 password
+
     private Authority authority; // 판매자 구매자 관리자 권한
 
     private String name; // 회원 이름
