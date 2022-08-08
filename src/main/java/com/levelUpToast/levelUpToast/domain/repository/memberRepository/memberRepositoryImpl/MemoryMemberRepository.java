@@ -43,7 +43,7 @@ public class MemoryMemberRepository implements MemberRepository {
     public Member update(Long memberSeq, Member updatedMember) {
         // update 향후 testing 필요
         Optional<Member> findMem = findByManageSeq(memberSeq);
-        if(findMem.isPresent()){
+        if(findMem.isEmpty()){
             return null;
         }
         Member member = findMem.get();
