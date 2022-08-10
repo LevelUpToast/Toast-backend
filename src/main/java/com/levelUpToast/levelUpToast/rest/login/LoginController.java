@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.rest.login;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
 import com.levelUpToast.levelUpToast.domain.dataForm.login.LoginRequestFrom;
 import com.levelUpToast.levelUpToast.domain.dataForm.login.LoginResponseForm;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 @Slf4j
@@ -31,9 +31,12 @@ public class LoginController {
             String token = tokenManager.createToken(loginMem.getManageSeq());
             data.put("token", token);
             return new LoginResponseForm(-1,"로그인 성공",data);
-        } catch (Exception e) {
+        } catch (LevelUpToastEx e) {
             data.put("token", null);
-            return new LoginResponseForm(-1,e.getMessage(),data);
+            return new LoginResponseForm(e.getERR_CODE(),e.getMessage(),data);
+        } catch (Exception e){
+            data.put("token", null);
+            return new LoginResponseForm(-2, "예상치 못한 오류", data);
         }
     }
 }

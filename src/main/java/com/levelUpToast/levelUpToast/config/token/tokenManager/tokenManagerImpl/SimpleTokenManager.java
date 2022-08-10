@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerImpl;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
 import com.levelUpToast.levelUpToast.domain.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
@@ -25,14 +26,14 @@ public class SimpleTokenManager implements TokenManager {
     }
 
     @Override
-    public Member findMemberByToken(String token) throws Exception {
+    public Member findMemberByToken(String token) throws LevelUpToastEx {
        if(!tokenCheck(token)){
-           throw new Exception("존재하지 않는 토큰 입니다.");
+           throw new LevelUpToastEx("존재하지 않는 토큰 입니다.",3);
        }
 
        Optional<Member> findMem = memberRepository.findByManageSeq(tokenStore.get(token));
        if(findMem.isEmpty()){
-           throw new Exception("토큰과 일치하는 사용자가 존재하지 않습니다.");
+           throw new LevelUpToastEx("토큰과 일치하는 사용자가 존재하지 않습니다.",4);
        }
        return findMem.get();
     }
@@ -45,7 +46,7 @@ public class SimpleTokenManager implements TokenManager {
     @Override
     public void tokenExpire(String token) throws Exception {
         if(!tokenCheck(token)){
-            throw new Exception("존재하지 않는 토큰 입니다.");
+            throw new LevelUpToastEx("존재하지 않는 토큰 입니다.",3);
         }
         tokenStore.remove(token);
     }
