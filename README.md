@@ -164,3 +164,5 @@ ex)
 ex) [Spring Boot 공식 문서](https://spring.io/projects/spring-boot)
 
 <br>
+
+[Exception 만들기](https://devbox.tistory.com/entry/Java-%EC%98%88%EC%99%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0)
