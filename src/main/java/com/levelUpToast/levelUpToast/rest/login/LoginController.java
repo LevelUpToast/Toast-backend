@@ -30,13 +30,11 @@ public class LoginController {
             Member loginMem = loginService.login(form.getId(), form.getPw());
             String token = tokenManager.createToken(loginMem.getManageSeq());
             data.put("token", token);
+            log.info("[LoginController log] : 로그인 성공 manageSeq = {}, loginId = {}, name = {}",loginMem.getManageSeq(),loginMem.getId(),loginMem.getName());
             return new LoginResponseForm(-1,"로그인 성공",data);
         } catch (LevelUpToastEx e) {
             data.put("token", null);
             return new LoginResponseForm(e.getERR_CODE(),e.getMessage(),data);
-        } catch (Exception e){
-            data.put("token", null);
-            return new LoginResponseForm(-2, "예상치 못한 오류", data);
         }
     }
 }
