@@ -47,7 +47,7 @@ public class SimpleTokenManager implements TokenManager {
     }
 
     @Override
-    public void tokenExpire(String token) throws Exception {
+    public void tokenExpire(String token) throws LevelUpToastEx {
         if(!tokenCheck(token)){
             log.warn("[TokenManager log] : 존재하지 않는 토큰 token = {}",token);
             throw new LevelUpToastEx("존재하지 않는 토큰 입니다.",3);
