@@ -1,15 +1,31 @@
 package com.levelUpToast.levelUpToast.domain.member;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data @Getter @Setter
+@Data
 public class Member {
+    public Member(String id, String password, Authority authority, String name, String birth, String gender, String phoneNumber, String e_mail, String address) {
+        this.id = id;
+        this.password = password;
+        this.authority = authority;
+        this.name = name;
+        this.birth = birth;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.e_mail = e_mail;
+        this.address = address;
+    }
 
     private Long manageSeq; // 회원 고유 번호
 
     private String token; // 회원 확인용 토큰
+
+    private String id; // 회원 ID
+
+    private String password; // 회원 password
 
     private Authority authority; // 판매자 구매자 관리자 권한
 
