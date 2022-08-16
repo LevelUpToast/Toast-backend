@@ -4,21 +4,13 @@
 # LevelUpToast Backend Notify
 
 
- <img src="https://img.shields.io/badge/Spring boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white" alt="spring boot"/>
- <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat&logo=IntelliJ IDEA&logoColor=white" alt="spring boot"/>
- <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" alt="spring boot"/>
- <img src="https://img.shields.io/badge/Rocky Linux-10B981?style=flat&logo=Rocky Linux&logoColor=white" alt="spring boot"/>
- <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" alt="spring boot"/>
+ <img src="https://img.shields.io/badge/Spring boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat&logo=IntelliJ IDEA&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/Rocky Linux-10B981?style=flat&logo=Rocky Linux&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" alt="spring boot"/>
 
 ## 팀원소개
-
----
 + 임성묵 (https://github.com/mookseong)
 + 김지용 (https://github.com/JiYongKim-A)
 
 ## 🍞 어떤 프로젝트 인가요?
-
----
 
 - LevelUpToast는 제품을 사고 파는 도소매 상황에서 중간에 발생하던 유통 과정을 단축하는 방법을 통해 소비자는 조금더 낮은 가격으로 산지유통업자는 조금 더 높은 가격으로 판매를 유도하여 직거래 방식과 같이 소비자와 산지 유통 업자와 연결 해주는 애플리케이션을 진행하는 프로젝트 이다.
 
@@ -26,15 +18,11 @@
 
 ### 📃 유스케이스 다이어그램
 
----
-
 <img width="649" alt="스크린샷 2022-07-28 오후 7 11 35" src="https://user-images.githubusercontent.com/81874493/181481479-bf07d3e1-1b94-4532-8a2e-ed304c296fbc.png">
 
 <br>
 
 ## 💻 프로젝트 진행 및 관리
-
----
 
 ### 프로젝트 진행 방법
 
@@ -99,17 +87,15 @@
 
 <br>
 
-### 📋 System Architecture
+## 📋 System Architecture
 
----
+<br>
 
-<img width="558" alt="스크린샷 2022-07-28 오후 7 11 41" src="https://user-images.githubusercontent.com/81874493/181481625-b0ea330b-f893-42a7-bc4e-e8533c29ac06.png">
+![System Architecture](https://user-images.githubusercontent.com/20126358/184833298-56956261-d175-43fb-8228-20d2920fea53.jpeg)
 
 <br>
 
 ## 💼 Rest API 기본 프레임 형식
-
----
 
 ### Request Data Frame
 
@@ -126,17 +112,15 @@ Body : Json {}
 ```json
 Body : 
 	json {
-	"detailCode" : " ",
-	"message" : " ",
-	"data" : " "
+		"detailCode" : " ",
+		"message" : " ",
+		"data" : " "
 	}
 ```
 
 <br>
 
 ## ⚠️ 문제점 및 해결 방법
-
----
 
 [프로젝트 개발 중 문제점 발견시 명시하고 이에 대한 해결 방법을 명시한다.]
 
@@ -156,8 +140,6 @@ ex)
 <br>
 
 ## 📔 개발 관련 참고 문서
-
----
 
 [개발 중 도움이 되었던 문서가 있을 시 이에 대한 참고 문서를 하이퍼링크 형태로 명시한다.]
 
