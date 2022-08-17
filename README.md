@@ -1,10 +1,14 @@
 
-<img width="176" alt="스크린샷 2022-07-28 오후 7 11 22" src="https://user-images.githubusercontent.com/81874493/181481382-d7fa4aa4-4f37-433d-8d39-27e856dcd0e6.png">
+<div align="center">
+  
+<img width="15%" alt="LevelUptoast" src="https://user-images.githubusercontent.com/20126358/185047884-1b199d5c-163a-495d-80e6-124dfd9bf3af.png">
 
-# LevelUpToast Backend Notify
+	
+# LevelUpToast Backend Notify	
+ <img src="https://img.shields.io/badge/Spring boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat&logo=IntelliJ IDEA&logoColor=white" alt="IntelliJ IDEA"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" alt="Apache Tomcat"/> <img src="https://img.shields.io/badge/Rocky Linux-10B981?style=flat&logo=Rocky Linux&logoColor=white" alt="Rocky Linux"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" alt="Notion"/> <img src="https://img.shields.io/badge/Jenkins-D24939?style=flat&logo=Jenkins&logoColor=white" alt="Jenkins"/>
 
-
- <img src="https://img.shields.io/badge/Spring boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=flat&logo=IntelliJ IDEA&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=flat&logo=Apache Tomcat&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/Rocky Linux-10B981?style=flat&logo=Rocky Linux&logoColor=white" alt="spring boot"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white" alt="spring boot"/>
+	
+</div>
 
 ## 팀원소개
 + 임성묵 (https://github.com/mookseong)
@@ -18,7 +22,7 @@
 
 ### 📃 유스케이스 다이어그램
 
-<img width="649" alt="스크린샷 2022-07-28 오후 7 11 35" src="https://user-images.githubusercontent.com/81874493/181481479-bf07d3e1-1b94-4532-8a2e-ed304c296fbc.png">
+<img width="649" alt="유스케이스" src="https://user-images.githubusercontent.com/81874493/181481479-bf07d3e1-1b94-4532-8a2e-ed304c296fbc.png">
 
 <br>
 
