@@ -27,7 +27,7 @@ public class Member {
 
     private String password; // 회원 password
 
-    private Authority authority; // 판매자 구매자 관리자 권한
+    private Authority authority; // 회원 or 관리자 권한
 
     private String name; // 회원 이름
 
@@ -43,7 +43,7 @@ public class Member {
 
     // toastWallet
 
-    //myFunding products
+    // myFunding products
 
     // my wish products
 
