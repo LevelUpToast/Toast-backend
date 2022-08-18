@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -22,9 +21,9 @@ public class SignUpController {
     @PostMapping("/signUp")
     public SignUpResponseForm signUp(@RequestBody SignUpRequestForm form) {
 
-        try{
+        try {
             signUpService.signUp(form);
-        }catch (LevelUpToastEx e){
+        } catch (LevelUpToastEx e) {
             return new SignUpResponseForm(e.getERR_CODE(), e.getMessage(), null);
         }
         return new SignUpResponseForm(-1, "회원가입 성공", null);
