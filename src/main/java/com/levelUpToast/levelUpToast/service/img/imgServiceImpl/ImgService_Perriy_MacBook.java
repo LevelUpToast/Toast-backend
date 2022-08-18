@@ -5,6 +5,7 @@ import com.levelUpToast.levelUpToast.domain.img.ImgItem;
 import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import com.levelUpToast.levelUpToast.service.img.imgServiceInf.ImgService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 
@@ -44,6 +46,7 @@ public class ImgService_Perriy_MacBook implements ImgService {
     @Override
     public ImgItem saveImg(MultipartFile multipartFile) throws LevelUpToastEx, IOException {
         if(multipartFile.isEmpty()){
+            log.warn("[ImgService log] : 요청한 이미지가 존재하지 않습니다.");
             throw new LevelUpToastEx("요청한 이미지가 존재하지 않습니다.", 111);
         }
 

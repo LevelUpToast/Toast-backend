@@ -1,11 +1,10 @@
 package com.levelUpToast.levelUpToast.rest.login;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
 import com.levelUpToast.levelUpToast.domain.dataForm.login.LoginRequestFrom;
 import com.levelUpToast.levelUpToast.domain.dataForm.login.LoginResponseForm;
 import com.levelUpToast.levelUpToast.domain.member.Member;
-import com.levelUpToast.levelUpToast.service.login.loginServiceInterface.LoginService;
+import com.levelUpToast.levelUpToast.service.login.loginServiceInf.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
