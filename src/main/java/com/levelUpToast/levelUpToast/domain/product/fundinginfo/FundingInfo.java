@@ -6,6 +6,5 @@ import lombok.Data;
 public class FundingInfo {
     private int currentAmount;
     private int finalAmount;
-    private String deadline;
-
+    private int deadline;
 }
