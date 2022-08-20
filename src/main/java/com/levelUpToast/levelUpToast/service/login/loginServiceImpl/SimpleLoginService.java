@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
 import com.levelUpToast.levelUpToast.domain.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
-import com.levelUpToast.levelUpToast.service.login.loginServiceInterface.LoginService;
+import com.levelUpToast.levelUpToast.service.login.loginServiceInf.LoginService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,9 +27,8 @@ public class SimpleLoginService implements LoginService {
             throw new LevelUpToastEx("동일한 ID가 존재하지 않습니다.", 2);
         }
         Member member = findMem.get();
-        member.setToken(tokenManager.createToken(member.getManageSeq()));
-
         if (member.getPassword().equals(password)) {
+            member.setToken(tokenManager.createToken(member.getManageSeq()));
             return member;
         } else {
             log.warn("[LoginService log] : ID와 PW 미일치 ID = {}, PW = {}", loginId, password);

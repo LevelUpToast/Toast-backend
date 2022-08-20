@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.service.login.loginServiceInterface;
+package com.levelUpToast.levelUpToast.service.login.loginServiceInf;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.member.Member;
