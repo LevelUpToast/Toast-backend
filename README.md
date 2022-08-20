@@ -144,16 +144,15 @@ ex)
 <br>
 
 - [x] email 인증 기능의 Google 보안 수준이 낮은 앱 설정 불가
+	<details>
 
-<details>
+	    <summary> 문제점 해결 방법 </summary>
 
-    <summary> 문제점 해결 방법 </summary>
-       
-        문제점 : email 관련 gmail smtp 서버를 이용하여 하려고 했으나 gmail 보안 수준이 낮은 앱 허용을  22년 5월 30일 부터 구글에서 설정을 막아 email smtp 사용 현재 불가능
-        
-        해결방법 : 문제점 해결 진행 중
-       
-</details>
+		문제점 : email 관련 gmail smtp 서버를 이용하여 하려고 했으나 gmail 보안 수준이 낮은 앱 허용을  22년 5월 30일 부터 구글에서 설정을 막아 email smtp 사용 현재 불가능
+
+		해결방법 : 문제점 해결 진행 중
+
+	</details>
 
 <br>
 
