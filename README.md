@@ -143,7 +143,7 @@ ex)
 
 <br>
 
-- [ ] email 인증 기능의 Google 보안 수준이 낮은 앱 설정 불가
+- [ ] email 인증 기능의 Google 보안 수준이 낮은 앱 설정 불가 (2022.8.22 김지용)
 	<details>
 	<summary> 문제점 해결 방법 </summary>
 
