@@ -18,7 +18,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 
-public class ImgService_Perriy_MacBook implements ImgService {
+public class SimpleImgService implements ImgService {
 
     private final ImgRepository imgRepository;
 
@@ -45,7 +45,7 @@ public class ImgService_Perriy_MacBook implements ImgService {
 
     @Override
     public ImgItem saveImg(MultipartFile multipartFile) throws LevelUpToastEx, IOException {
-        if(multipartFile.isEmpty()){
+        if (multipartFile.isEmpty()) {
             log.warn("[ImgService log] : 요청한 이미지가 존재하지 않습니다.");
             throw new LevelUpToastEx("요청한 이미지가 존재하지 않습니다.", 111);
         }

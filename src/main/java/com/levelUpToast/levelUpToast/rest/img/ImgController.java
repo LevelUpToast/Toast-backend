@@ -24,7 +24,7 @@ public class ImgController {
 
     @GetMapping("/img/{imgName}") // img 요청
     public Resource resImg(@PathVariable String imgName) throws MalformedURLException {
-        log.info("[ImgController log] : 이미지 요청 성공 uploadImgName={}",imgName);
+        log.info("[ImgController log] : 이미지 요청 성공 uploadImgName = {}",imgName);
         return new UrlResource("file:" + imgService.getFullPath(imgName));
     }
 
@@ -35,7 +35,7 @@ public class ImgController {
             // 이미지 저장
             ImgItem imgItem = imgService.saveImg(imgRequestForm.getImgFile());
             data.put("imgURL", imgItem.getStoreFileName());
-            log.info("[ImgController log] : 이미지 저장 성공 originalImgName = {}, uploadImgName",imgItem.getUploadFileName(),imgItem.getStoreFileName());
+            log.info("[ImgController log] : 이미지 저장 성공 originalImgName = {}, uploadImgName = {}",imgItem.getUploadFileName(),imgItem.getStoreFileName());
             return new ImgSaveResponseForm(-1, "img 이름 : " + imgItem.getUploadFileName() + " 저장완료", data);
         } catch (Exception e) {
             return new ImgSaveResponseForm(112, e.getMessage(), null);

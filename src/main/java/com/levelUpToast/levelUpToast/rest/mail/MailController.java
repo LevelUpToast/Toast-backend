@@ -31,9 +31,8 @@ public class MailController {
         return new MailResponseForm(-1, "[ " + userMail + " ] 으로 인증 메일을 발송했습니다", null);
     }
 
-    @GetMapping("/mail/verifyCode/{userMail}/{code}")
+    @GetMapping("/mail/{userMail}/{code}")
     public MailResponseForm codeCheck(@PathVariable("userMail") String userMail, @PathVariable("code") String code) throws LevelUpToastEx {
-
         try {
             String successMail = mailService.codeCheck(userMail, code);
             mailService.expireCode(userMail);

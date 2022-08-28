@@ -20,7 +20,6 @@ public class SignUpController {
 
     @PostMapping("/signUp")
     public SignUpResponseForm signUp(@RequestBody SignUpRequestForm form) {
-
         try {
             signUpService.signUp(form);
         } catch (LevelUpToastEx e) {
