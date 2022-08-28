@@ -36,11 +36,10 @@ public class MailController {
 
         try {
             String successMail = mailService.codeCheck(userMail, code);
-            mailService.expireCode(code);
-            return new MailResponseForm(-1, "[ " + successMail + " ] 회원의 인증 코드가 일치합니다.", null);
+            mailService.expireCode(userMail);
+            return new MailResponseForm(-1, "[ " + successMail + " ] 메일 주소가 인증 되었습니다.", null);
         } catch (LevelUpToastEx e) {
             return new MailResponseForm(e.getERR_CODE(), e.getMessage(), null);
         }
-
     }
 }

@@ -37,23 +37,26 @@ public class SimpleMailService implements MailService {
     @Value("${mail.smtp.port}")
     private int smtpPort;
 
+    final int codeMax = 123123;
+
+    final int codeMin = 982545;
+
+
     private final Map<String, String> codeStore = ExpiringMap.builder()
             .maxSize(1000)
             .expirationPolicy(ExpirationPolicy.CREATED)
             .expiration(3, TimeUnit.MINUTES)
-            .expirationListener((code, mail) -> log.info("[MailService log] : 메일 인증 코드 시간 만료 제거, mail = {}, code = {} ", mail, code))
+            .expirationListener((mail, code) -> log.info("[MailService log] : 메일 인증 코드 시간 만료 제거, mail = {}, code = {} ", mail, code))
             .build();
 
     @Override
     public void mailSend(Mail mail) throws LevelUpToastEx {
 
-        log.info("id = {}, pw = {}", id ,pw);
-
         Properties prop = new Properties();
         prop.put("mail.smtp.host", smtpDomain);
         prop.put("mail.smtp.port", smtpPort);
         prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.ssl.enable", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
         prop.put("mail.smtp.ssl.trust", smtpDomain);
 
         Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
@@ -67,26 +70,25 @@ public class SimpleMailService implements MailService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(id));
             message.addRecipients(Message.RecipientType.TO, String.valueOf(new InternetAddress(mail.getToAddress())));
-            mail.setCode(UUID.randomUUID().toString());
+            mail.setCode(String.valueOf((int)(Math.random() * (codeMax - codeMin) + codeMin)));
             message.setSubject("LevelUpToast 인증 코드 발송");
             message.setText("인증코드 : " + mail.getCode());
             Transport.send(message);
-            log.info("[MailService log] : 메일 인증 코드 발송 완료, mail = {} ", mail.getToAddress());
-            codeStore.put(mail.getCode(), mail.getToAddress());
 
+            log.info("[MailService log] : 메일 인증 코드 발송 완료, mail = {} ", mail.getToAddress());
+            codeStore.put(mail.getToAddress(), mail.getCode());
         } catch (Exception e) {
-            log.info("err = {}", e);
-            log.warn("[MailService log] : 잘못된 mail 주소 요청, mail = {} ", mail.getToAddress());
-            throw new LevelUpToastEx("잘못된 mail 주소 입니다.", 22);
+            log.warn("[MailService log] : mail Exception , mail = {}, Exception info ", mail.getToAddress(), e);
+            throw new LevelUpToastEx("mail service 오류", 22);
         }
 
     }
 
     @Override
     public String codeCheck(String userMail, String code) throws LevelUpToastEx {
-        if (codeStore.containsKey(code)) {
-            if (codeStore.get(code).equals(userMail)) {
-                return codeStore.get(code);
+        if (codeStore.containsKey(userMail)) {
+            if (codeStore.get(userMail).equals(code)) {
+                return userMail;
             } else {
                 log.warn("[MailService log] : 메일 인증 코드 미일치, mail = {}, code = {} ", userMail, code);
                 throw new LevelUpToastEx("메일 인증 코드가 일치하지 않습니다.", 24);
@@ -98,8 +100,8 @@ public class SimpleMailService implements MailService {
     }
 
     @Override
-    public void expireCode(String code) {
-        codeStore.remove(code);
-        log.info("[MailService log] : 메일 인증 완료로 인한 코드 제거, code = {} ", code);
+    public void expireCode(String userMail) {
+        codeStore.remove(userMail);
+        log.info("[MailService log] : 메일 인증 완료로 인한 코드 제거, code = {} ", userMail);
     }
 }
