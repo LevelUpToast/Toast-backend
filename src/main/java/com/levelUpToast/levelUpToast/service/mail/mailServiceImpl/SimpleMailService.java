@@ -47,11 +47,13 @@ public class SimpleMailService implements MailService {
     @Override
     public void mailSend(Mail mail) throws LevelUpToastEx {
 
+        log.info("id = {}, pw = {}", id ,pw);
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", smtpDomain);
         prop.put("mail.smtp.port", smtpPort);
         prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.ssl.enable", "false");
+        prop.put("mail.smtp.ssl.enable", "true");
         prop.put("mail.smtp.ssl.trust", smtpDomain);
 
         Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
