@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.service.e_mail.mailServiceInf;
+package com.levelUpToast.levelUpToast.service.mail.mailServiceInf;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.mail.Mail;
