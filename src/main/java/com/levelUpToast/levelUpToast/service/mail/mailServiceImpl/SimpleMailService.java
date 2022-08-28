@@ -1,8 +1,8 @@
-package com.levelUpToast.levelUpToast.service.e_mail.mailServiceImpl;
+package com.levelUpToast.levelUpToast.service.mail.mailServiceImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.mail.Mail;
-import com.levelUpToast.levelUpToast.service.e_mail.mailServiceInf.MailService;
+import com.levelUpToast.levelUpToast.service.mail.mailServiceInf.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.jodah.expiringmap.ExpirationPolicy;
@@ -52,6 +52,7 @@ public class SimpleMailService implements MailService {
         prop.put("mail.smtp.port", smtpPort);
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.ssl.enable", "false");
+        prop.put("mail.smtp.ssl.trust", smtpDomain);
 
         Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -72,6 +73,7 @@ public class SimpleMailService implements MailService {
             codeStore.put(mail.getCode(), mail.getToAddress());
 
         } catch (Exception e) {
+            log.info("err = {}", e);
             log.warn("[MailService log] : 잘못된 mail 주소 요청, mail = {} ", mail.getToAddress());
             throw new LevelUpToastEx("잘못된 mail 주소 입니다.", 22);
         }

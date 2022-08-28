@@ -1,6 +1,5 @@
 package com.levelUpToast.levelUpToast.domain.mail;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
