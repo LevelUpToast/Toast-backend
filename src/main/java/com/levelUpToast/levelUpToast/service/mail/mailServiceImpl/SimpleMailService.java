@@ -42,15 +42,13 @@ public class SimpleMailService implements MailService {
     final int codeMin = 982545;
 
 
-    private final Map<String, String> codeStore = ExpiringMap.builder()
-            .maxSize(1000)
-            .expirationPolicy(ExpirationPolicy.CREATED)
-            .expiration(3, TimeUnit.MINUTES)
-            .expirationListener((mail, code) -> log.info("[MailService log] : 메일 인증 코드 시간 만료 제거, mail = {}, code = {} ", mail, code))
-            .build();
+    private final Map<String, String> codeStore = ExpiringMap.builder().maxSize(1000).expirationPolicy(ExpirationPolicy.CREATED).expiration(3, TimeUnit.MINUTES).expirationListener((mail, code) -> log.info("[MailService log] : 메일 인증 코드 시간 만료 제거, mail = {}, code = {} ", mail, code)).build();
 
     @Override
     public void mailSend(Mail mail) throws LevelUpToastEx {
+
+        // mail 발송 전 codeStore 에서 중복 mail 제거
+        codeStore.remove(mail.getToAddress());
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", smtpDomain);
@@ -70,7 +68,7 @@ public class SimpleMailService implements MailService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(id));
             message.addRecipients(Message.RecipientType.TO, String.valueOf(new InternetAddress(mail.getToAddress())));
-            mail.setCode(String.valueOf((int)(Math.random() * (codeMax - codeMin) + codeMin)));
+            mail.setCode(String.valueOf((int) (Math.random() * (codeMax - codeMin) + codeMin)));
             message.setSubject("LevelUpToast 인증 코드 발송");
             message.setText("인증코드 : " + mail.getCode());
             Transport.send(message);

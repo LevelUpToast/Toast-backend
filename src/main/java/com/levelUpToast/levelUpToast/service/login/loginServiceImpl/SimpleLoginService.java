@@ -40,7 +40,7 @@ public class SimpleLoginService implements LoginService {
     public void logout(String token) throws LevelUpToastEx {
         try {
             tokenManager.tokenExpire(token);
-            log.info("[LoginService log] : 로그아웃 성공 token = {}",token);
+            log.info("[LoginService log] : 로그아웃 성공 token = {}", token);
         } catch (LevelUpToastEx e) {
             throw e;
         }

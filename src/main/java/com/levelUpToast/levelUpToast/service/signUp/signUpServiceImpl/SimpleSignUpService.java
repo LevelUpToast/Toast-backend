@@ -20,10 +20,7 @@ public class SimpleSignUpService implements SignUpService {
 
     @Override
     public Boolean idPresentCheck(String id) {
-        if(memberRepository.findByloginId(id).isEmpty()){
-            return false;
-        }
-        return true;
+        return memberRepository.findByloginId(id).isPresent();
     }
 
     @Override
