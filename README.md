@@ -74,7 +74,24 @@
         ex) commit message example
         
         `refactor (LoginService) : id, pw matching system change`
-        
+
+### REST API 기본 규칙
+ - URI는 정보의 자원을 표현해야 한다.
+ - resource는 동사보다는 명사를, 소문자를 사용한다.
+ - resource의 스토어 이름으로는 복수 명사를 사용해야 한다.
+ - 확장자를 사용하지 않는다.
+ - 밑줄( _ ) 을 사용하지 않고 하이픈을( - ) 사용한다.
+ - 자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE 등)으로 표현한다.
+ - HTTP Method나 동사표현이 URI에 들어가면 안됩니다.
+ - id와 같이 변하는 값은 하나의 특정 resource를 나타내는 고유값이어야 한다.
+### REST API 설계 예시
+  - 전체조회 @GetMapping(/member)
+  - 특정조회 @GetMapping(/member/{id})
+  - 등록 @PostMapping(/member)
+  - 삭제 @DeleteMappiong(/member/{id})
+  - 수정 @PutMapping(/member/{id})
+
+
 
 <br>
 
