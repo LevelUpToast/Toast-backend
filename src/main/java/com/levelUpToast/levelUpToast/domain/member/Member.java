@@ -1,9 +1,7 @@
 package com.levelUpToast.levelUpToast.domain.member;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Data
 public class Member {
@@ -46,8 +44,6 @@ public class Member {
     // myFunding products
 
     // my wish products
-
-
 
     private Boolean Lock; // 회원 계정 활성/비활성
 

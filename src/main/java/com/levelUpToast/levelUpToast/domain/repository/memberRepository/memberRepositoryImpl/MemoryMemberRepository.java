@@ -53,7 +53,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void delete(Long manageSeq) {
+    public void remove(Long manageSeq) {
         Optional<Member> findMem = findByManageSeq(manageSeq);
         if(!findMem.isEmpty()){
             store.remove(manageSeq);

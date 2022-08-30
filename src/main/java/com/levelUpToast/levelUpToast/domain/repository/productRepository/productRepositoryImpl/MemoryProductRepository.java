@@ -1,63 +1,64 @@
 package com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.product.ProductDetail;
+import com.levelUpToast.levelUpToast.domain.product.Product;
 import com.levelUpToast.levelUpToast.domain.product.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
+@Repository
 public class MemoryProductRepository implements ProductRepository {
 
 
-    private static Map<Long, ProductDetail> productList = new ConcurrentHashMap<>();
+    private static Map<Long, Product> productStore = new ConcurrentHashMap<>();
     private Long productSeq = 0L;
 
     @Override
-    public ProductDetail saveProduct(ProductDetail productDetail) {
-        productDetail.setProductSeq(productSeq++);
-        productList.put(productDetail.getProductSeq(), productDetail);
+    public Product saveProduct(Product product) {
+        product.setProductSeq(productSeq++);
+        productStore.put(product.getProductSeq(), product);
         return null;
     }
 
     @Override
-    public ProductDetail updateProduct(Long productSeq, ProductDetail productDetail) {
-        if (productList.containsKey(productSeq))
-            productList.put(productSeq, productDetail);
+    public Product updateProduct(Long productSeq, Product newProduct) {
+        if (productStore.containsKey(productSeq))
+            productStore.put(productSeq, newProduct);
         return null;
     }
 
     @Override
-    public Optional<ProductDetail> findByProductSeq(Long productSeq) {
-        if (productList.containsKey(productSeq))
+    public Optional<Product> findProductBySeq(Long productSeq) {
+        if (productStore.containsKey(productSeq))
             return findAllProduct().stream().filter(product -> product.getProductSeq().equals(productSeq)).findFirst();
         return Optional.empty();
     }
 
     @Override
-    public Optional<ProductDetail> findByProductTag(Tag tag) {
-        if (productList.containsKey(productSeq))
-            return findAllProduct().stream().filter(product -> product.getTag().equals(tag)).findFirst();
-        return Optional.empty();
+    public List<Product> findProductByTag(Tag tag) {
+
+        return findAllProduct()
+                .stream()
+                .filter(p -> p.getTag().equals(tag))
+                .collect(Collectors.toList());
     }
 
+
     @Override
-    public Optional<ProductDetail> findByFunding(int date) {
-        if (productList.containsKey(productSeq))
-            return findAllProduct().stream().filter(product -> product.getFunding().getDeadline() < date).findFirst();
-        return Optional.empty();
+    public List<Product> findAllProduct() {
+        return new ArrayList<>(productStore.values());
     }
 
-    @Override
-    public List<ProductDetail> findAllProduct() {
-        return new ArrayList<>(productList.values());
-    }
 
     @Override
-    public void delete(Long productSeq) {
-
+    public void removeProductBySeq(Long productSeq) {
+         if(findProductBySeq(productSeq).isPresent())
+             productStore.remove(productSeq);
     }
 }

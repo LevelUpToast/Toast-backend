@@ -25,6 +25,6 @@ public interface MemberRepository {
 
     // manageSeq 값으로 회원 삭제 (Delete)
     // 조건 ( manager 혹은 member 당사자만 삭제 가능)
-    void delete(Long manageSeq);
+    void remove(Long manageSeq);
 
 }
