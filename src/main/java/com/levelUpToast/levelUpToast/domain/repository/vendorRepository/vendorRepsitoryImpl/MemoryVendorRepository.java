@@ -11,11 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MemoryVendorRepository implements VendorRepository {
 
     private static Map<Long, Vendor> vendorStore = new ConcurrentHashMap<>();
-    private Long manageSeq = 0L;
+
 
     @Override
     public Vendor vendorSave(Vendor vendor) {
-        vendor.setVendorSeq(manageSeq++);
+        vendor.setVendorSeq(vendor.getVendorSeq());
         vendorStore.put(vendor.getVendorSeq(), vendor);
         return vendor;
     }

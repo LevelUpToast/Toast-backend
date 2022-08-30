@@ -1,7 +1,6 @@
 package com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.member.Member;
 
 public interface TokenManager {
 

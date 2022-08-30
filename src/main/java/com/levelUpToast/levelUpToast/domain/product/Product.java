@@ -10,9 +10,9 @@ import java.util.List;
 
 @Data
 public class Product {
-    public Product(String title, List<String> imgList, Tag tag, FundingInfo funding, int like, Long vendorSeq, ProductInfo productInfo, List<BuyOption> buyOption, Review review) {
+    public Product(String title, List<String> initialImgUrl, Tag tag, FundingInfo funding, int like, Long vendorSeq, ProductInfo productInfo, List<BuyOption> buyOption, Review review) {
         this.title = title;
-        this.imgList =  imgList;
+        this.initialImgUrl = initialImgUrl;
         this.tag = tag;
         this.funding = funding;
         this.like = like;
@@ -23,7 +23,7 @@ public class Product {
     }
     private Long productSeq; // 제품 관리 번호
 
-    private List<String> imgList; // 제품 초기 이미지 URL
+    private List<String> initialImgUrl; // 제품 초기 이미지 URL
 
     private String title; // 제품 제목
 

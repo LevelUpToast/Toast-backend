@@ -12,6 +12,7 @@ import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRe
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf.VendorRepository;
 import com.levelUpToast.levelUpToast.domain.vendor.Vendor;
+import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
@@ -24,29 +25,29 @@ import java.util.Calendar;
 public class InitData {
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
-    private final VendorRepository vendorRepository;
+    private final VendorService vendorService;
+
 
     @PostConstruct
     public void init() {
         //init Member
-        memberRepository.save(new Member("ji", "ji", Authority.ADMIN, "김지용", "970128", "남", "010-6277-0650", "colorful8315@gmail.com", "seoul"));
-        memberRepository.save(new Member("mook", "mook", Authority.ADMIN, "임성묵", "000000", "남", "---", "---", "seoul"));
+        Member ji = new Member("ji", "ji", Authority.ADMIN, "김지용", "970128", "남", "010-6277-0650", "colorful8315@gmail.com", "seoul");
+        Member mook = new Member("mook", "mook", Authority.ADMIN, "임성묵", "000000", "남", "---", "---", "seoul");
+        memberRepository.save(ji);
+        memberRepository.save(mook);
         memberRepository.save(new Member("beom", "beom", Authority.ADMIN, "김준범", "000000", "남", "---", "---", "seoul"));
         memberRepository.save(new Member("saac", "saac", Authority.ADMIN, "이삭", "000000", "남", "---", "---", "seoul"));
 
         //init vendor
-        Vendor testingVendor = vendorRepository.vendorSave(new Vendor("김지용", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg", "용묵농업"));
+        Vendor testingVendor = vendorService.register(ji.getManageSeq(), ji.getName(), "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg", "용묵농업");
 
         //init product
-        Calendar cal = Calendar.getInstance();
-        cal.set(2023,Calendar.JANUARY,1,12,0,0);
-
         productRepository.saveProduct(
                 new Product(
                         "수입산 망고",
                         new ArrayList<>(Arrays.asList("97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png")),
                         Tag.FRUIT,
-                        new FundingInfo(5000, 10000, cal),
+                        new FundingInfo(5000, 10000, "2023-01-01"),
                         100,
                         testingVendor.getVendorSeq(),
                         new ProductInfo(
@@ -68,7 +69,7 @@ public class InitData {
                         "한국산 대파",
                         new ArrayList<>(Arrays.asList("c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png")),
                         Tag.VEGETABLE,
-                        new FundingInfo(1000, 80000, cal),
+                        new FundingInfo(1000, 80000, "2023-03-01"),
                         999,
                         testingVendor.getVendorSeq(),
                         new ProductInfo(
