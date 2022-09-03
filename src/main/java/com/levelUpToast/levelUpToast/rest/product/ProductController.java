@@ -12,6 +12,7 @@ import com.levelUpToast.levelUpToast.domain.product.productinfo.ProductInfo;
 import com.levelUpToast.levelUpToast.domain.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
+import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,52 +29,35 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
+    private final SimpleProductService simpleProductService;
     private final MemberRepository memberRepository;
-    private final VendorService vendorService;
-    private final ProductRepository productRepository;
     private final TokenManager tokenManager;
-
+    private final VendorService vendorService;
     // 상품 등록
     @PostMapping("/product/register")
     public ProductResponseForm register(@RequestBody ProductRequestForm form) {
-        try{
+        try {
             Optional<Member> findMem = memberRepository.findByManageSeq(tokenManager.findMemberSeqByToken(form.getVendorToken()));
-            if(findMem.isEmpty()){
-                return new ProductResponseForm(999999, " 500 서버 에러 토큰은 존재하지만 manageSeq와 연결된 회원 없음", null);
+            if (findMem.isEmpty()) {
+                log.warn("[ProductService log] : 토큰은 존재하지만, manageSeq 연결된 회원 없음");
+                throw new LevelUpToastEx("토큰은 존재하지만, manageSeq 연결된 회원 없음", 131);
             }
+
             Member member = findMem.get();
-
-            if(!vendorService.isVendor(member.getManageSeq())){
-                return new ProductResponseForm(999999, member.getName() +" 님은 판매자 권한이 존재하지 않습니다.", null);
+            if (!vendorService.isVendor(member.getManageSeq())) {
+                log.warn("[ProductService log] : 판매자 권한이 존재하지 않습니다.\n 이름 = {}", member.getName());
+                throw new LevelUpToastEx(member.getName() + " 님은 판매자 권한이 존재하지 않습니다.", 132);
             }
 
-
-            Product product = new Product(
-                    form.getTitle(),
-                    form.getInitialImgUrl(),
-                    form.getTag(),
-                    new FundingInfo(0, form.getFinalAmount(), form.getDeadline()), // 내부 데이터를 통해 처리
-                    0, // 좋아요 초기화
-                    member.getManageSeq(), // 내부 데이터를 통해 처리
-                    new ProductInfo(form.getText(), form.getProductImgUrl()),
-                    form.getBuyOption(), // -> 현재 문제점
-                    new Review(0, 0, 0, 0, 0) // 새로운 상품 등록으로 0 초기화
-            );
-            productRepository.saveProduct(product);
             HashMap<String, Object> data = new HashMap<>();
-            data.put("product", product);
-            return new ProductResponseForm(-1,"상품 등록이 완료 되었습니다.",data);
+            data.put("product", simpleProductService.productRegister(form, member.getManageSeq()));
 
-        }catch (LevelUpToastEx e){
-            return new ProductResponseForm(e.getERR_CODE(),e.getMessage(),null);
+            log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
+            return new ProductResponseForm(-1, "상품 등록이 완료 되었습니다.", data);
+
+        } catch (LevelUpToastEx e) {
+            return new ProductResponseForm(e.getERR_CODE(), e.getMessage(), null);
         }
     }
-
-
-    //상품 취소
-
-
-    // 상품 업데이트
-
 
 }
