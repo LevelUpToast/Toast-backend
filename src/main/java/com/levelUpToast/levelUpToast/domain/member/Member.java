@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 public class Member {
-    public Member(String id, String password, Authority authority, String name, String birth, String gender, String phoneNumber, String e_mail, String address) {
+    public Member(String id, String password, Authority authority, String name, String gender, String phoneNumber, String e_mail, String address) {
         this.id = id;
         this.password = password;
         this.authority = authority;
         this.name = name;
-        this.birth = birth;
+//        this.birth = birth;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.e_mail = e_mail;
@@ -29,7 +29,7 @@ public class Member {
 
     private String name; // 회원 이름
 
-    private String birth; // 회원 생년월일
+//    private String birth; // 회원 생년월일
 
     private String gender; // 회원 성별
 
