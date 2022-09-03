@@ -18,7 +18,7 @@ public class SignUpController {
 
     private final SignUpService signUpService;
 
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
     public SignUpResponseForm signUp(@RequestBody SignUpRequestForm form) {
         try {
             signUpService.signUp(form);
