@@ -33,15 +33,11 @@ public class SimpleMailService implements MailService {
 
     @Value("${mail.smtp.domain}")
     private String smtpDomain;
-
     @Value("${mail.smtp.port}")
     private int smtpPort;
 
     final int codeMax = 123123;
-
     final int codeMin = 982545;
-
-
     private final Map<String, String> codeStore = ExpiringMap.builder().maxSize(1000).expirationPolicy(ExpirationPolicy.CREATED).expiration(3, TimeUnit.MINUTES).expirationListener((mail, code) -> log.info("[MailService log] : 메일 인증 코드 시간 만료 제거, mail = {}, code = {} ", mail, code)).build();
 
     @Override

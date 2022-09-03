@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SimpleVenderService implements VendorService {
+public class SimpleVendorService implements VendorService {
     private final VendorRepository vendorRepository;
 
     @Override
