@@ -8,10 +8,12 @@ import com.levelUpToast.levelUpToast.domain.product.fundinginfo.FundingInfo;
 import com.levelUpToast.levelUpToast.domain.product.productinfo.ProductInfo;
 import com.levelUpToast.levelUpToast.domain.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.product.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.repository.mainRepository.MainRepository;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf.VendorRepository;
 import com.levelUpToast.levelUpToast.domain.vendor.Vendor;
+import com.levelUpToast.levelUpToast.service.mainPage.MainService;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,6 +29,7 @@ public class InitData {
     private final ProductRepository productRepository;
     private final VendorService vendorService;
 
+    private final MainRepository mainRepository;
 
     @PostConstruct
     public void init() {
@@ -86,10 +89,10 @@ public class InitData {
                         new Review(1022, 52, 63, 74, 1)
                 ));
 
-
-
-
+        //init main banner
+        mainRepository.setBanner("e2f8f5f0-182e-4710-9b42-1c78d0b6f5eb.png");
     }
+
 
 
 }
