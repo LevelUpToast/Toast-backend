@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MemoryVendorRepository implements VendorRepository {
 
-    private static Map<Long, Vendor> vendorStore = new ConcurrentHashMap<>();
+    private static final Map<Long, Vendor> vendorStore = new ConcurrentHashMap<>();
 
 
     @Override

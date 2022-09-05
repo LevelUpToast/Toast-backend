@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class MemoryProductRepository implements ProductRepository {
 
 
-    private static Map<Long, Product> productStore = new ConcurrentHashMap<>();
+    private static final Map<Long, Product> productStore = new ConcurrentHashMap<>();
     private Long productSeq = 0L;
 
     @Override
@@ -49,16 +49,15 @@ public class MemoryProductRepository implements ProductRepository {
                 .collect(Collectors.toList());
     }
 
-
     @Override
-    public List<Product> findAllProduct() {
+    public ArrayList<Product> findAllProduct() {
         return new ArrayList<>(productStore.values());
     }
 
 
     @Override
     public void removeProductBySeq(Long productSeq) {
-         if(findProductBySeq(productSeq).isPresent())
-             productStore.remove(productSeq);
+        if (findProductBySeq(productSeq).isPresent())
+            productStore.remove(productSeq);
     }
 }

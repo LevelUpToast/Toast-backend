@@ -10,5 +10,5 @@ import java.util.Map;
 public class SignUpResponseForm {
     private int detailCode;
     private String message;
-    private Map<String,String> data;
+    private Map<String, String> data;
 }
