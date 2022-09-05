@@ -13,6 +13,8 @@ public interface MainService {
 
     String myFundingProducts();
 
+    List<Product> listProcessing(List<Product> product);
+
     List<Product> getProduct();
 
     List<Product> getProductTag(Tag tag);
