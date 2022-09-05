@@ -5,24 +5,14 @@ import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.T
 import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductRequestForm;
 import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductResponseForm;
 import com.levelUpToast.levelUpToast.domain.member.Member;
-import com.levelUpToast.levelUpToast.domain.product.Product;
-import com.levelUpToast.levelUpToast.domain.product.buyoption.BuyOption;
-import com.levelUpToast.levelUpToast.domain.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.product.productinfo.ProductInfo;
-import com.levelUpToast.levelUpToast.domain.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
-import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -50,14 +40,26 @@ public class ProductController {
             }
 
             HashMap<String, Object> data = new HashMap<>();
-            data.put("product", simpleProductService.productRegister(form, member.getManageSeq()));
-
+            data.put("product", simpleProductService.registerProduct(form, member.getManageSeq()));
             log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
+
+
             return new ProductResponseForm(-1, "상품 등록이 완료 되었습니다.", data);
 
         } catch (LevelUpToastEx e) {
             return new ProductResponseForm(e.getERR_CODE(), e.getMessage(), null);
         }
+    }
+
+    @GetMapping("/product/{productSeq}")
+    public ProductResponseForm get(@PathVariable("productSeq") Long productSeq){
+        return new ProductResponseForm(-1, "상품상세  productSeq : " + productSeq, simpleProductService.getProduct(productSeq));
+    }
+
+    @DeleteMapping("/product/{productSeq}")
+    public ProductResponseForm Delete(@PathVariable("productSeq") Long productSeq){
+        simpleProductService.deleteProduct(productSeq);
+        return new ProductResponseForm(-1, "상품 삭제를 완료했습니다.", null);
     }
 
 }

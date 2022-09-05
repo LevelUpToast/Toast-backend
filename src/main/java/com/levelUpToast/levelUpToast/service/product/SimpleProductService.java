@@ -1,18 +1,18 @@
 package com.levelUpToast.levelUpToast.service.product;
 
 import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductRequestForm;
-import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductResponseForm;
 import com.levelUpToast.levelUpToast.domain.product.Product;
 import com.levelUpToast.levelUpToast.domain.product.fundinginfo.FundingInfo;
 import com.levelUpToast.levelUpToast.domain.product.productinfo.ProductInfo;
 import com.levelUpToast.levelUpToast.domain.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -23,7 +23,7 @@ public class SimpleProductService implements ProductService {
 
     //상품추가
     @Override
-    public Product productRegister(ProductRequestForm form, Long ManageSeq) {
+    public Product registerProduct(ProductRequestForm form, Long ManageSeq) {
         Product product = new Product(form.getTitle(), form.getInitialImgUrl(), form.getTag(),
                 // 내부 데이터를 통해 처리
                 new FundingInfo(0,
@@ -35,18 +35,30 @@ public class SimpleProductService implements ProductService {
                         new Review(0, 0, 0, 0, 0) // 새로운 상품 등록으로 0 초기화
         );
         productRepository.saveProduct(product);
-
         return product;
     }
 
     //상품 취소
     @Override
-    public void delete() {
-
+    public void deleteProduct(Long seq) {
+        productRepository.removeProductBySeq(seq);
+        log.info("[ProductService log] : 제품 삭제 완료, 제품Seq = {}", seq);
     }
 
+    @Override
+    public Map<String, Object> getProduct(Long seq){
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("Product", productRepository.findProductBySeq(seq));
+        return data;
+    }
 
     // 상품 업데이트
-
-
+    public int updateProduct(Long seq, Product product){
+        try {
+            productRepository.updateProduct(seq, product);
+        }catch (Exception e){
+            return 999;
+        }
+        return -1;
+    }
 }
