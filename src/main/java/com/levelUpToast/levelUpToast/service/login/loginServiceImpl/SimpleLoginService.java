@@ -2,7 +2,7 @@ package com.levelUpToast.levelUpToast.service.login.loginServiceImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
-import com.levelUpToast.levelUpToast.domain.member.Member;
+import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.service.login.loginServiceInf.LoginService;
 import lombok.AllArgsConstructor;

@@ -1,10 +1,10 @@
 package com.levelUpToast.levelUpToast.service.product;
 
-import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductRequestForm;
-import com.levelUpToast.levelUpToast.domain.product.Product;
-import com.levelUpToast.levelUpToast.domain.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.product.productinfo.ProductInfo;
-import com.levelUpToast.levelUpToast.domain.product.reviwe.Review;
+import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductRequestForm;
+import com.levelUpToast.levelUpToast.domain.model.product.Product;
+import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
+import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
+import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -53,6 +52,7 @@ public class SimpleProductService implements ProductService {
     }
 
     // 상품 업데이트
+    @Override
     public int updateProduct(Long seq, Product product){
         try {
             productRepository.updateProduct(seq, product);

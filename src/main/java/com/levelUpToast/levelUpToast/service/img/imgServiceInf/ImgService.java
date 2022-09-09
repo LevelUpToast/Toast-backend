@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.img.imgServiceInf;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.img.ImgItem;
+import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
