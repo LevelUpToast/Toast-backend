@@ -2,9 +2,9 @@ package com.levelUpToast.levelUpToast.rest.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
-import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductRequestForm;
-import com.levelUpToast.levelUpToast.domain.dataForm.product.ProductResponseForm;
-import com.levelUpToast.levelUpToast.domain.member.Member;
+import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductRequestForm;
+import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
@@ -25,7 +25,7 @@ public class ProductController {
     private final VendorService vendorService;
     // 상품 등록
     @PostMapping("/product/register")
-    public ProductResponseForm register(@RequestBody ProductRequestForm form) {
+    public ResponseForm<Object> register(@RequestBody ProductRequestForm form) {
         try {
             Optional<Member> findMem = memberRepository.findByManageSeq(tokenManager.findMemberSeqByToken(form.getVendorToken()));
             if (findMem.isEmpty()) {
@@ -44,22 +44,22 @@ public class ProductController {
             log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
 
 
-            return new ProductResponseForm(-1, "상품 등록이 완료 되었습니다.", data);
+            return new ResponseForm<>(-1, "상품 등록이 완료 되었습니다.", data);
 
         } catch (LevelUpToastEx e) {
-            return new ProductResponseForm(e.getERR_CODE(), e.getMessage(), null);
+            return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
         }
     }
 
     @GetMapping("/product/{productSeq}")
-    public ProductResponseForm get(@PathVariable("productSeq") Long productSeq){
-        return new ProductResponseForm(-1, "상품상세  productSeq : " + productSeq, simpleProductService.getProduct(productSeq));
+    public ResponseForm<Object> get(@PathVariable("productSeq") Long productSeq){
+        return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, simpleProductService.getProduct(productSeq));
     }
 
     @DeleteMapping("/product/{productSeq}")
-    public ProductResponseForm Delete(@PathVariable("productSeq") Long productSeq){
+    public ResponseForm<Object> Delete(@PathVariable("productSeq") Long productSeq){
         simpleProductService.deleteProduct(productSeq);
-        return new ProductResponseForm(-1, "상품 삭제를 완료했습니다.", null);
+        return new ResponseForm<>(-1, "상품 삭제를 완료했습니다.", null);
     }
 
 }
