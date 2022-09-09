@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.member;
+package com.levelUpToast.levelUpToast.domain.model.member;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.img;
+package com.levelUpToast.levelUpToast.domain.model.img;
 
 import lombok.Data;
 

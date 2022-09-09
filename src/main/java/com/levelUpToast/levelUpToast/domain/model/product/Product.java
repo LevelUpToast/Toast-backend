@@ -1,10 +1,10 @@
-package com.levelUpToast.levelUpToast.domain.product;
+package com.levelUpToast.levelUpToast.domain.model.product;
 
-import com.levelUpToast.levelUpToast.domain.product.buyoption.BuyOption;
-import com.levelUpToast.levelUpToast.domain.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.product.productinfo.ProductInfo;
-import com.levelUpToast.levelUpToast.domain.product.reviwe.Review;
-import com.levelUpToast.levelUpToast.domain.product.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
+import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
+import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
+import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
 import lombok.Data;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.vendor;
+package com.levelUpToast.levelUpToast.domain.model.vendor;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

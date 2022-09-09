@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.dataForm.login;
+package com.levelUpToast.levelUpToast.domain.dataForm.requestForm.login;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.product.reviwe;
+package com.levelUpToast.levelUpToast.domain.model.product.reviwe;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

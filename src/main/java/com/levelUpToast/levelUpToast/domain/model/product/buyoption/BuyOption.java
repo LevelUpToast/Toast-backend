@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.product.buyoption;
+package com.levelUpToast.levelUpToast.domain.model.product.buyoption;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

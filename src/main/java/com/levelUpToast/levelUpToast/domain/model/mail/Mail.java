@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.mail;
+package com.levelUpToast.levelUpToast.domain.model.mail;
 
 import lombok.Data;
 
