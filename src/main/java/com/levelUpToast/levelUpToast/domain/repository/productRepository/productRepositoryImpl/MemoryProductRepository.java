@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.product.Product;
-import com.levelUpToast.levelUpToast.domain.product.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.model.product.Product;
+import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import org.springframework.stereotype.Repository;
 
@@ -28,8 +28,7 @@ public class MemoryProductRepository implements ProductRepository {
 
     @Override
     public Product updateProduct(Long productSeq, Product newProduct) {
-        if (productStore.containsKey(productSeq))
-            productStore.put(productSeq, newProduct);
+        if (productStore.containsKey(productSeq)) productStore.put(productSeq, newProduct);
         return null;
     }
 
@@ -40,13 +39,15 @@ public class MemoryProductRepository implements ProductRepository {
         return Optional.empty();
     }
 
+    public List<Product> findProductByTitle(String title) {
+        return findAllProduct().stream().filter(p -> p.getTitle().equals(title)).collect(Collectors.toList());
+    }
+
+
     @Override
     public List<Product> findProductByTag(Tag tag) {
 
-        return findAllProduct()
-                .stream()
-                .filter(p -> p.getTag().equals(tag))
-                .collect(Collectors.toList());
+        return findAllProduct().stream().filter(p -> p.getTag().equals(tag)).collect(Collectors.toList());
     }
 
     @Override
@@ -57,7 +58,6 @@ public class MemoryProductRepository implements ProductRepository {
 
     @Override
     public void removeProductBySeq(Long productSeq) {
-        if (findProductBySeq(productSeq).isPresent())
-            productStore.remove(productSeq);
+        if (findProductBySeq(productSeq).isPresent()) productStore.remove(productSeq);
     }
 }

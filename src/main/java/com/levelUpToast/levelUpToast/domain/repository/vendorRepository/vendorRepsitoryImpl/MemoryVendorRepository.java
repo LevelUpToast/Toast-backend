@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryImpl;
 
 import com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf.VendorRepository;
-import com.levelUpToast.levelUpToast.domain.vendor.Vendor;
+import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

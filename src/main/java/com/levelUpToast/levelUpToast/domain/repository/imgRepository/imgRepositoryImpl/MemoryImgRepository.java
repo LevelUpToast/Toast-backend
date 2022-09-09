@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.img.ImgItem;
+import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
 import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import org.springframework.stereotype.Repository;
 

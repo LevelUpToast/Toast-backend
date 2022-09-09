@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf;
 
-import com.levelUpToast.levelUpToast.domain.img.ImgItem;
+import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
 
 public interface ImgRepository {
 
