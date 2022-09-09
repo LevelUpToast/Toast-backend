@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryImpl;
 
 import com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf.VendorRepository;
-import com.levelUpToast.levelUpToast.domain.vendor.Vendor;
+import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MemoryVendorRepository implements VendorRepository {
 
-    private static Map<Long, Vendor> vendorStore = new ConcurrentHashMap<>();
+    private static final Map<Long, Vendor> vendorStore = new ConcurrentHashMap<>();
 
 
     @Override

@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.img.imgServiceImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.img.ImgItem;
+import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
 import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import com.levelUpToast.levelUpToast.service.img.imgServiceInf.ImgService;
 import lombok.RequiredArgsConstructor;

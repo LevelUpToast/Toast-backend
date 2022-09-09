@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.member.Member;
+import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class MemoryMemberRepository implements MemberRepository {
-    private static Map<Long, Member> store = new ConcurrentHashMap<>();
-    private static Map<String, Long> idList = new HashMap<>();
+    private static final Map<Long, Member> store = new ConcurrentHashMap<>();
+    private static final Map<String, Long> idList = new HashMap<>();
     private Long manageSeq = 0L;
     @Override
     public Member save(Member member) {
