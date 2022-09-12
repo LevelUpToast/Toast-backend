@@ -18,6 +18,11 @@ public class SignUpController {
 
     private final SignUpService signUpService;
 
+    /**
+     * signup 회원가입을 받고 요청하는 컨트롤러
+     * @param form 클라이언트로 부터 받은 Body
+     * @return 요청이 끝나면 ResponseForm 반환한다.
+     */
     @PostMapping("/signup")
     public ResponseForm<String> signUp(@RequestBody SignUpRequestForm form) {
         try {
