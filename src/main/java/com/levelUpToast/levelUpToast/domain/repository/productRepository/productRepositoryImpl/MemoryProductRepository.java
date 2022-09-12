@@ -27,9 +27,9 @@ public class MemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Product updateProduct(Long productSeq, Product newProduct) {
-        if (productStore.containsKey(productSeq)) productStore.put(productSeq, newProduct);
-        return null;
+    public void updateProduct(Long productSeq, Product newProduct) {
+        if (productStore.containsKey(productSeq))
+            productStore.put(productSeq, newProduct);
     }
 
     @Override
