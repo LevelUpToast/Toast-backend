@@ -87,13 +87,13 @@ public class SimpleProductService implements ProductService {
                         0,
                         form.getFinalAmount(),
                         form.getDeadline()),
-                0,
+                original.orElseThrow().getLike(),
                 original.orElseThrow().getVendorSeq(),
                 new ProductInfo(
                         form.getText(),
                         form.getProductImgUrl()),
                 form.getBuyOption(), // -> 현재 문제점
-                original.get().getReview()
+                original.orElseThrow().getReview()
         ));
     }
 }

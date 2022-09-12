@@ -28,8 +28,11 @@ public class MemoryProductRepository implements ProductRepository {
 
     @Override
     public void updateProduct(Long productSeq, Product newProduct) {
-        if (productStore.containsKey(productSeq))
+        if (productStore.containsKey(productSeq)){
+            newProduct.setProductSeq(productSeq);
             productStore.put(productSeq, newProduct);
+        }
+
     }
 
     @Override
