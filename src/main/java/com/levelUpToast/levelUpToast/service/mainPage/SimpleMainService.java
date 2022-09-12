@@ -36,7 +36,7 @@ public class SimpleMainService implements MainService {
      */
     @Override
     public List<ProductList> getProduct() {
-        return productAdapter.listAdapter(
+        return productAdapter.productChange(
                 productAdapter.sizeController(productRepository.findAllProduct())
         );
     }
@@ -48,7 +48,7 @@ public class SimpleMainService implements MainService {
      */
     @Override
     public List<ProductList> getProductTag(Tag tag) {
-        return productAdapter.listAdapter(
+        return productAdapter.productChange(
                 productAdapter.sizeController(productRepository.findProductByTag(tag))
         );
     }
