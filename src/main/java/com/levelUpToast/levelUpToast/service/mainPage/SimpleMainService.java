@@ -5,7 +5,7 @@ import com.levelUpToast.levelUpToast.domain.model.product.ProductList;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.repository.mainRepository.MainRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.service.function.ProductAdapter;
+import com.levelUpToast.levelUpToast.function.ProductAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

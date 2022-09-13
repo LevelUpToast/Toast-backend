@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.service.function;
+package com.levelUpToast.levelUpToast.function;
 
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
 import com.levelUpToast.levelUpToast.domain.model.product.ProductList;
