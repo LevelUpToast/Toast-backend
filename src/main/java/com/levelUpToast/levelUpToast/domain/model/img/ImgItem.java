@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.model.img;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -14,4 +15,9 @@ public class ImgItem {
     private String uploadFileName; // 업로드 이미지 이름
 
     private String storeFileName; // 시스템 내부 저장 파일 이름
+
+    public ImgItem(String uploadFileName, String storeFileName) {
+        this.uploadFileName = uploadFileName;
+        this.storeFileName = storeFileName;
+    }
 }

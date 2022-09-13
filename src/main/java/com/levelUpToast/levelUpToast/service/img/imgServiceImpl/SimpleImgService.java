@@ -56,9 +56,7 @@ public class SimpleImgService implements ImgService {
         multipartFile.transferTo(new File(getFullPath(storeImgName))); // 파일 저장
 
         //DB 저장
-        ImgItem imgItem = new ImgItem();
-        imgItem.setUploadFileName(originalFilename);
-        imgItem.setStoreFileName(storeImgName);
+        ImgItem imgItem = new ImgItem(originalFilename,storeImgName);
         imgRepository.save(imgItem);
 
         return imgItem;

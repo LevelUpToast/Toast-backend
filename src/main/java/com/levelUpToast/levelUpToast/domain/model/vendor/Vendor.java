@@ -8,6 +8,6 @@ import lombok.Data;
 public class Vendor {
     private Long vendorSeq;
     private String vendorName;
-    private String vendorProfileImg;
+    private Long vendorProfileImg; // 향후 vendor 이미지 응답시 String UUID 변환 필요
     private String vendorIntroduction;
 }

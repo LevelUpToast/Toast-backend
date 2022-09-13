@@ -13,7 +13,7 @@ public class SimpleVendorService implements VendorService {
     private final VendorRepository vendorRepository;
 
     @Override
-    public Vendor register(Long memberSeq,String vendorName, String vendorProfileImg, String vendorIntroduction) {
+    public Vendor register(Long memberSeq,String vendorName, Long vendorProfileImg, String vendorIntroduction) {
         Vendor vendor = new Vendor(memberSeq, vendorName, vendorProfileImg, vendorIntroduction);
         vendorRepository.vendorSave(vendor);
         return vendor;

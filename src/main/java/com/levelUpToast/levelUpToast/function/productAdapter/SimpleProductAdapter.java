@@ -1,7 +1,10 @@
-package com.levelUpToast.levelUpToast.function;
+package com.levelUpToast.levelUpToast.function.productAdapter;
 
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.model.product.ProductList;
+import com.levelUpToast.levelUpToast.domain.model.product.productDataForm.ProductList;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
@@ -13,8 +16,12 @@ import java.util.stream.Collectors;
  * @sizeController Product 데이터를 원하는 Size 만큼 가공하거나 10개 가공하는 메소드 데이터를 호출시 sizeController(List<Product> product)이거나 sizeController(List<Product> product, int index)으로 호출해야한다.
  * @listAdapter Product 형식의 데이터를 ProductList 형식으로 변환해주는 Adapter
  */
-public class ProductAdapter {
 
+@Service
+@RequiredArgsConstructor
+public class SimpleProductAdapter implements ProductAdapter{
+
+    private final ImgRepository imgRepository;
     /**
      * Product 데이터를 받고 데이터를 10개로 데이터를 가공하는 함수
      * 단 데이터가 많아질 경우 처리가 늦어질 수 있음(개선 여지가 필요함)
@@ -51,8 +58,16 @@ public class ProductAdapter {
     public List<ProductList> productChange(List<Product> product) {
         List<ProductList> list = new ArrayList<>();
         for (Product value : product)
-            list.add(new ProductList(value.getProductSeq(), value.getTitle(), value.getInitialImgUrl(), value.getTag(), value.getFunding()));
+            list.add(new ProductList(value.getProductSeq(), value.getTitle(), extractImgUUID(value.getInitialImgUrl()), value.getTag(), value.getFunding()));
         return list;
+    }
+
+    public List<String> extractImgUUID(List<Long> imgSeq){
+        List<String> imgUUIDList = new ArrayList<>();
+        for(Long seq : imgSeq){
+            imgUUIDList.add(imgRepository.findBySeq(seq).getStoreFileName());
+        }
+        return imgUUIDList;
     }
 
 }

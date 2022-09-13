@@ -21,7 +21,7 @@ public class ImgController {
     private final ImgService imgService;
 
 
-    @GetMapping("/img/{imgName}") // img 요청
+    @GetMapping("/img/{imgName}") // img resource 요청
     public Resource resImg(@PathVariable String imgName) throws MalformedURLException {
         log.info("[ImgController log] : 이미지 요청 성공 uploadImgName = {}", imgName);
         return new UrlResource("file:" + imgService.getFullPath(imgName));
