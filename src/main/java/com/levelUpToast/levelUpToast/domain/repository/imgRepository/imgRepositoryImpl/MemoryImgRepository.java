@@ -26,7 +26,7 @@ public class MemoryImgRepository implements ImgRepository {
     }
 
     @Override
-    public ImgItem findByImgName(String imgName) {
+    public ImgItem findByImgUUID(String imgName) {
         Optional<ImgItem> img = store.values().stream()
                 .filter(i -> i.getStoreFileName().equals(imgName))
                 .findFirst();

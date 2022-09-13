@@ -8,6 +8,6 @@ public interface ImgRepository {
 
     ImgItem findBySeq(Long manageSeq);
 
-    ImgItem findByImgName(String imgName);
+    ImgItem findByImgUUID(String imgName);
 
 }

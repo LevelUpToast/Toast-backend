@@ -18,7 +18,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ProductController {
     private final SimpleProductService simpleProductService;
-    private final ProductInspection productInspection;
+    private final SimpleProductInspection simpleProductInspection;
 
     /**
      * 클라이언트로 부터 제품을 등록하기위한 컨트롤러
@@ -28,7 +28,7 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseForm<Object> registerProduct(@RequestBody ProductRequestForm form) {
         try {
-            Member member = productInspection.checkMember(form.getVendorToken());
+            Member member = simpleProductInspection.checkMember(form.getVendorToken());
             HashMap<String, Object> data = new HashMap<>();
             data.put("product", simpleProductService.registerProduct(form, member.getManageSeq()));
             log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
@@ -47,7 +47,7 @@ public class ProductController {
     public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) {
         try {
             Map<String, Object> data = new LinkedHashMap<>();
-            data.put("Product", productInspection.checkProduct(productSeq));
+            data.put("Product", simpleProductInspection.checkProduct(productSeq));
             log.info("[ProductService log] 제품 정보 요청이 되었습니다. SEQ = {}", productSeq);
             return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, data);
         }catch (LevelUpToastEx e){
@@ -64,9 +64,9 @@ public class ProductController {
     @PostMapping("/product/{productSeq}")
     public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) {
         try {
-            Member member = productInspection.checkMember(form.getVendorToken());
-            Optional<Product> originalProduct = productInspection.checkProduct(changeProductSeq);
-            productInspection.checkProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
+            Member member = simpleProductInspection.checkMember(form.getVendorToken());
+            Optional<Product> originalProduct = simpleProductInspection.checkProduct(changeProductSeq);
+            simpleProductInspection.checkProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
 
             simpleProductService.updateProduct(originalProduct, changeProductSeq, form);
             log.info("[ProductService log] 제품 업데이트 완료 SEQ = {}", changeProductSeq);
@@ -84,10 +84,10 @@ public class ProductController {
     @DeleteMapping("/product")
     public ResponseForm<Object> deleteProduct(@RequestBody ProductDeleteRequestForm form) {
         try {
-            Member member = productInspection.checkMember(form.getVendorToken());
+            Member member = simpleProductInspection.checkMember(form.getVendorToken());
             Long productSeq = Long.parseLong(form.getProductSEQ());
 
-            productInspection.checkProductSEQ(productInspection.checkProduct(productSeq).orElseThrow().getVendorSeq(), member.getManageSeq());
+            simpleProductInspection.checkProductSEQ(simpleProductInspection.checkProduct(productSeq).orElseThrow().getVendorSeq(), member.getManageSeq());
             log.info("[ProductService log] : 제품 삭제 완료!\t삭제요청한 판매자 SEQ = {},\t 삭제요청된 제품Seq = {}", member.getManageSeq(), productSeq);
             simpleProductService.deleteProduct(productSeq);
             return new ResponseForm<>(-1, "상품 삭제를 완료했습니다.", null);

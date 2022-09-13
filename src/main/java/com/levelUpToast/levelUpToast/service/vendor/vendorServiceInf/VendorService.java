@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
 
 public interface VendorService {
 
-    Vendor register(Long memberSeq, String vendorName, String vendorProfileImg, String vendorIntroduction);
+    Vendor register(Long memberSeq, String vendorName, Long vendorProfileImg, String vendorIntroduction);
 
     Boolean isVendor(Long memberSeq);
 }

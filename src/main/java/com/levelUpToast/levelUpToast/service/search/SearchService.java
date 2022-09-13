@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.search;
 
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.model.product.ProductList;
+import com.levelUpToast.levelUpToast.domain.model.product.productDataForm.ProductList;
 
 import java.util.List;
 

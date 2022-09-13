@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.service.search;
 
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.model.product.ProductList;
+import com.levelUpToast.levelUpToast.domain.model.product.productDataForm.ProductList;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.function.ProductAdapter;
+import com.levelUpToast.levelUpToast.function.productAdapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.function.wordAnalysis.SimpleWordAnalysis;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class SimpleSearchService implements SearchService {
 
     private final ProductRepository productRepository;
-    private final ProductAdapter productAdapter = new ProductAdapter();
+    private final ProductAdapter productAdapter;
 
     /**
      * 검색 내용을 요청받고 Product 내용을 반환하는 메소드

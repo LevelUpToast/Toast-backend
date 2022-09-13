@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.model.product;
+package com.levelUpToast.levelUpToast.domain.model.product.productDataForm;
 
 import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
