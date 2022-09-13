@@ -10,8 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -20,45 +19,81 @@ public class SimpleProductService implements ProductService {
 
     private final ProductRepository productRepository;
 
-    //상품추가
+
+    /**
+     * Product 데이터 저장하는 메소드
+     * @param form 요청받은 Body 내용을 받아 Product 형태로 만든다.
+     * @param ManageSeq 제품 등록하는 판매자의 Seq 등록한다.
+     * @return 데이터 폼을 만든 것을 Return 한다.
+     */
     @Override
     public Product registerProduct(ProductRequestForm form, Long ManageSeq) {
-        Product product = new Product(form.getTitle(), form.getInitialImgUrl(), form.getTag(),
+        Product product = new Product(
+                form.getTitle(),
+                form.getInitialImgUrl(),
+                form.getTag(),
                 // 내부 데이터를 통해 처리
-                new FundingInfo(0,
+                new FundingInfo(
+                        0,
                         form.getFinalAmount(),
                         form.getDeadline()),
-                        0,
-                        ManageSeq,
-                        new ProductInfo(form.getText(), form.getProductImgUrl()), form.getBuyOption(), // -> 현재 문제점
-                        new Review(0, 0, 0, 0, 0) // 새로운 상품 등록으로 0 초기화
+                0,
+                ManageSeq,
+                new ProductInfo(
+                        form.getText(),
+                        form.getProductImgUrl()),
+                form.getBuyOption(), // -> 현재 문제점
+                new Review(0, 0, 0, 0, 0)
         );
         productRepository.saveProduct(product);
         return product;
     }
 
-    //상품 취소
+    /**
+     * 등록된 제품을 삭제하는 메소드
+     * @param seq 삭제할 Product Seq 요청하면 삭제를 진행
+     *            Return 존재하지 않는다.
+     */
     @Override
     public void deleteProduct(Long seq) {
         productRepository.removeProductBySeq(seq);
-        log.info("[ProductService log] : 제품 삭제 완료, 제품Seq = {}", seq);
     }
 
+    /**
+     * 특정 Product 데이터를 요청하고 Return 한다.
+     *
+     * @param seq 요청할 Seq 번호
+     * @return 요청한 product 정보를 가져오고 넘겨준다.
+     */
     @Override
-    public Map<String, Object> getProduct(Long seq){
-        Map<String, Object> data = new LinkedHashMap<>();
-        data.put("Product", productRepository.findProductBySeq(seq));
-        return data;
+    public Optional<Product> getProduct(Long seq) {
+        return productRepository.findProductBySeq(seq);
     }
 
-    // 상품 업데이트
+    /**
+     * Product 상품 정보를 수정하는 요청 메소드
+     * @param original 수정 대상의 Product 데이터를 받는다.
+     * @param seq 수정할 Product seq
+     * @param form 수정 내용을 담아 보낼 product
+     */
     @Override
-    public int updateProduct(Long seq, Product product){
-        try {
-            productRepository.updateProduct(seq, product);
-        }catch (Exception e){
-            return 999;
-        }
-        return -1;
+    public void updateProduct(Optional<Product> original, Long seq, ProductRequestForm form) {
+        productRepository.updateProduct(seq, new Product(
+                form.getTitle(),
+                form.getInitialImgUrl(),
+                form.getTag(),
+                // 내부 데이터를 통해 처리
+                new FundingInfo(
+                        0,
+                        form.getFinalAmount(),
+                        form.getDeadline()),
+                original.orElseThrow().getLike(),
+                original.orElseThrow().getVendorSeq(),
+                new ProductInfo(
+                        form.getText(),
+                        form.getProductImgUrl()),
+                form.getBuyOption(), // -> 현재 문제점
+                original.orElseThrow().getReview()
+        ));
     }
 }

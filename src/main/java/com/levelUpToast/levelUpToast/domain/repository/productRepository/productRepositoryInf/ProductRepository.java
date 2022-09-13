@@ -12,7 +12,7 @@ public interface ProductRepository {
 
     Product saveProduct(Product product); // 제품 저장
 
-    Product updateProduct(Long productSeq, Product newProduct); // 제품 업데이트
+    void updateProduct(Long productSeq, Product newProduct); // 제품 업데이트
 
     Optional<Product> findProductBySeq(Long productSeq); // 제품 번호를 통해 제품 찾기
 

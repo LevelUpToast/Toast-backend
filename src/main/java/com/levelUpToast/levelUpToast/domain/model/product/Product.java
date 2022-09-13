@@ -40,4 +40,6 @@ public class Product {
     private List<BuyOption> buyOption; // 제품 구매 옵션 ( 옵션 정보 , 옵션 가격 )
 
     private Review review; // 제품 리뷰 별점
+
+
 }
