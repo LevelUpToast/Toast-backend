@@ -6,7 +6,7 @@ import com.levelUpToast.levelUpToast.domain.model.product.Product;
 
 import java.util.Optional;
 
-public interface ProductInspection1 {
+public interface ProductInspection {
     Member checkMember(String requestSeq) throws LevelUpToastEx;
 
     void checkProductSEQ(Long originalProductVendor, Long requestSeq) throws LevelUpToastEx;
