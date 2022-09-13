@@ -141,6 +141,16 @@ Body :
 
 <br>
 
+## 📦 DB Table 설계도
+
+
+<img width="1268" alt="DB 명세서" src="https://user-images.githubusercontent.com/81874493/189471591-f8a1e658-bdec-47e6-a805-d7994fdd2c8c.png">
+
+
+
+<br>
+
+
 ## ⚠️ 문제점 및 해결 방법
 
 [프로젝트 개발 중 문제점 발견시 명시하고 이에 대한 해결 방법을 명시한다.]
