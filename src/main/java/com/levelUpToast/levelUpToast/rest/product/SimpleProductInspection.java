@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SimpleProductInspection1 implements ProductInspection1 {
+public class SimpleProductInspection implements ProductInspection {
     private final SimpleProductService simpleProductService;
     private final MemberRepository memberRepository;
     private final TokenManager tokenManager;
