@@ -6,6 +6,8 @@ import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.Product
 import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
+import com.levelUpToast.levelUpToast.function.productInspection.SimpleProblemCheck;
+import com.levelUpToast.levelUpToast.function.productAdapter.SimpleProductAdapter;
 import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +20,8 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ProductController {
     private final SimpleProductService simpleProductService;
-    private final SimpleProductInspection simpleProductInspection;
+    private final SimpleProblemCheck simpleProductInspection;
+    private final SimpleProductAdapter simpleProductAdapter;
 
     /**
      * 클라이언트로 부터 제품을 등록하기위한 컨트롤러
@@ -47,7 +50,7 @@ public class ProductController {
     public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) {
         try {
             Map<String, Object> data = new LinkedHashMap<>();
-            data.put("Product", simpleProductInspection.checkProduct(productSeq));
+            data.put("Product", simpleProductAdapter.changeProductResponseForm(simpleProductInspection.checkProduct(productSeq)));
             log.info("[ProductService log] 제품 정보 요청이 되었습니다. SEQ = {}", productSeq);
             return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, data);
         }catch (LevelUpToastEx e){

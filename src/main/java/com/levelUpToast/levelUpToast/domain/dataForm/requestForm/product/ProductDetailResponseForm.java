@@ -1,18 +1,20 @@
-package com.levelUpToast.levelUpToast.domain.model.product.productDataForm;
+package com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product;
 
 import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
 import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
 import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
+import lombok.Data;
 
 import java.util.List;
 
 //Product detail 보내줄때 사용하는 form
 
+@Data
 public class ProductDetailResponseForm {
 
-    public ProductDetailResponseForm(String title, List<Long> initialImgUrl, Tag tag, FundingInfo funding, int like, Long vendorSeq, ProductInfo productInfo, List<BuyOption> buyOption, Review review) {
+    public ProductDetailResponseForm(String title, List<String> initialImgUrl, Tag tag, FundingInfo funding, int like, Long vendorSeq, ProductInfo productInfo, List<BuyOption> buyOption, Review review) {
         this.title = title;
         this.initialImgUrl = initialImgUrl;
         this.tag = tag;
@@ -25,7 +27,7 @@ public class ProductDetailResponseForm {
     }
     private Long productSeq; // 제품 관리 번호
 
-    private List<Long> initialImgUrl; // 제품 초기 이미지 URL
+    private List<String> initialImgUrl; // 제품 초기 이미지 URL
 
     private String title; // 제품 제목
 
