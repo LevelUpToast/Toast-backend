@@ -25,15 +25,15 @@ import java.util.concurrent.TimeUnit;
 
 public class SimpleMailService implements MailService {
 
-    @Value("${mail.smtp.id}")
+    @Value("${MAIL_SMTP_ID}")
     private String id;
 
-    @Value("${mail.smtp.pw}")
+    @Value("${MAIL_SMTP_PW}")
     private String pw;
 
-    @Value("${mail.smtp.domain}")
+    @Value("${MAIL_SMTP_DOMAIN}")
     private String smtpDomain;
-    @Value("${mail.smtp.port}")
+    @Value("${MAIL_SMTP_PORT}")
     private int smtpPort;
 
     final int codeMax = 123123;

@@ -22,7 +22,7 @@ public class SimpleImgService implements ImgService {
 
     private final ImgRepository imgRepository;
 
-    @Value("${file.dir}")
+    @Value("${FILE_DIR}")
     private String fileDir;
 
     @Override
