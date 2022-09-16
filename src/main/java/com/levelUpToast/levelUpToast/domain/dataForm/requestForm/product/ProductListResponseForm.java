@@ -1,17 +1,14 @@
-package com.levelUpToast.levelUpToast.domain.model.product.productDataForm;
+package com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product;
 
-import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class ProductList {
-    public ProductList(Long productSeq, String title, List<String> initialImgUrl, Tag tag, FundingInfo funding) {
+public class ProductListResponseForm {
+    public ProductListResponseForm(Long productSeq, String title, List<String> initialImgUrl, Tag tag, FundingInfo funding) {
         this.productSeq = productSeq;
         this.title = title;
         this.initialImgUrl = initialImgUrl;

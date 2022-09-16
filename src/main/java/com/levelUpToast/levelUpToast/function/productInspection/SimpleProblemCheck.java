@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.rest.product;
+package com.levelUpToast.levelUpToast.function.productInspection;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf.TokenManager;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SimpleProductInspection implements ProductInspection {
+public class SimpleProblemCheck implements ProblemCheck {
     private final SimpleProductService simpleProductService;
     private final MemberRepository memberRepository;
     private final TokenManager tokenManager;
