@@ -157,28 +157,42 @@ Body :
 
 ex)
 
-- [x]  서버 통신간 CORS(Cross-Origin Resource Sharing)문제 (2022.7.30 김지용)
-
-    <details>
-    <summary>문제점 & 해결 방법</summary>
-       
-        문제점 : CORS 정책 위반하여 서로 다른 출처를 가진 상태에서 요청시 브라우저가 보안상 이유로 차단
-        
-        해결방법 : 동일 출처에서 리소스 요청 방식을 사용
-       
-     </details>
+> - [x]  서버 통신간 CORS(Cross-Origin Resource Sharing)문제 (2022.7.30 김지용)
+>
+>    <details>
+>   <summary>문제점 & 해결 방법</summary>
+>      
+>       문제점 : CORS 정책 위반하여 서로 다른 출처를 가진 상태에서 요청시 브라우저가 보안상 이유로 차단
+>       
+>       해결방법 : 동일 출처에서 리소스 요청 방식을 사용
+>
+>    </details>
 
 <br>
 
-- [ ] email 인증 기능의 Google 보안 수준이 낮은 앱 설정 불가 (2022.8.22 김지용)
-	<details>
-	<summary> 문제점 해결 방법 </summary>
+- [x] email 인증 기능의 Google 보안 수준이 낮은 앱 설정 불가 (2022.8.22 김지용, 임성묵)
+	
+	+ 문제점 : email 관련 gmail smtp 서버를 이용하여 하려고 했으나 gmail 보안 수준이 낮은 앱 허용을  22년 5월 30일 부터 구글에서 설정을 막아 email smtp 사용 현재 불가능
+	
+	+ 해결방법 : 자체 leveluptoast 이메일 서버를 구축하고, 이메일 발송과정에서 SPF, DKIM, DMARC 정책 적용하여 보안설정
 
-		문제점 : email 관련 gmail smtp 서버를 이용하여 하려고 했으나 gmail 보안 수준이 낮은 앱 허용을  22년 5월 30일 부터 구글에서 설정을 막아 email smtp 사용 현재 불가능
+<br>
 
-		해결방법 : 문제점 해결 진행 중
 
-	</details>
+- [x] application.properties 보안설정 문제  (2022.9.1 임성묵)
+	
+	+ 문제점 : GitHub와 같은 Git에서 Public으로 되어 있다면, API 서버 내부 구조 보안, 아이디, 비밀번호를 보고 이메일이나 다른 서비스에 접속하여 보안문제나, 스팸으로 사용 가능성이 높음
+	
+	+ 해결방법 : Github Actions을 이용하여 하는 방법이 있지만, Jenkins 서버에서 CI/CD 과정에서 application.properties 키를 입력하여 외부로 부터 보안 유지하며, 변경사항이 있을시에도 원격으로 바로 변경할 수 있도록 수정
+
+<br>
+
+
+- [x] 검색 내용 추출, 검색 엔진 문제  (2022.9.10 임성묵)
+	
+	+ 문제점 : Elasticsearch을 통해 검색 엔진을 만드려고했으나 개발 적용시간이 상당히 소요될것으로 예상되고, 자연어 처리하는 Python 코드를 실행하여 검색엔진을 만들기엔 처리 속도가 느려짐 
+	
+	+ 해결방법 : KOMORAN 라이브러리로 한국어 형태소 분석하여 명사 추출하고, 내용을 간단하게 분석하여 정확도가 높은 내용을 Repository에 요청하여 필요한 데이터만 뽑을 수있는 기능으로 개발
 
 <br>
 
