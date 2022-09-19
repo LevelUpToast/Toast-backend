@@ -6,8 +6,9 @@ import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.Product
 import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.function.productInspection.SimpleProblemCheck;
-import com.levelUpToast.levelUpToast.function.productAdapter.SimpleProductAdapter;
+import com.levelUpToast.levelUpToast.function.member.memberCheck.SimpleMemberCheck;
+import com.levelUpToast.levelUpToast.function.product.productCheck.SimpleProblemCheck;
+import com.levelUpToast.levelUpToast.service.product.ProductService;
 import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import java.util.*;
 public class ProductController {
     private final SimpleProductService simpleProductService;
     private final SimpleProblemCheck simpleProductInspection;
-    private final SimpleProductAdapter simpleProductAdapter;
+    private final SimpleMemberCheck simpleMemberCheck;
 
     /**
      * 클라이언트로 부터 제품을 등록하기위한 컨트롤러
@@ -29,14 +30,17 @@ public class ProductController {
      * @return 클라이언트에서 처리된 결과 값을 반환한다.
      */
     @PostMapping("/product")
-    public ResponseForm<Object> registerProduct(@RequestBody ProductRequestForm form) {
+    public ResponseForm<String> registerProduct(@RequestBody ProductRequestForm form) {
         try {
-            Member member = simpleProductInspection.checkMember(form.getVendorToken());
-            HashMap<String, Object> data = new HashMap<>();
-            data.put("product", simpleProductService.registerProduct(form, member.getManageSeq()));
+            Member member = simpleMemberCheck.checkMember(form.getVendorToken());
+            log.info(String.valueOf(form));
+            String productSEQ =  simpleProductService.addProduct(form, member.getManageSeq());
+            if (productSEQ == null)
+                throw new LevelUpToastEx("제품등록에 오류가 발생했습니다.", 142);
             log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
-            return new ResponseForm<>(-1, "상품 등록이 완료 되었습니다. : productSeq : " + form.getVendorToken(), data);
+            return new ResponseForm<>(-1, "상품 등록이 완료 되었습니다. 상품 등록된 SEQ 번호  : "  + productSEQ, null);
         } catch (LevelUpToastEx e) {
+            log.info("[ProductService log] : " + e.getMessage());
             return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
         }
     }
@@ -50,7 +54,7 @@ public class ProductController {
     public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) {
         try {
             Map<String, Object> data = new LinkedHashMap<>();
-            data.put("Product", simpleProductAdapter.changeProductResponseForm(simpleProductInspection.checkProduct(productSeq)));
+            data.put("Product", simpleProductInspection.checkProduct(productSeq));
             log.info("[ProductService log] 제품 정보 요청이 되었습니다. SEQ = {}", productSeq);
             return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, data);
         }catch (LevelUpToastEx e){
@@ -67,11 +71,12 @@ public class ProductController {
     @PostMapping("/product/{productSeq}")
     public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) {
         try {
-            Member member = simpleProductInspection.checkMember(form.getVendorToken());
+            Member member = simpleMemberCheck.checkMember(form.getVendorToken());
             Optional<Product> originalProduct = simpleProductInspection.checkProduct(changeProductSeq);
-            simpleProductInspection.checkProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
 
+            simpleProductInspection.checkProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
             simpleProductService.updateProduct(originalProduct, changeProductSeq, form);
+
             log.info("[ProductService log] 제품 업데이트 완료 SEQ = {}", changeProductSeq);
             return new ResponseForm<>(-1, "상품업데이트 완료 : productSeq : " + changeProductSeq, null);
         } catch (LevelUpToastEx e) {
@@ -87,7 +92,7 @@ public class ProductController {
     @DeleteMapping("/product")
     public ResponseForm<Object> deleteProduct(@RequestBody ProductDeleteRequestForm form) {
         try {
-            Member member = simpleProductInspection.checkMember(form.getVendorToken());
+            Member member = simpleMemberCheck.checkMember(form.getVendorToken());
             Long productSeq = Long.parseLong(form.getProductSEQ());
 
             simpleProductInspection.checkProductSEQ(simpleProductInspection.checkProduct(productSeq).orElseThrow().getVendorSeq(), member.getManageSeq());

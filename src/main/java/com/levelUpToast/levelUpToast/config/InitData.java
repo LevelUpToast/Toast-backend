@@ -14,7 +14,6 @@ import com.levelUpToast.levelUpToast.domain.repository.mainRepository.MainReposi
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
-import com.levelUpToast.levelUpToast.service.img.imgServiceInf.ImgService;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -42,14 +41,14 @@ public class InitData {
         memberRepository.save(new Member("saac", "saac", Authority.ADMIN, "이삭",  "남", "---", "---", "seoul"));
 
         //init vendor
-        imgRepository.save(new ImgItem("용묵농업", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg"));
+        imgRepository.add(new ImgItem("용묵농업", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg"));
         Vendor testingVendor = vendorService.register(ji.getManageSeq(), ji.getName(), 1L, "용묵농업");
 
         //init img
-        imgRepository.save(new ImgItem("수입산 망고 1", "97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png"));
-        imgRepository.save(new ImgItem("수입산 망고 2", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png"));
-        imgRepository.save(new ImgItem("대파 1", "c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png"));
-        imgRepository.save(new ImgItem("대파 2", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png"));
+        imgRepository.add(new ImgItem("수입산 망고 1", "97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png"));
+        imgRepository.add(new ImgItem("수입산 망고 2", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png"));
+        imgRepository.add(new ImgItem("대파 1", "c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png"));
+        imgRepository.add(new ImgItem("대파 2", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png"));
 
 
 
@@ -58,7 +57,8 @@ public class InitData {
         productRepository.saveProduct(
                 new Product(
                         "수입산 망고",
-                        new ArrayList<>(Arrays.asList(2L,3L)),
+                        new ArrayList<>(Arrays.asList("97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png")),
+//                        new ArrayList<>(Arrays.asList(2L,3L))
                         Tag.FRUIT,
                         new FundingInfo(5000, 10000, "2023-01-01"),
                         100,
@@ -71,7 +71,8 @@ public class InitData {
                                         "\n" +
                                         "<img2>\n" +
                                         "꼭 먹어보세요",
-                                new ArrayList<>(Arrays.asList(1L,2L))
+                                new ArrayList<>(Arrays.asList("97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png"))
+//                                new ArrayList<>(Arrays.asList(1L,2L))
                         ),
                         new ArrayList<>(Arrays.asList(new BuyOption("1kg", 1000), new BuyOption("2kg", 2000), new BuyOption("3kg", 3000))),
                         new Review(10, 5, 6, 7, 1)
@@ -80,7 +81,8 @@ public class InitData {
         productRepository.saveProduct(
                 new Product(
                         "한국산 대파",
-                        new ArrayList<>(Arrays.asList(4L, 5L)),
+                        new ArrayList<>(Arrays.asList("c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png")),
+//                        new ArrayList<>(Arrays.asList(4L, 5L)),
                         Tag.VEGETABLE,
                         new FundingInfo(1000, 80000, "2023-03-01"),
                         999,
@@ -93,7 +95,8 @@ public class InitData {
                                         "\n" +
                                         "<img2>\n" +
                                         "실제 오리가 보내드립니다.",
-                                new ArrayList<>(Arrays.asList(3L, 4L))
+                                new ArrayList<>(Arrays.asList("c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png"))
+//                              new ArrayList<>(Arrays.asList(3L, 4L))
                         ),
                         new ArrayList<>(Arrays.asList(new BuyOption("1단", 1000), new BuyOption("2단", 2000), new BuyOption("3단", 3000))),
                         new Review(1022, 52, 63, 74, 1)

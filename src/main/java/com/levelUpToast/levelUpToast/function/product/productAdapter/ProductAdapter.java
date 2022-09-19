@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.function.productAdapter;
+package com.levelUpToast.levelUpToast.function.product.productAdapter;
 
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
 import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductListResponseForm;
@@ -12,10 +12,6 @@ public interface ProductAdapter {
     List<Product> sizeController(List<Product> product, int index);
 
     List<ProductListResponseForm> changeProductList(List<Product> product);
-
-    List<String> extractImgUUID(List<Long> imgSeq);
-
-    List<Long> extractImgSeq(List<String> imgUUIDList);
 
 }
 

@@ -5,14 +5,11 @@ import com.levelUpToast.levelUpToast.domain.model.product.Product;
 import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
 import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
 import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.function.productAdapter.SimpleProductAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Slf4j
@@ -21,8 +18,6 @@ import java.util.Optional;
 public class SimpleProductService implements ProductService {
 
     private final ProductRepository productRepository;
-    private final ImgRepository imgRepository;
-    private final SimpleProductAdapter simpleProductAdapter;
 
     /**
      * Product 데이터 저장하는 메소드
@@ -31,20 +26,10 @@ public class SimpleProductService implements ProductService {
      * @return 데이터 폼을 만든 것을 Return 한다.
      */
     @Override
-    public Product registerProduct(ProductRequestForm form, Long ManageSeq) {
-        ArrayList<String> initialImgSeq = new ArrayList<>();
-        ArrayList<String> productImgSeq = new ArrayList<>();
-
-        for(String uuid : form.getInitialImgUrl())
-            initialImgSeq.add(Long.toString(imgRepository.findByImgUUID(uuid).getManageSeq()));
-
-        for(String uuid : form.getProductImgUrl())
-            productImgSeq.add(Long.toString(imgRepository.findByImgUUID(uuid).getManageSeq()));
-
-
+    public String addProduct(ProductRequestForm form, Long ManageSeq) {
         Product product = new Product(
                 form.getTitle(),
-                simpleProductAdapter.extractImgSeq(initialImgSeq),
+                form.getInitialImgUrl(),
                 form.getTag(),
                 // 내부 데이터를 통해 처리
                 new FundingInfo(
@@ -55,12 +40,12 @@ public class SimpleProductService implements ProductService {
                 ManageSeq,
                 new ProductInfo(
                         form.getText(),
-                        simpleProductAdapter.extractImgSeq(productImgSeq)),
+                        form.getProductImgUrl()),
                 form.getBuyOption(),
                 new Review(0, 0, 0, 0, 0)
         );
         productRepository.saveProduct(product);
-        return product;
+        return product.getProductSeq().toString();
     }
 
     /**
@@ -81,7 +66,7 @@ public class SimpleProductService implements ProductService {
      */
     @Override
     public Optional<Product> getProduct(Long seq) {
-        return  productRepository.findProductBySeq(seq);
+        return productRepository.findProductBySeq(seq);
     }
 
 
@@ -95,7 +80,7 @@ public class SimpleProductService implements ProductService {
     public void updateProduct(Optional<Product> original, Long seq, ProductRequestForm form) {
         productRepository.updateProduct(seq, new Product(
                 form.getTitle(),
-                simpleProductAdapter.extractImgSeq(form.getInitialImgUrl()),
+                form.getInitialImgUrl(),
                 form.getTag(),
                 // 내부 데이터를 통해 처리
                 new FundingInfo(
@@ -106,7 +91,7 @@ public class SimpleProductService implements ProductService {
                 original.orElseThrow().getVendorSeq(),
                 new ProductInfo(
                         form.getText(),
-                        simpleProductAdapter.extractImgSeq(form.getProductImgUrl())),
+                        form.getProductImgUrl()),
                 form.getBuyOption(),
                 original.orElseThrow().getReview()
         ));

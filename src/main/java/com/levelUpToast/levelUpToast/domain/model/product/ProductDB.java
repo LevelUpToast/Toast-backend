@@ -1,20 +1,22 @@
-package com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product;
+package com.levelUpToast.levelUpToast.domain.model.product;
 
 import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
+import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfoDB;
 import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-//Product detail 보내줄때 사용하는 form
-
+/**
+ * Product 데이터를 데이터베이스에 저장할때 사용하는 데이터 형식
+ */
 @Data
-public class ProductDetailResponseForm {
+public class ProductDB {
 
-    public ProductDetailResponseForm(String title, List<String> initialImgUrl, Tag tag, FundingInfo funding, int like, Long vendorSeq, ProductInfo productInfo, List<BuyOption> buyOption, Review review) {
+    public ProductDB(String title, List<Long> initialImgUrl, Tag tag, FundingInfo funding, int like, Long vendorSeq, ProductInfoDB productInfo, ArrayList<BuyOption> buyOption, Review review) {
         this.title = title;
         this.initialImgUrl = initialImgUrl;
         this.tag = tag;
@@ -27,7 +29,7 @@ public class ProductDetailResponseForm {
     }
     private Long productSeq; // 제품 관리 번호
 
-    private List<String> initialImgUrl; // 제품 초기 이미지 URL
+    private List<Long> initialImgUrl; // 제품 초기 이미지 URL
 
     private String title; // 제품 제목
 
@@ -39,9 +41,9 @@ public class ProductDetailResponseForm {
 
     private Long vendorSeq; // 판매자관리 번호
 
-    private ProductInfo productInfo; // 제품 정보 ( 제품 내용, 이미지 URL 리스트 )
+    private ProductInfoDB productInfo; // 제품 정보 ( 제품 내용, 이미지 URL 리스트 )
 
-    private List<BuyOption> buyOption; // 제품 구매 옵션 ( 옵션 정보 , 옵션 가격 )
+    private ArrayList<BuyOption> buyOption; // 제품 구매 옵션 ( 옵션 정보 , 옵션 가격 )
 
     private Review review; // 제품 리뷰 별점
 

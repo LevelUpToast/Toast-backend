@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
-import com.levelUpToast.levelUpToast.function.productInspection.SimpleProblemCheck;
+import com.levelUpToast.levelUpToast.function.member.memberCheck.SimpleMemberCheck;
 import com.levelUpToast.levelUpToast.service.mainPage.SimpleMainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import java.util.*;
 @RestController
 @RequiredArgsConstructor
  class MainPageController {
-    private final SimpleProblemCheck simpleProblemCheck;
+    private final SimpleMemberCheck simpleMemberCheck;
     private final SimpleMainService simpleMainService;
 
     /**
@@ -31,7 +31,7 @@ import java.util.*;
         Map<String, Object> data = new LinkedHashMap<>();
 
         data.put("bannerImgUrl",simpleMainService.getBanner());
-        if (loggedMem != null) data.put("myFundingProducts", simpleMainService.myFundingProducts()); // 펀딩레포지토리 완성 이후 token을 통해 찾아서 넣을 예정
+        if (loggedMem != null) data.put("myFundingProducts", simpleMainService.myFundingProducts()); // 펀딩레포지토리 완성 이후 Token 통해 찾아서 넣을 예정
         else data.put("myFundingProducts", null);
         data.put("recommendedProducts", simpleMainService.getProduct());
         data.put("fruitProducts", simpleMainService.getProductTag(Tag.FRUIT));
@@ -59,7 +59,7 @@ import java.util.*;
     @GetMapping("/main/{token}")
     public ResponseForm<Object> loggedMainPage(@PathVariable("token") String token) {
         try {
-            Member member = simpleProblemCheck.checkMember(token);
+            Member member = simpleMemberCheck.checkMember(token);
             log.info("[MainPageController log] : 로그인한 회원 메인 페이지 요청");
             return new ResponseForm<>(-1, "로그인 완료된 MainPage", mainPage(member));
         } catch (LevelUpToastEx e) {
