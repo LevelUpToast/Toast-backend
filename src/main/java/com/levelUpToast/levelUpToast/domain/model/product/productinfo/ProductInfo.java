@@ -9,5 +9,5 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductInfo {
     private String text;
-    private List<Long> productImgUrl;
+    private List<String> productImgUrl;
 }

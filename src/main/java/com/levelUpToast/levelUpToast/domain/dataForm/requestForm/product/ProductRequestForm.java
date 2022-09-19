@@ -1,9 +1,11 @@
 package com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product;
 
+
 import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,7 +27,6 @@ public class ProductRequestForm {
 
     private List<String> productImgUrl; // 제품 이미지 URL 리스트
 
-    private List<BuyOption> buyOption; // 제품 구매 옵션 ( 옵션 정보 , 옵션 가격 )
-
+    private ArrayList<BuyOption> buyOption; // 제품 구매 옵션 ( 옵션 정보 , 옵션 가격 )
 
 }

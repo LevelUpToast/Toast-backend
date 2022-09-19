@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ProductRepository {
 
 
-    Product saveProduct(Product product); // 제품 저장
+    void saveProduct(Product product); // 제품 저장
 
     void updateProduct(Long productSeq, Product newProduct); // 제품 업데이트
 
