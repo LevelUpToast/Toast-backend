@@ -1,9 +1,7 @@
-package com.levelUpToast.levelUpToast.function.productAdapter;
+package com.levelUpToast.levelUpToast.function.product.productAdapter;
 
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductDetailResponseForm;
 import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductListResponseForm;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -22,8 +19,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class SimpleProductAdapter implements ProductAdapter {
-
-    private final ImgRepository imgRepository;
 
     /**
      * Product 데이터를 받고 데이터를 10개로 데이터를 가공하는 함수
@@ -64,41 +59,9 @@ public class SimpleProductAdapter implements ProductAdapter {
     public List<ProductListResponseForm> changeProductList(List<Product> product) {
         List<ProductListResponseForm> list = new ArrayList<>();
         for (Product value : product)
-            list.add(new ProductListResponseForm(value.getProductSeq(), value.getTitle(), extractImgUUID(value.getInitialImgUrl()), value.getTag(), value.getFunding()));
+            list.add(new ProductListResponseForm(value.getProductSeq(), value.getTitle(), value.getInitialImgUrl(), value.getTag(), value.getFunding()));
         return list;
     }
 
-    public ProductDetailResponseForm changeProductResponseForm(Optional<Product> product) {
-
-        return new ProductDetailResponseForm(
-                product.orElseThrow().getTitle(),
-                extractImgUUID(product.orElseThrow().getInitialImgUrl()),
-                product.orElseThrow().getTag(),
-                product.orElseThrow().getFunding(),
-                product.orElseThrow().getLike(),
-                product.orElseThrow().getVendorSeq(),
-                product.orElseThrow().getProductInfo(),
-                product.orElseThrow().getBuyOption(),
-                product.orElseThrow().getReview()
-        );
-    }
-
-    @Override
-    public List<String> extractImgUUID(List<Long> imgSeq) {
-        List<String> imgUUIDList = new ArrayList<>();
-        for (Long seq : imgSeq) {
-            imgUUIDList.add(imgRepository.findBySeq(seq).getStoreFileName());
-        }
-        return imgUUIDList;
-    }
-
-    @Override
-    public List<Long> extractImgSeq(List<String> imgUUIDList) {
-        ArrayList<Long> imgSeqList = new ArrayList<>();
-        for (String imgUUID : imgUUIDList) {
-            imgSeqList.add(imgRepository.findByImgUUID(imgUUID).getManageSeq());
-        }
-        return imgSeqList;
-    }
 
 }

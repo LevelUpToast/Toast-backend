@@ -3,7 +3,7 @@ package com.levelUpToast.levelUpToast.service.search;
 import com.levelUpToast.levelUpToast.domain.model.product.Product;
 import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.function.productAdapter.ProductAdapter;
+import com.levelUpToast.levelUpToast.function.product.productAdapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.function.wordAnalysis.SimpleWordAnalysis;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

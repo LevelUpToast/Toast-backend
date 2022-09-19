@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
 
 public interface ImgRepository {
 
-    ImgItem save(ImgItem imgItem);
+    ImgItem add(ImgItem imgItem);
 
     ImgItem findBySeq(Long manageSeq);
 

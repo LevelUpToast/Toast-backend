@@ -57,7 +57,7 @@ public class SimpleImgService implements ImgService {
 
         //DB 저장
         ImgItem imgItem = new ImgItem(originalFilename,storeImgName);
-        imgRepository.save(imgItem);
+        imgRepository.add(imgItem);
 
         return imgItem;
     }
