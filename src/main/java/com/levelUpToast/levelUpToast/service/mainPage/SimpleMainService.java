@@ -1,11 +1,10 @@
 package com.levelUpToast.levelUpToast.service.mainPage;
 
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.repository.mainRepository.MainRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.function.productAdapter.ProductAdapter;
+import com.levelUpToast.levelUpToast.function.product.productAdapter.ProductAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ import java.util.*;
 public class SimpleMainService implements MainService {
 
     private final ProductRepository productRepository;
-    private final ProductAdapter productAdapter ;
+    private final ProductAdapter productAdapter;
     private final MainRepository mainRepository;
 
     /**

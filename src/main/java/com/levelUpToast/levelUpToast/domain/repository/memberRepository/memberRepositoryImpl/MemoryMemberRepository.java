@@ -33,7 +33,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByloginId(String loginId) {
+    public Optional<Member> findByLoginId(String loginId) {
         if(idList.containsKey(loginId)){
             return findByManageSeq(idList.get(loginId));
         }

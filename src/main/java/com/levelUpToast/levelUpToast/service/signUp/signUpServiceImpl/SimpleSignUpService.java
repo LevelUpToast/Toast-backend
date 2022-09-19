@@ -4,7 +4,8 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.signUp.SignUpRequestForm;
 import com.levelUpToast.levelUpToast.domain.model.member.Authority;
 import com.levelUpToast.levelUpToast.domain.model.member.Member;
-import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
+import com.levelUpToast.levelUpToast.function.member.memberCheck.SimpleMemberCheck;
+import com.levelUpToast.levelUpToast.function.member.memberCreate.SimpleMemberCreate;
 import com.levelUpToast.levelUpToast.service.signUp.signUpServiceInf.SignUpService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,16 +17,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SimpleSignUpService implements SignUpService {
 
-    private final MemberRepository memberRepository;
-
-    @Override
-    public Boolean idPresentCheck(String id) {
-        return memberRepository.findByloginId(id).isPresent();
-    }
+    private final SimpleMemberCheck simpleMemberCheck;
+    private final SimpleMemberCreate simpleMemberCreate;
 
     @Override
     public Member signUp(SignUpRequestForm form) throws LevelUpToastEx {
-        if(idPresentCheck(form.getId())){
+        if (simpleMemberCheck.idPresentCheck(form.getId())) {
             log.warn("[SignUpService log] : 이미 존재하는 id 회원가입 요청 id = {}", form.getId());
             throw new LevelUpToastEx("이미 존재하는 id 입니다", 11);
         }
@@ -39,8 +36,8 @@ public class SimpleSignUpService implements SignUpService {
                         form.getPhoneNumber(),
                         form.getE_mail(),
                         form.getAddress());
-        memberRepository.save(member);
-        log.info("[SignUpService log] : 회원가입 성공  id = {}, name = {}", form.getId(),form.getName());
+        simpleMemberCreate.createMember(member);
+        log.info("[SignUpService log] : 회원가입 성공  id = {}, name = {}", form.getId(), form.getName());
         return member;
     }
 }
