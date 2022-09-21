@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.rest.search;
 
-import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.service.search.SimpleSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

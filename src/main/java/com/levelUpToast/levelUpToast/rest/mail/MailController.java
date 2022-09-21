@@ -1,8 +1,8 @@
 package com.levelUpToast.levelUpToast.rest.mail;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
-import com.levelUpToast.levelUpToast.domain.model.mail.Mail;
+import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.data.mail.Mail;
 import com.levelUpToast.levelUpToast.service.mail.mailServiceInf.MailService;
 
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf;
 
-import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
+import com.levelUpToast.levelUpToast.domain.data.vendor.Vendor;
 
 import java.util.List;
 import java.util.Optional;

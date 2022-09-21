@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.function.product.productCheck;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.model.product.Product;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +38,8 @@ public class SimpleProblemCheck implements ProblemCheck {
      * @return 입력받은 ProductSEQ 검사하고 문제가 없다면 Product 데이터를 Return
      * @throws LevelUpToastEx 오류가 발생한다면 오류 코드와 메세지를 반환
      */
-    public Optional<Product> checkProduct(Long productSeq) throws LevelUpToastEx{
-        Optional<Product> product = simpleProductService.getProduct(productSeq);
+    public Optional<ResponseProductTable> checkProduct(Long productSeq) throws LevelUpToastEx{
+        Optional<ResponseProductTable> product = simpleProductService.getProduct(productSeq);
         if (product.isEmpty()) {
             log.info("[ProductService log] 요청된 제품 Seq 없거나 잘못된 번호입니다. SEQ = {}", productSeq);
             throw new LevelUpToastEx("요청된 제품 Seq 없거나 잘못된 번호입니다.", 53);

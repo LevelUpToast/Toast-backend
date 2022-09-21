@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.rest.mainPage;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
-import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 import com.levelUpToast.levelUpToast.function.member.memberCheck.SimpleMemberCheck;
 import com.levelUpToast.levelUpToast.service.mainPage.SimpleMainService;
 import lombok.RequiredArgsConstructor;

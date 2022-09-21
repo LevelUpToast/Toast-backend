@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import org.springframework.stereotype.Repository;
 

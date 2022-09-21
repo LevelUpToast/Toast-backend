@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf;
 
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,8 +1,8 @@
 package com.levelUpToast.levelUpToast.rest.signUp;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.signUp.SignUpRequestForm;
+import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.signUp.SignUpRequestForm;
 import com.levelUpToast.levelUpToast.service.signUp.signUpServiceInf.SignUpService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

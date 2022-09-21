@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.vendor.vendorServiceImpl;
 
 import com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf.VendorRepository;
-import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
+import com.levelUpToast.levelUpToast.domain.data.vendor.Vendor;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

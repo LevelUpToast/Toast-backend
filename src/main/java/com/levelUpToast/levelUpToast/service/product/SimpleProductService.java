@@ -1,10 +1,10 @@
 package com.levelUpToast.levelUpToast.service.product;
 
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductRequestForm;
-import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductRequestForm;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
+import com.levelUpToast.levelUpToast.domain.data.product.data.fundinginfo.FundingInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class SimpleProductService implements ProductService {
      */
     @Override
     public String addProduct(ProductRequestForm form, Long ManageSeq) {
-        Product product = new Product(
+        ResponseProductTable responseProductTable = new ResponseProductTable(
                 form.getTitle(),
                 form.getInitialImgUrl(),
                 form.getTag(),
@@ -38,14 +38,14 @@ public class SimpleProductService implements ProductService {
                         form.getDeadline()),
                 0,
                 ManageSeq,
-                new ProductInfo(
+                new ResponseProductInfo(
                         form.getText(),
                         form.getProductImgUrl()),
                 form.getBuyOption(),
                 new Review(0, 0, 0, 0, 0)
         );
-        productRepository.saveProduct(product);
-        return product.getProductSeq().toString();
+        productRepository.saveProduct(responseProductTable);
+        return responseProductTable.getProductSeq().toString();
     }
 
     /**
@@ -65,7 +65,7 @@ public class SimpleProductService implements ProductService {
      * @return 요청한 product 정보를 가져오고 넘겨준다.
      */
     @Override
-    public Optional<Product> getProduct(Long seq) {
+    public Optional<ResponseProductTable> getProduct(Long seq) {
         return productRepository.findProductBySeq(seq);
     }
 
@@ -77,8 +77,8 @@ public class SimpleProductService implements ProductService {
      * @param form 수정 내용을 담아 보낼 product
      */
     @Override
-    public void updateProduct(Optional<Product> original, Long seq, ProductRequestForm form) {
-        productRepository.updateProduct(seq, new Product(
+    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) {
+        productRepository.updateProduct(seq, new ResponseProductTable(
                 form.getTitle(),
                 form.getInitialImgUrl(),
                 form.getTag(),
@@ -89,7 +89,7 @@ public class SimpleProductService implements ProductService {
                         form.getDeadline()),
                 original.orElseThrow().getLike(),
                 original.orElseThrow().getVendorSeq(),
-                new ProductInfo(
+                new ResponseProductInfo(
                         form.getText(),
                         form.getProductImgUrl()),
                 form.getBuyOption(),

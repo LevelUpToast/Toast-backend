@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.mail.mailServiceImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.model.mail.Mail;
+import com.levelUpToast.levelUpToast.domain.data.mail.Mail;
 import com.levelUpToast.levelUpToast.service.mail.mailServiceInf.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

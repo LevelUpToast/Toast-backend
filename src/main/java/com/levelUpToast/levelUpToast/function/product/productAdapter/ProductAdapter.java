@@ -1,17 +1,17 @@
 package com.levelUpToast.levelUpToast.function.product.productAdapter;
 
-import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductListResponseForm;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 
 import java.util.List;
 
 public interface ProductAdapter {
 
-    List<Product> sizeController(List<Product> product);
+    List<ResponseProductTable> sizeController(List<ResponseProductTable> responseProductTable);
 
-    List<Product> sizeController(List<Product> product, int index);
+    List<ResponseProductTable> sizeController(List<ResponseProductTable> responseProductTable, int index);
 
-    List<ProductListResponseForm> changeProductList(List<Product> product);
+    List<ProductListResponseForm> changeProductList(List<ResponseProductTable> responseProductTable);
 
 }
 

@@ -1,19 +1,19 @@
 package com.levelUpToast.levelUpToast.config;
 
-import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
-import com.levelUpToast.levelUpToast.domain.model.member.Authority;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
-import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.model.product.buyoption.BuyOption;
-import com.levelUpToast.levelUpToast.domain.model.product.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.productinfo.ProductInfo;
-import com.levelUpToast.levelUpToast.domain.model.product.reviwe.Review;
-import com.levelUpToast.levelUpToast.domain.model.product.tag.Tag;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
+import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
+import com.levelUpToast.levelUpToast.domain.data.member.Authority;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
+import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
+import com.levelUpToast.levelUpToast.domain.data.product.data.fundinginfo.FundingInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
+import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.ImgRepository;
 import com.levelUpToast.levelUpToast.domain.repository.mainRepository.MainRepository;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
+import com.levelUpToast.levelUpToast.domain.data.vendor.Vendor;
 import com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -55,7 +55,7 @@ public class InitData {
 
         //init product
         productRepository.saveProduct(
-                new Product(
+                new ResponseProductTable(
                         "수입산 망고",
                         new ArrayList<>(Arrays.asList("97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png")),
 //                        new ArrayList<>(Arrays.asList(2L,3L))
@@ -63,7 +63,7 @@ public class InitData {
                         new FundingInfo(5000, 10000, "2023-01-01"),
                         100,
                         testingVendor.getVendorSeq(),
-                        new ProductInfo(
+                        new ResponseProductInfo(
                                 "맛있는 망고입니다 \n" +
                                         "\n" +
                                         "<img1> \n" +
@@ -79,7 +79,7 @@ public class InitData {
                 ));
 
         productRepository.saveProduct(
-                new Product(
+                new ResponseProductTable(
                         "한국산 대파",
                         new ArrayList<>(Arrays.asList("c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png")),
 //                        new ArrayList<>(Arrays.asList(4L, 5L)),
@@ -87,7 +87,7 @@ public class InitData {
                         new FundingInfo(1000, 80000, "2023-03-01"),
                         999,
                         testingVendor.getVendorSeq(),
-                        new ProductInfo(
+                        new ResponseProductInfo(
                                 "한국식 대파 입니다 \n" +
                                         "\n" +
                                         "<img1> \n" +

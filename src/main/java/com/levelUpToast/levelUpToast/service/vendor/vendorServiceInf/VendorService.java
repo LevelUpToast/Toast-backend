@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.service.vendor.vendorServiceInf;
 
-import com.levelUpToast.levelUpToast.domain.model.vendor.Vendor;
+import com.levelUpToast.levelUpToast.domain.data.vendor.Vendor;
 
 public interface VendorService {
 

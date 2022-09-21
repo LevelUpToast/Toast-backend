@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.function.imgAdapter;
 
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.ImgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.mail.mailServiceInf;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.model.mail.Mail;
+import com.levelUpToast.levelUpToast.domain.data.mail.Mail;
 
 public interface MailService {
 

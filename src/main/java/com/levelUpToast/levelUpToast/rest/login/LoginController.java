@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.rest.login;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.login.LoginRequestFrom;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.login.LoginRequestFrom;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.service.login.loginServiceInf.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

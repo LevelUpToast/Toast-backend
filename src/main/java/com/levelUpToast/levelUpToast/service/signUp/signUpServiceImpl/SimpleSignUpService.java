@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.service.signUp.signUpServiceImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.signUp.SignUpRequestForm;
-import com.levelUpToast.levelUpToast.domain.model.member.Authority;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.signUp.SignUpRequestForm;
+import com.levelUpToast.levelUpToast.domain.data.member.Authority;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.function.member.memberCheck.SimpleMemberCheck;
 import com.levelUpToast.levelUpToast.function.member.memberCreate.SimpleMemberCreate;
 import com.levelUpToast.levelUpToast.service.signUp.signUpServiceInf.SignUpService;

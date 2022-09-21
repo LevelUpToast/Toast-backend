@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.service.search;
 
-import com.levelUpToast.levelUpToast.domain.model.product.Product;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductListResponseForm;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.function.product.productAdapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.function.wordAnalysis.SimpleWordAnalysis;
@@ -34,17 +34,17 @@ public class SimpleSearchService implements SearchService {
 
     /**
      * 사용자로 부터 word 받아 Product에 해당 내용만 추출하는 메소드
-     * @param product      정보를 추출할 product
+     * @param responseProductTable      정보를 추출할 product
      * @param inputKeyword 검색할 Keyword 내용
      * @return Keyword 데이터를 가공후 Return
      */
     @Override
-    public List<Product> Keyword(List<Product> product, String inputKeyword) {
+    public List<ResponseProductTable> Keyword(List<ResponseProductTable> responseProductTable, String inputKeyword) {
         SimpleWordAnalysis simpleWordAnalysis = new SimpleWordAnalysis();
         ArrayList<String> searchKeyword = simpleWordAnalysis.wordAnalysis(inputKeyword, 2);
         log.info("[SearchService log] 분석전 검색어 문장 = \"{}\"\t 추출된 명사 = {}", inputKeyword, searchKeyword);
 
-        return product.stream().filter(p -> {
+        return responseProductTable.stream().filter(p -> {
             for (String text : searchKeyword) if (p.getTitle().contains(text)) return true;
             return false;
         }).collect(Collectors.toList());

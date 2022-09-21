@@ -1,14 +1,13 @@
 package com.levelUpToast.levelUpToast.rest.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductDeleteRequestForm;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.product.ProductRequestForm;
-import com.levelUpToast.levelUpToast.domain.dataForm.responseForm.ResponseForm;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
-import com.levelUpToast.levelUpToast.domain.model.product.Product;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductDeleteRequestForm;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductRequestForm;
+import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.function.member.memberCheck.SimpleMemberCheck;
 import com.levelUpToast.levelUpToast.function.product.productCheck.SimpleProblemCheck;
-import com.levelUpToast.levelUpToast.service.product.ProductService;
 import com.levelUpToast.levelUpToast.service.product.SimpleProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +71,7 @@ public class ProductController {
     public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) {
         try {
             Member member = simpleMemberCheck.checkMember(form.getVendorToken());
-            Optional<Product> originalProduct = simpleProductInspection.checkProduct(changeProductSeq);
+            Optional<ResponseProductTable> originalProduct = simpleProductInspection.checkProduct(changeProductSeq);
 
             simpleProductInspection.checkProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
             simpleProductService.updateProduct(originalProduct, changeProductSeq, form);
