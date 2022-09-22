@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.config;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.model.img.ImgItem;
 import com.levelUpToast.levelUpToast.domain.model.member.Authority;
 import com.levelUpToast.levelUpToast.domain.model.member.Member;
@@ -32,7 +33,7 @@ public class InitData {
     private final MainRepository mainRepository;
 
     @PostConstruct
-    public void init() {
+    public void init() throws LevelUpToastEx {
         //init Member
         Member ji = new Member("ji", "ji", Authority.ADMIN, "김지용",  "남", "010-6277-0650", "colorful8315@gmail.com", "seoul");
         Member mook = new Member("mook", "mook", Authority.ADMIN, "임성묵", "남", "---", "---", "seoul");
