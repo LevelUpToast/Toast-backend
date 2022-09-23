@@ -19,7 +19,7 @@ public class SimpleSignUpService implements SignUpService {
     private final MemberRepository memberRepository;
 
     @Override
-    public Boolean idPresentCheck(String id) {
+    public Boolean idPresentCheck(String id) throws LevelUpToastEx {
         return memberRepository.findByloginId(id).isPresent();
     }
 

@@ -6,7 +6,9 @@ import com.levelUpToast.levelUpToast.domain.model.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -16,6 +18,7 @@ import java.util.Optional;
 
 
 @Slf4j
+//@Primary
 //@Repository
 @RequiredArgsConstructor
 public class JdbcMemberRepository implements MemberRepository {
@@ -24,16 +27,27 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override
     public Member save(Member member) throws LevelUpToastEx {
+
         String sql = "insert into Member_TB (auth, name, gender, tel, e_mail, address, locked) values(?,?,?,?,?,?,?)";
+
+        String sql2 = "insert into Login_TB (id, pw, member_sequence) values(?,?,?)";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
+        Connection conn2 = null;
+        PreparedStatement pstmt2 = null;
+        ResultSet rs2 = null;
+
+        member.setLock(false);
         try {
 
             conn = getConnection();
+            conn2 = getConnection();
+
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt2 = conn2.prepareStatement(sql2);
 
             pstmt.setString(1, member.getAuthority().toString());
             pstmt.setString(2, member.getName());
@@ -43,22 +57,36 @@ public class JdbcMemberRepository implements MemberRepository {
             pstmt.setString(6, member.getAddress());
             pstmt.setString(7, member.getLock().toString());
 
-
+            pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
+
             if (rs.next()) {
-                member.setManageSeq(rs.getLong("manage_sequence"));
+                member.setManageSeq(rs.getLong(1));
             } else {
                 log.warn("[DB_Member_TB log] : Member_TB manageSeq 생성 실패 Member = {} ", member);
                 throw new LevelUpToastEx("Member_TB manageSeq 반환 실패", 10000);
             }
+
+            pstmt2.setString(1, member.getId());
+            pstmt2.setString(2, member.getPassword());
+            pstmt2.setLong(3,member.getManageSeq());
+
+            log.info("nen = {}", member);
+
+            pstmt2.executeUpdate();
+
+            log.info("mem = {}", member);
+
+            log.info("[DB_Member_TB log] : Member_TB {} 계정 , ID = {} 저장 성공", member.getAuthority(), member.getId());
             return member;
         } catch (Exception e) {
-            log.warn("[DB_Member_TB log] : Member_TB manageSeq 생성 실패 Member = {} ", member);
+            log.warn("[DB_Member_TB log] : DB Member_TB (save) 에러 Member = {} ", member);
             throw new LevelUpToastEx("DB Member_TB (save) 에러", 10000);
         } finally {
-            log.info("[DB_Member_TB log] : Member_TB {} 계정 , ID = {} 저장 성공", member.getAuthority(), member.getId());
             close(conn, pstmt, rs);
+            close(conn2,pstmt2,rs2);
         }
+
     }
 
 

@@ -6,7 +6,7 @@ import com.levelUpToast.levelUpToast.domain.model.member.Member;
 
 public interface SignUpService {
 
-    Boolean idPresentCheck(String id);
+    Boolean idPresentCheck(String id) throws LevelUpToastEx;
 
     Member signUp(SignUpRequestForm form) throws LevelUpToastEx;
 
