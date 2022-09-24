@@ -116,6 +116,7 @@ public class JdbcMemberRepository implements MemberRepository {
                         rs.getString("e_mail"),
                         rs.getString("address")
                 );
+                member.setManageSeq(rs.getLong("member_sequence"));
                 if (rs.getString("auth").equals("admin")) {
                     member.setAuthority(Authority.ADMIN);
                     return Optional.of(member);
@@ -161,6 +162,7 @@ public class JdbcMemberRepository implements MemberRepository {
                         rs.getString("e_mail"),
                         rs.getString("address")
                 );
+                member.setManageSeq(rs.getLong("member_sequence"));
                 if(rs.getString("auth").equals("admin")){
                     member.setAuthority(Authority.ADMIN);
                 }
@@ -200,6 +202,7 @@ public class JdbcMemberRepository implements MemberRepository {
                         rs.getString("e_mail"),
                         rs.getString("address")
                 );
+                member.setManageSeq(rs.getLong("member_sequence"));
                 if(rs.getString("auth").equals("admin")){
                     member.setAuthority(Authority.ADMIN);
                 }
