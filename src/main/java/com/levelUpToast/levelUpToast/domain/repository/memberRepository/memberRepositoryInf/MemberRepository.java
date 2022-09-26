@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface MemberRepository {
 
     // 회원 저장 (Create)
-    Member save(Member member);
+    void saveMember(Member member);
 
     // manageSeq 값으로 회원 조회 (Read)
     Optional<Member> findByManageSeq(Long manageSeq);
@@ -21,7 +21,6 @@ public interface MemberRepository {
 
     // 회원 정보 변경 (Update)
     Member update(Long memberSeq, Member updatedMember);
-
 
     // manageSeq 값으로 회원 삭제 (Delete)
     // 조건 ( manager 혹은 member 당사자만 삭제 가능)

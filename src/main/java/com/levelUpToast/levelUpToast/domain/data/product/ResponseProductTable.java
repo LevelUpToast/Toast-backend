@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.domain.data.product;
 
 import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
-import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.data.product.data.fundinginfo.FundingInfo;
 import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,8 +1,8 @@
 package com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product;
 
 
-import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
 import lombok.Data;
 
 import java.util.ArrayList;

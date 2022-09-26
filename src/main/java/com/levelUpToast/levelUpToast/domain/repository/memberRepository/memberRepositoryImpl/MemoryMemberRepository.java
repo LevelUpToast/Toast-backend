@@ -13,11 +13,10 @@ public class MemoryMemberRepository implements MemberRepository {
     private static final Map<String, Long> idList = new HashMap<>();
     private Long manageSeq = 0L;
     @Override
-    public Member save(Member member) {
+    public void saveMember(Member member) {
         member.setManageSeq(manageSeq++);
         store.put(member.getManageSeq(), member);
         idList.put(member.getId(), member.getManageSeq());
-        return member;
     }
 
     @Override
@@ -47,15 +46,15 @@ public class MemoryMemberRepository implements MemberRepository {
         if(findMem.isEmpty()){
             return null;
         }
-        Member member = findMem.get();
-        member = updatedMember;
-        return member;
+//        Member member = findMem.get();
+//        member = updatedMember;
+        return updatedMember;
     }
 
     @Override
     public void remove(Long manageSeq) {
         Optional<Member> findMem = findByManageSeq(manageSeq);
-        if(!findMem.isEmpty()){
+        if(findMem.isPresent()){
             store.remove(manageSeq);
         }
     }

@@ -1,12 +1,12 @@
 package com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
-import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.DataBaseProductInfo;
-import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.function.imgAdapter.SimpleImgAdapter;
+import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
+import com.levelUpToast.levelUpToast.util.img.SimpleImgAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
