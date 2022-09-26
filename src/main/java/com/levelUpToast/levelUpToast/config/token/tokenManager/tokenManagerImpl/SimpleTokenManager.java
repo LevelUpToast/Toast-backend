@@ -17,6 +17,9 @@ public class SimpleTokenManager implements TokenManager {
 
     @Override
     public String createToken(Long manageSeq) {
+        if(tokenStore.values().contains(manageSeq)){
+            tokenStore.values().remove(manageSeq);
+        }
         String token = UUID.randomUUID().toString();
         tokenStore.put(token, manageSeq);
         return token;
