@@ -40,13 +40,10 @@ public class SimpleWordAnalysis implements WordAnalysis {
         for (String text : keyWordSet)
             hashMap.put(text, Collections.frequency(keyWord, text));
 
-        arrayList.add(Collections.max(hashMap.values()).toString());
-
-
-
-//        for (String text : keyWordSet)
-//            if (Collections.frequency(keyWord, text) >= index) arrayList.add(text);
-
+        int maxValueInMap = (Collections.max(hashMap.values()));
+        for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+            if (entry.getValue() == maxValueInMap) arrayList.add(entry.getKey());
+        }
         return arrayList;
     }
 

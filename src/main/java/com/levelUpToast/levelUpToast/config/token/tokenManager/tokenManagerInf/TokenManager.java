@@ -2,8 +2,7 @@ package com.levelUpToast.levelUpToast.config.token.tokenManager.tokenManagerInf;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 
-public interface
-TokenManager {
+public interface TokenManager {
 
     //token 생성 및 저장
     String createToken(Long manageSeq);

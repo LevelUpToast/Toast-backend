@@ -40,7 +40,7 @@ public class GetProductListSearch implements SearchProduct {
      */
     private List<ResponseProductTable> Keyword(List<ResponseProductTable> responseProductTable, String inputKeyword) {
         SimpleWordAnalysis simpleWordAnalysis = new SimpleWordAnalysis();
-        ArrayList<String> searchKeyword = simpleWordAnalysis.wordAnalysis(inputKeyword, 1);
+        ArrayList<String> searchKeyword = simpleWordAnalysis.wordAnalysis(inputKeyword, 2);
         log.info("[SearchService log] 분석전 검색어 문장 = \"{}\"\t 추출된 명사 = {}", inputKeyword, searchKeyword);
 
         return responseProductTable.stream().filter(p -> {

@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.controller;
 
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.service.search.SimpleSearchService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -38,9 +40,11 @@ public class SearchController {
     public ResponseForm<Object> Search(@PathVariable("index") int index,@PathVariable("SearchKeyword") String SearchKeyword) {
         Map<String, Object> data = new LinkedHashMap<>();
         log.info("[SearchController log] 입력받은 검색 요청 요청된 검색어 = \"{}\"\t 검색 index 범위 = {}", SearchKeyword, index);
-        data.put("SearchProduct", simpleSearchService.SearchProduct(SearchKeyword, index));
-        if (data.get("SearchProduct") == null)
+
+        List<ProductListResponseForm> searchResult = simpleSearchService.SearchProduct(SearchKeyword, index);
+        if (searchResult.isEmpty())
             return new ResponseForm<>(-1, "검색 요청 데이터 없음", null);
+        data.put("SearchProduct", simpleSearchService.SearchProduct(SearchKeyword, index));
         return new ResponseForm<>(-1, "검색내용 데이터 요청", data);
     }
 }
