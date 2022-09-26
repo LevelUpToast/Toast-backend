@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryImpl;
 
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,11 +13,10 @@ public class MemoryMemberRepository implements MemberRepository {
     private static final Map<String, Long> idList = new HashMap<>();
     private Long manageSeq = 0L;
     @Override
-    public Member save(Member member) {
+    public void saveMember(Member member) {
         member.setManageSeq(manageSeq++);
         store.put(member.getManageSeq(), member);
         idList.put(member.getId(), member.getManageSeq());
-        return member;
     }
 
     @Override
@@ -33,7 +32,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByloginId(String loginId) {
+    public Optional<Member> findByLoginId(String loginId) {
         if(idList.containsKey(loginId)){
             return findByManageSeq(idList.get(loginId));
         }
@@ -47,15 +46,15 @@ public class MemoryMemberRepository implements MemberRepository {
         if(findMem.isEmpty()){
             return null;
         }
-        Member member = findMem.get();
-        member = updatedMember;
-        return member;
+//        Member member = findMem.get();
+//        member = updatedMember;
+        return updatedMember;
     }
 
     @Override
     public void remove(Long manageSeq) {
         Optional<Member> findMem = findByManageSeq(manageSeq);
-        if(!findMem.isEmpty()){
+        if(findMem.isPresent()){
             store.remove(manageSeq);
         }
     }

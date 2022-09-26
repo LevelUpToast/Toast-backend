@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf;
 
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface MemberRepository {
 
     // 회원 저장 (Create)
-    Member save(Member member);
+    void saveMember(Member member);
 
     // manageSeq 값으로 회원 조회 (Read)
     Optional<Member> findByManageSeq(Long manageSeq);
@@ -17,11 +17,10 @@ public interface MemberRepository {
     List<Member> findAllMember();
 
     // 회원 ID로 회원 조회
-    Optional<Member> findByloginId(String loginId);
+    Optional<Member> findByLoginId(String loginId);
 
     // 회원 정보 변경 (Update)
     Member update(Long memberSeq, Member updatedMember);
-
 
     // manageSeq 값으로 회원 삭제 (Delete)
     // 조건 ( manager 혹은 member 당사자만 삭제 가능)
