@@ -16,6 +16,12 @@ public class ContainerConfig {
     @Value("${tomcat.ajp.port}")
     int ajpPort;
 
+    @Value("${tomcat.ajp.allowedRequestAttributesPattern}")
+    String ajpRequestAttributesPatter;
+
+    @Value("${tomcat.ajp.address}")
+    String ajpAddress;
+
     @Bean
     public ServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
@@ -29,6 +35,8 @@ public class ContainerConfig {
         ajpConnector.setSecure(false);
         ajpConnector.setAllowTrace(false);
         ajpConnector.setScheme("http");
+        ajpConnector.setProperty("address",ajpAddress);
+        ajpConnector.setProperty("allowedRequestAttributesPattern", ajpRequestAttributesPatter);
         ((AbstractAjpProtocol<?>)ajpConnector.getProtocolHandler()).setSecretRequired(false);
         return ajpConnector;
     }
