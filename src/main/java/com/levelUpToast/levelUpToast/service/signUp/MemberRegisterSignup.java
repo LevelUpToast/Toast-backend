@@ -21,7 +21,7 @@ public class MemberRegisterSignup implements RegisterSignup {
 
     @Override
     public Member registerSignUp(SignUpRequestForm form) throws LevelUpToastEx {
-        if (simpleMemberCheck.idPresentCheck(form.getId())) {
+        if (simpleMemberCheck.isIDPresent(form.getId())) {
             log.warn("[SignUpService log] : 이미 존재하는 id 회원가입 요청 id = {}", form.getId());
             throw new LevelUpToastEx("이미 존재하는 id 입니다", 11);
         }

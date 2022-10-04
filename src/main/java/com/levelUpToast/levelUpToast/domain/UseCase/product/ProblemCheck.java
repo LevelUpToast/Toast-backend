@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ProblemCheck {
 
-    void checkProductSEQ(Long originalProductVendor, Long requestSeq) throws LevelUpToastEx;
+    void isProductSEQ(Long originalProductVendor, Long requestSeq) throws LevelUpToastEx;
 
-    Optional<ResponseProductTable> checkProduct(Long productSeq) throws LevelUpToastEx;
+    Optional<ResponseProductTable> isProduct(Long productSeq) throws LevelUpToastEx;
 }

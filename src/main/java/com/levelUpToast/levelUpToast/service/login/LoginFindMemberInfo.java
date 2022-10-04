@@ -15,7 +15,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class LoginFindMemberInfo implements LoginFindMember {
-
     private final TokenManager tokenManager;
     private final MemberRepository memberRepository;
     @Override

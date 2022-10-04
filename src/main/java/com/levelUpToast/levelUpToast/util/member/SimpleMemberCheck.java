@@ -27,7 +27,7 @@ public class SimpleMemberCheck implements MemberCheck {
      * @param requestSeq 클라이언트로부터 요청된 SEQ 받아 데이터를 확인한다. 작업 과정에서 토큰, 권한 정보를 확인한다.
      * @return 멤버 정보를 추출하고 리턴한다.
      */
-    public Member checkMember(String requestSeq) throws LevelUpToastEx {
+    public Member isMember(String requestSeq) throws LevelUpToastEx {
         Optional<Member> findMem = memberRepository.findByManageSeq(tokenManager.findMemberSeqByToken(requestSeq));
         if (findMem.isEmpty()) {
             log.warn("[ProductService log] : 토큰은 존재하지만, manageSeq 연결된 회원 없음");
@@ -48,7 +48,7 @@ public class SimpleMemberCheck implements MemberCheck {
      * @return Boolean 형식으로 중복인지 알려준다.
      */
     @Override
-    public Boolean idPresentCheck(String id) {
+    public Boolean isIDPresent(String id) {
         return memberRepository.findByLoginId(id).isPresent();
     }
 }
