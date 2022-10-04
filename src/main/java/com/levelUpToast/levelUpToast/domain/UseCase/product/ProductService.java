@@ -1,8 +1,10 @@
 package com.levelUpToast.levelUpToast.domain.UseCase.product;
 
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductRequestForm;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 public interface ProductService {
@@ -13,4 +15,8 @@ public interface ProductService {
     void deleteProduct(Long seq);
 
     Optional<ResponseProductTable> getProduct(Long seq);
+
+    ArrayList<ProductListResponseForm> recommendationProduct();
+
+
 }

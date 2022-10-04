@@ -24,7 +24,7 @@ public class SimpleProblemCheck implements ProblemCheck {
      * @param originalProductVendor 등록된 SEQ 정보를 받는다.
      * @param requestSeq 수정을 요청한 클라이언트의 SEQ
      */
-    public void checkProductSEQ(Long originalProductVendor, Long requestSeq) throws LevelUpToastEx {
+    public void isProductSEQ(Long originalProductVendor, Long requestSeq) throws LevelUpToastEx {
         if (!Objects.equals(originalProductVendor, requestSeq)) { //삭제 요청한 Seq 판매자의 seq 같은지 확인한다.
             log.warn("[ProductService log] 판매자 정보가 일치하지 않습니다. 요청된 판매자 seq = {}\t제품 판매자 seq = {}", requestSeq, originalProductVendor);
             throw new LevelUpToastEx("판매자 정보가 일치하지 않습니다.", 54);
@@ -38,7 +38,7 @@ public class SimpleProblemCheck implements ProblemCheck {
      * @return 입력받은 ProductSEQ 검사하고 문제가 없다면 Product 데이터를 Return
      * @throws LevelUpToastEx 오류가 발생한다면 오류 코드와 메세지를 반환
      */
-    public Optional<ResponseProductTable> checkProduct(Long productSeq) throws LevelUpToastEx{
+    public Optional<ResponseProductTable> isProduct(Long productSeq) throws LevelUpToastEx{
         Optional<ResponseProductTable> product = simpleProductService.getProduct(productSeq);
         if (product.isEmpty()) {
             log.info("[ProductService log] 요청된 제품 Seq 없거나 잘못된 번호입니다. SEQ = {}", productSeq);

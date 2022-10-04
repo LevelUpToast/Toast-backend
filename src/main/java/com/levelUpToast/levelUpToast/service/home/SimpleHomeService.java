@@ -4,6 +4,7 @@ import com.levelUpToast.levelUpToast.domain.UseCase.home.BannerHome;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductListHome;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductTagHome;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.HomeService;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.recommendation.Recommendation;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,8 @@ public class SimpleHomeService implements HomeService {
 
     private final ProductListHome simpleHomeProductList;
 
+    private final Recommendation recommendation;
+
     /**
      * Product 펀딩정보를 불러오는 메소드
      *
@@ -34,8 +37,8 @@ public class SimpleHomeService implements HomeService {
     }
 
     @Override
-    public List<ProductListResponseForm> getProduct() {
-        return simpleHomeProductList.getHomeProduct();
+    public ArrayList<ProductListResponseForm> getProduct() {
+        return recommendation.recommendedProducts();
     }
 
     @Override
@@ -47,5 +50,6 @@ public class SimpleHomeService implements HomeService {
     public ArrayList<String> getBanner() {
         return simpleGetBannerHome.getBanner();
     }
+
 
 }

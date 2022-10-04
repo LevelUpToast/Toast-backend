@@ -31,7 +31,7 @@ public class UpdateInformationProduct implements UpdateProduct {
                 form.getInitialImgUrl(),
                 form.getTag(),
                 new FundingInfo(
-                        0,
+                         0,
                         form.getFinalAmount(),
                         form.getDeadline()),
                 original.orElseThrow().getLike(),
