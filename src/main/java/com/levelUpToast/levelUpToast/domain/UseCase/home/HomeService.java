@@ -13,7 +13,7 @@ public interface HomeService {
 
     ArrayList<String> getBanner();
 
-    List<ProductListResponseForm> getProduct();
+    ArrayList<ProductListResponseForm> getProduct();
 
     List<ProductListResponseForm> getProductTag(Tag tag);
 }
