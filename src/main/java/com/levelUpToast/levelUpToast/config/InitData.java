@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.config;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
 import com.levelUpToast.levelUpToast.domain.data.member.Authority;
 import com.levelUpToast.levelUpToast.domain.data.member.Member;
@@ -31,14 +32,14 @@ public class InitData {
     private final HomeRepository homeRepository;
 
     @PostConstruct
-    public void init() {
+    public void init() throws LevelUpToastEx {
         //init Member
         Member ji = new Member("ji", "ji", Authority.ADMIN, "김지용",  "남", "010-6277-0650", "colorful8315@gmail.com", "seoul");
         Member mook = new Member("mook", "mook", Authority.ADMIN, "임성묵", "남", "---", "---", "seoul");
-        memberRepository.saveMember(ji);
-        memberRepository.saveMember(mook);
-        memberRepository.saveMember(new Member("beom", "beom", Authority.ADMIN, "김준범", "남", "---", "---", "seoul"));
-        memberRepository.saveMember(new Member("saac", "saac", Authority.ADMIN, "이삭",  "남", "---", "---", "seoul"));
+        memberRepository.save(ji);
+        memberRepository.save(mook);
+        memberRepository.save(new Member("beom", "beom", Authority.ADMIN, "김준범", "남", "---", "---", "seoul"));
+        memberRepository.save(new Member("saac", "saac", Authority.ADMIN, "이삭",  "남", "---", "---", "seoul"));
 
         //init vendor
         imgRepository.add(new ImgItem("용묵농업", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg"));

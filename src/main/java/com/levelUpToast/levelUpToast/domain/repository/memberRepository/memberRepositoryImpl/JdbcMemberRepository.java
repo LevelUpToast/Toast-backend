@@ -1,14 +1,12 @@
 package com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.model.member.Authority;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.data.member.Authority;
+import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceUtils;
-import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
