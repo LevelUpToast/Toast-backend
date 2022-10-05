@@ -1,13 +1,10 @@
-package com.levelUpToast.levelUpToast.service.signUp.signUpServiceInf;
+package com.levelUpToast.levelUpToast.domain.UseCase.member.signUp;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.dataForm.requestForm.signUp.SignUpRequestForm;
-import com.levelUpToast.levelUpToast.domain.model.member.Member;
+import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.signUp.SignUpRequestForm;
 
-public interface SignUpService {
+public interface SignupService {
 
-    Boolean idPresentCheck(String id) throws LevelUpToastEx;
-
-    Member signUp(SignUpRequestForm form) throws LevelUpToastEx;
+    void signUp(SignUpRequestForm form) throws LevelUpToastEx;
 
 }
