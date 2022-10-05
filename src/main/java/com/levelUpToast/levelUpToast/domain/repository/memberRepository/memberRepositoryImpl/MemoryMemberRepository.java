@@ -13,10 +13,11 @@ public class MemoryMemberRepository implements MemberRepository {
     private static final Map<String, Long> idList = new HashMap<>();
     private Long manageSeq = 0L;
     @Override
-    public void saveMember(Member member) {
+    public Member save(Member member) {
         member.setManageSeq(manageSeq++);
         store.put(member.getManageSeq(), member);
         idList.put(member.getId(), member.getManageSeq());
+        return member;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByLoginId(String loginId) {
+    public Optional<Member> findByloginId(String loginId) {
         if(idList.containsKey(loginId)){
             return findByManageSeq(idList.get(loginId));
         }

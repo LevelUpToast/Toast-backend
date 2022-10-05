@@ -19,7 +19,7 @@ public class LoginFindMemberInfo implements LoginFindMember {
     private final MemberRepository memberRepository;
     @Override
     public Member login(String loginId, String password) throws LevelUpToastEx {
-        Optional<Member> findMem = memberRepository.findByLoginId(loginId);
+        Optional<Member> findMem = memberRepository.findByloginId(loginId);
         if (findMem.isEmpty()) {
             log.warn("[LoginService log] : 미존재 ID 로그인 요청  ID = {}, PW = {}", loginId, password);
             throw new LevelUpToastEx("동일한 ID가 존재하지 않습니다.", 2);

@@ -48,7 +48,7 @@ public class SimpleMemberCheck implements MemberCheck {
      * @return Boolean 형식으로 중복인지 알려준다.
      */
     @Override
-    public Boolean isIDPresent(String id) {
-        return memberRepository.findByLoginId(id).isPresent();
+    public Boolean isIDPresent(String id) throws LevelUpToastEx {
+        return memberRepository.findByloginId(id).isPresent();
     }
 }

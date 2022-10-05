@@ -13,11 +13,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @RequiredArgsConstructor
 public class SimpleTokenManager implements TokenManager {
-    private Map<String, Long> tokenStore = new ConcurrentHashMap<>();
+    private final Map<String, Long> tokenStore = new ConcurrentHashMap<>();
 
     @Override
     public String createToken(Long manageSeq) {
-        if(tokenStore.values().contains(manageSeq)){
+        if(tokenStore.containsValue(manageSeq)){
             tokenStore.values().remove(manageSeq);
         }
         String token = UUID.randomUUID().toString();
