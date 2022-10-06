@@ -10,11 +10,11 @@ import com.levelUpToast.levelUpToast.domain.data.product.data.fundinginfo.Fundin
 import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
 import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
+import com.levelUpToast.levelUpToast.domain.data.vendor.VendorTable;
 import com.levelUpToast.levelUpToast.domain.repository.imgRepository.ImgRepository;
 import com.levelUpToast.levelUpToast.domain.repository.homeRepository.HomeRepository;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.domain.data.vendor.Vendor;
 import com.levelUpToast.levelUpToast.domain.UseCase.vendor.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -43,7 +43,7 @@ public class InitData {
 
         //init vendor
         imgRepository.add(new ImgItem("용묵농업", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg"));
-        Vendor testingVendor = vendorService.register(ji.getManageSeq(), ji.getName(), 1L, "용묵농업");
+        VendorTable testingDataBaseVendor = vendorService.registerVendor(ji.getManageSeq(), ji.getName(), "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg", "용묵농업");
 
         //init img
         imgRepository.add(new ImgItem("수입산 망고 1", "97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png"));
@@ -63,7 +63,7 @@ public class InitData {
                         Tag.FRUIT,
                         new FundingInfo(5000, 10000, "2023-01-01"),
                         100,
-                        testingVendor.getVendorSeq(),
+                        testingDataBaseVendor.getVendorSeq(),
                         new ResponseProductInfo(
                                 "맛있는 망고입니다\n" +
                                         "\n" +
@@ -87,7 +87,7 @@ public class InitData {
                         Tag.VEGETABLE,
                         new FundingInfo(1000, 80000, "2023-03-01"),
                         999,
-                        testingVendor.getVendorSeq(),
+                        testingDataBaseVendor.getVendorSeq(),
                         new ResponseProductInfo(
                                 "한국식 대파 입니다 \n" +
                                         "\n" +

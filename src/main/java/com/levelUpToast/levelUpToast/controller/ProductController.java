@@ -2,6 +2,8 @@ package com.levelUpToast.levelUpToast.controller;
 
 import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductService;
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
+import com.levelUpToast.levelUpToast.domain.UseCase.vendor.InfoVendor;
+import com.levelUpToast.levelUpToast.domain.UseCase.vendor.IsExistVendor;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductDeleteRequestForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductRequestForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
@@ -22,6 +24,8 @@ public class ProductController {
     private final ProductService simpleProductService;
     private final ProblemCheck simpleProductInspection;
     private final MemberCheck simpleMemberCheck;
+
+    private final InfoVendor infoVendor;
 
     /**
      * 클라이언트로 부터 제품을 등록하기위한 컨트롤러
@@ -53,8 +57,10 @@ public class ProductController {
     public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) {
         try {
             Map<String, Object> data = new LinkedHashMap<>();
-            data.put("Product", simpleProductInspection.isProduct(productSeq));
+            Optional<ResponseProductTable> product = simpleProductInspection.isProduct(productSeq);
+            data.put("Product", product);
             data.put("recommendedProducts", simpleProductService.recommendationProduct());
+            data.put("vendorInfo", infoVendor.infoVendor(product.orElseThrow().getVendorSeq()));
             log.info("[ProductService log] 제품 정보 요청이 되었습니다. SEQ = {}", productSeq);
             return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, data);
         }catch (LevelUpToastEx e){
