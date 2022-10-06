@@ -27,6 +27,11 @@ public class SimpleImgAdapter implements ImgAdapter {
         return imgUUIDList;
     }
 
+    @Override
+    public String extractImgUUID(Long imgSEQ) {
+        return imgRepository.findBySeq(imgSEQ).getStoreFileName();
+    }
+
     /**
      * 사용자로 부터 UUID 값을 받아 SEQ 변환하는 메소드
      *
@@ -39,5 +44,10 @@ public class SimpleImgAdapter implements ImgAdapter {
         for (String UUID : imgUUID)
             imgSeqList.add(imgRepository.findByImgUUID(UUID).getManageSeq());
         return imgSeqList;
+    }
+
+    @Override
+    public Long extractImgSeq(String imgUUID) {
+        return imgRepository.findByImgUUID(imgUUID).getManageSeq();
     }
 }

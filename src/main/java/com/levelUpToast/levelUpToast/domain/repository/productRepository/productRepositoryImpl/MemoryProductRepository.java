@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryImpl;
 
+import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
 import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.DataBaseProductInfo;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 public class MemoryProductRepository implements ProductRepository {
 
     private static final Map<Long, DataBaseProductTable> productStore = new ConcurrentHashMap<>();
-    private final SimpleImgAdapter simpleImgAdapter;
+    private final ImgAdapter simpleImgAdapter;
     private Long productSeq = 0L;
 
     private DataBaseProductTable changeImgToSEQ(ResponseProductTable responseProductTable) {
