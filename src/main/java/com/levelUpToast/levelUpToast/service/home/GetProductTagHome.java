@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.home;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductTagHome;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
@@ -22,7 +23,7 @@ public class GetProductTagHome implements ProductTagHome {
      * @return 요청된 Tag 갖고있는 Product Return 한다.
      */
     @Override
-    public List<ProductListResponseForm> getProductTag(Tag tag) {
+    public List<ProductListResponseForm> getProductTag(Tag tag) throws LevelUpToastEx {
         return productAdapter.changeProductList(
                 productAdapter.sizeController(productRepository.findProductByTag(tag))
         );

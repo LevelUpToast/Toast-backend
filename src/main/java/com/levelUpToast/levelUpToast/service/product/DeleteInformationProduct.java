@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.product;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.product.DeleteProduct;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class DeleteInformationProduct implements DeleteProduct {
      *            Return 존재하지 않는다.
      */
     @Override
-    public void deleteProduct(Long seq) {
+    public void deleteProduct(Long seq) throws LevelUpToastEx {
         productRepository.removeProductBySeq(seq);
     }
 }

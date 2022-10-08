@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.controller;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.service.search.SimpleSearchService;
@@ -37,7 +38,7 @@ public class SearchController {
      * @return 요청이 끝나면 ResponseForm 반환한다.
      */
     @GetMapping("/search/{index}/{SearchKeyword}")
-    public ResponseForm<Object> Search(@PathVariable("index") int index,@PathVariable("SearchKeyword") String SearchKeyword) {
+    public ResponseForm<Object> Search(@PathVariable("index") int index,@PathVariable("SearchKeyword") String SearchKeyword) throws LevelUpToastEx {
         Map<String, Object> data = new LinkedHashMap<>();
         log.info("[SearchController log] 입력받은 검색 요청 요청된 검색어 = \"{}\"\t 검색 index 범위 = {}", SearchKeyword, index);
 

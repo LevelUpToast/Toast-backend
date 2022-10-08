@@ -79,7 +79,7 @@ public class JdbcMemberRepository implements MemberRepository {
             return member;
         } catch (Exception e) {
             log.warn("[DB_Member_TB log] : DB Member_TB (save) 에러 Member = {} ", member);
-            throw new LevelUpToastEx("DB Member_TB (save) 에러", 10000);
+            throw new LevelUpToastEx("DB Member_TB (save) 에러", 10001);
         } finally {
             close(conn, pstmt, rs);
             close(conn2,pstmt2,rs2);
@@ -122,14 +122,14 @@ public class JdbcMemberRepository implements MemberRepository {
                     return Optional.of(member);
                 } else {
                     log.warn("[DB_Member_TB log] : Member_TB Authority 매칭 오류 ID = {}", member.getId());
-                    throw new LevelUpToastEx("Member_TB Authority 매칭 오류", 10001);
+                    throw new LevelUpToastEx("Member_TB Authority 매칭 오류", 10002);
                 }
             }
             return Optional.empty();
 
         } catch (Exception e) {
             log.warn("[DB_Member_TB log] : Member_TB 에러 ");
-            throw new LevelUpToastEx("DB Member_TB (findByManageSeq) 에러", 10001);
+            throw new LevelUpToastEx("DB Member_TB (findByManageSeq) 에러", 10003);
         } finally {
             close(conn, pstmt, rs);
         }
@@ -170,7 +170,7 @@ public class JdbcMemberRepository implements MemberRepository {
             return members;
 
         }catch (Exception e){
-            throw new LevelUpToastEx("DB Member_TB (findAllMember) 에러", 10001);
+            throw new LevelUpToastEx("DB Member_TB (findAllMember) 에러", 10004);
         }finally {
             close(conn, pstmt, rs);
         }
@@ -209,7 +209,7 @@ public class JdbcMemberRepository implements MemberRepository {
             return Optional.empty();
 
         }catch (Exception e){
-            throw new LevelUpToastEx("DB Member_TB (findByLoginId) 에러", 10001);
+            throw new LevelUpToastEx("DB Member_TB (findByLoginId) 에러", 10005);
         }finally {
             close(conn, pstmt, rs);
         }
@@ -239,7 +239,7 @@ public class JdbcMemberRepository implements MemberRepository {
             pstmt.setLong(8,memberSeq);
             rs = pstmt.executeQuery();
         }catch (Exception e){
-            throw new LevelUpToastEx("DB Member_TB (update) 에러", 10001);
+            throw new LevelUpToastEx("DB Member_TB (update) 에러", 10006);
         }finally {
             close(conn, pstmt, rs);
         }
@@ -259,7 +259,7 @@ public class JdbcMemberRepository implements MemberRepository {
             pstmt.setLong(1,manageSeq);
             rs = pstmt.executeQuery();
         }catch (Exception e){
-            throw new LevelUpToastEx("DB Member_TB (remove) 에러", 10001);
+            throw new LevelUpToastEx("DB Member_TB (remove) 에러", 10007);
         }finally {
             close(conn, pstmt, rs);
         }

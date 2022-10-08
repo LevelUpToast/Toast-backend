@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.product;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.product.InformationProduct;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
@@ -20,7 +21,7 @@ public class GetInformationProduct implements InformationProduct {
      * @param seq 요청할 Seq 번호
      * @return 요청한 product 정보를 가져오고 넘겨준다.
      */
-    public Optional<ResponseProductTable> getProduct(Long seq) {
+    public Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx {
         return productRepository.findProductBySeq(seq);
     }
 }

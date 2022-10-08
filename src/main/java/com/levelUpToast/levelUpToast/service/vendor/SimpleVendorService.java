@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.vendor;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.vendor.InfoVendor;
 import com.levelUpToast.levelUpToast.domain.UseCase.vendor.IsExistVendor;
 import com.levelUpToast.levelUpToast.domain.UseCase.vendor.RegisterVendor;
@@ -20,14 +21,14 @@ public class SimpleVendorService implements VendorService {
 
 
     @Override
-    public VendorTable registerVendor(Long memberSeq, String vendorName, String vendorProfileImg, String vendorIntroduction) {
+    public VendorTable registerVendor(Long memberSeq, String vendorName, String vendorProfileImg, String vendorIntroduction) throws LevelUpToastEx {
         return registerVendor.register(memberSeq, vendorName, vendorProfileImg, vendorIntroduction);
     }
 
-    public ResponseVendorTable infoVendor(Long memberSeq) { return getInfoVendor.infoVendor(memberSeq); }
+    public ResponseVendorTable infoVendor(Long memberSeq) throws LevelUpToastEx { return getInfoVendor.infoVendor(memberSeq); }
 
     @Override
-    public Boolean isVendor(Long memberSeq) {
+    public Boolean isVendor(Long memberSeq) throws LevelUpToastEx {
         return isExistVendor.isExistVendor(memberSeq);
     }
 }

@@ -11,7 +11,7 @@ import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.Respon
 import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.data.vendor.VendorTable;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.ImgRepository;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import com.levelUpToast.levelUpToast.domain.repository.homeRepository.HomeRepository;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class InitData {
     private final MemberRepository memberRepository;
@@ -31,7 +31,7 @@ public class InitData {
     private final ImgRepository imgRepository;
     private final HomeRepository homeRepository;
 
-    @PostConstruct
+//    @PostConstruct
     public void init() throws LevelUpToastEx {
         //init Member
         Member ji = new Member("ji", "ji", Authority.ADMIN, "김지용",  "남", "010-6277-0650", "colorful8315@gmail.com", "seoul");

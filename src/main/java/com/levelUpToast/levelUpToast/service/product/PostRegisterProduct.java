@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.product;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.product.RegisterProduct;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductRequestForm;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
@@ -23,7 +24,7 @@ public class PostRegisterProduct implements RegisterProduct {
      * @return 데이터 폼을 만든 것을 Return 한다.
      */
     @Override
-    public ResponseProductTable registerProduct(ProductRequestForm form, Long ManageSeq) {
+    public ResponseProductTable registerProduct(ProductRequestForm form, Long ManageSeq) throws LevelUpToastEx {
         ResponseProductTable responseProductTable = new ResponseProductTable(
                 form.getTitle(),
                 form.getInitialImgUrl(),

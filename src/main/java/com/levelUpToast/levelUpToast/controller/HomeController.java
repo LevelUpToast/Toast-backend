@@ -27,7 +27,7 @@ import java.util.*;
      * @param loggedMem 사용자의 Member 정보를 호출받아 펀딩정보를 가져온다.
      * @return 메인화면에 뿌려질 데이터를 Return
      */
-    private Map<String, Object> mainPage(Member loggedMem) {
+    private Map<String, Object> mainPage(Member loggedMem) throws LevelUpToastEx {
         Map<String, Object> data = new LinkedHashMap<>();
 
         data.put("bannerImgUrl", simpleHomeService.getBanner());
@@ -46,7 +46,7 @@ import java.util.*;
      * @return 로그인이 되지않은경우 펀딩 정보를 제외하고 정보를 보낸다.
      */
     @GetMapping("/home")
-    public ResponseForm<Object> mainPage() {
+    public ResponseForm<Object> mainPage() throws LevelUpToastEx {
         log.info("[MainPageController log] : 비회원 메인 페이지 요청");
         return new ResponseForm<>(-1, "로그인 미완료된 MainPage", mainPage(null));
     }
