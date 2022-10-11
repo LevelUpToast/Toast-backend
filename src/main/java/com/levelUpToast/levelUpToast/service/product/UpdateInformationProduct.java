@@ -10,6 +10,7 @@ import com.levelUpToast.levelUpToast.domain.repository.productRepository.product
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,7 @@ public class UpdateInformationProduct implements UpdateProduct {
      * @param form     수정 내용을 담아 보낼 product
      */
     @Override
-    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) throws LevelUpToastEx {
+    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) throws LevelUpToastEx, SQLException {
         productRepository.updateProduct(seq, new ResponseProductTable(
                 form.getTitle(),
                 form.getInitialImgUrl(),

@@ -7,6 +7,7 @@ import com.levelUpToast.levelUpToast.domain.repository.productRepository.product
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Service
@@ -21,7 +22,7 @@ public class GetInformationProduct implements InformationProduct {
      * @param seq 요청할 Seq 번호
      * @return 요청한 product 정보를 가져오고 넘겨준다.
      */
-    public Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx {
+    public Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx, SQLException {
         return productRepository.findProductBySeq(seq);
     }
 }

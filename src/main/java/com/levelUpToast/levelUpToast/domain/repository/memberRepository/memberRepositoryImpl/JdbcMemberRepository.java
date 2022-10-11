@@ -6,7 +6,9 @@ import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -16,8 +18,8 @@ import java.util.Optional;
 
 
 @Slf4j
-//@Primary
-//@Repository
+@Primary
+@Repository
 @RequiredArgsConstructor
 public class JdbcMemberRepository implements MemberRepository {
 
@@ -118,7 +120,7 @@ public class JdbcMemberRepository implements MemberRepository {
                 if (rs.getString("auth").equals("admin")) {
                     member.setAuthority(Authority.ADMIN);
                     return Optional.of(member);
-                } else if (rs.getString("auth").equals("member")) {
+                } else if (rs.getString("auth").equals("MEM")) {
                     return Optional.of(member);
                 } else {
                     log.warn("[DB_Member_TB log] : Member_TB Authority 매칭 오류 ID = {}", member.getId());

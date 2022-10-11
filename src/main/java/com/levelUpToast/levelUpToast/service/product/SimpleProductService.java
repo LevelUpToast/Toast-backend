@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -27,8 +28,8 @@ public class SimpleProductService implements ProductService {
 
 
     @Override
-    public String registerProduct(ProductRequestForm form, Long ManageSeq) throws LevelUpToastEx {
-        return simpleRegisterProduct.registerProduct(form, ManageSeq).getProductSeq().toString();
+    public Long registerProduct(ProductRequestForm form, Long ManageSeq) throws LevelUpToastEx, SQLException {
+        return simpleRegisterProduct.registerProduct(form, ManageSeq).getProductSeq();
     }
     @Override
     public void deleteProduct(Long seq) throws LevelUpToastEx {
@@ -36,7 +37,7 @@ public class SimpleProductService implements ProductService {
     }
 
     @Override
-    public Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx {
+    public Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx, SQLException {
         return simpleInformationProduct.getProduct(seq);
     }
 
@@ -46,7 +47,7 @@ public class SimpleProductService implements ProductService {
     }
 
     @Override
-    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) throws LevelUpToastEx {
+    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) throws LevelUpToastEx, SQLException {
         simpleUpdateProduct.updateProduct(original, seq, form);
     }
 

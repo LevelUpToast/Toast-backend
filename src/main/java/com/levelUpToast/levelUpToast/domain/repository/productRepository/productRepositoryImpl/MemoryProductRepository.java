@@ -60,12 +60,13 @@ public class MemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public void saveProduct(ResponseProductTable responseProductTable) throws LevelUpToastEx {
+    public ResponseProductTable saveProduct(ResponseProductTable responseProductTable) throws LevelUpToastEx {
         DataBaseProductTable dataBaseProductTable = changeImgToSEQ(responseProductTable);
         dataBaseProductTable.setProductSeq(productSeq++);
         productStore.put(dataBaseProductTable.getProductSeq(), dataBaseProductTable);
 
         responseProductTable.setProductSeq(dataBaseProductTable.getProductSeq()); //디버그용 코드 무시해도됨
+        return responseProductTable;
     }
 
     @Override
