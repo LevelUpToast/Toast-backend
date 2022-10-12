@@ -47,10 +47,10 @@ public class InitData {
         VendorTable testingDataBaseVendor = vendorService.registerVendor(16L, "김지용", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg", "용묵농업");
 
         //init img
-        imgRepository.add(new ImgItem("수입산 망고 1", "97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png"));
-        imgRepository.add(new ImgItem("수입산 망고 2", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png"));
-        imgRepository.add(new ImgItem("대파 1", "c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png"));
-        imgRepository.add(new ImgItem("대파 2", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png"));
+//        imgRepository.add(new ImgItem("수입산 망고 1", "97b4bc2f-c3a2-4c35-8b1a-eec4f3ee60e8.png"));
+//        imgRepository.add(new ImgItem("수입산 망고 2", "2624e45c-15b2-4be8-9cb5-0c2b35a2d4a8.png"));
+//        imgRepository.add(new ImgItem("대파 1", "c7c9f10d-7e28-47ee-9844-0c180a9ed6f6.png"));
+//        imgRepository.add(new ImgItem("대파 2", "3787d445-1a6d-4f16-8ddb-84d4d5bf89ad.png"));
 
 
 
