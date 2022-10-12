@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.domain.UseCase.home;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 
@@ -13,7 +14,7 @@ public interface HomeService {
 
     ArrayList<String> getBanner();
 
-    ArrayList<ProductListResponseForm> getProduct();
+    ArrayList<ProductListResponseForm> getProduct() throws LevelUpToastEx;
 
-    List<ProductListResponseForm> getProductTag(Tag tag);
+    List<ProductListResponseForm> getProductTag(Tag tag) throws LevelUpToastEx;
 }

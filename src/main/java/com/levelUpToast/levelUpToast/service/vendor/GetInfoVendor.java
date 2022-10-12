@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.vendor;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.vendor.InfoVendor;
 import com.levelUpToast.levelUpToast.domain.data.vendor.ResponseVendorTable;
 import com.levelUpToast.levelUpToast.domain.data.vendor.VendorTable;
@@ -16,7 +17,7 @@ public class GetInfoVendor implements InfoVendor {
     private final VendorRepository vendorRepository;
 
     @Override
-    public ResponseVendorTable infoVendor(Long memberSeq) {
+    public ResponseVendorTable infoVendor(Long memberSeq) throws LevelUpToastEx {
         Optional<VendorTable> vendor = vendorRepository.findVendorBySeq(memberSeq);
         return new ResponseVendorTable(vendor.orElseThrow().getVendorName(), vendor.orElseThrow().getVendorProfileImg(), vendor.orElseThrow().getVendorIntroduction());
     }

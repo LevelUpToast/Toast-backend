@@ -1,7 +1,8 @@
 package com.levelUpToast.levelUpToast.util.img;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.ImgRepository;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class SimpleImgAdapter implements ImgAdapter {
      * @return SEQ 해당되는 UUID 값을 반환
      */
     @Override
-    public List<String> extractImgUUID(List<Long> imgSEQ) {
+    public List<String> extractImgUUID(List<Long> imgSEQ) throws LevelUpToastEx {
         List<String> imgUUIDList = new ArrayList<>();
         for (Long SEQ : imgSEQ)
             imgUUIDList.add(imgRepository.findBySeq(SEQ).getStoreFileName());
@@ -28,7 +29,7 @@ public class SimpleImgAdapter implements ImgAdapter {
     }
 
     @Override
-    public String extractImgUUID(Long imgSEQ) {
+    public String extractImgUUID(Long imgSEQ) throws LevelUpToastEx {
         return imgRepository.findBySeq(imgSEQ).getStoreFileName();
     }
 
@@ -39,7 +40,7 @@ public class SimpleImgAdapter implements ImgAdapter {
      * @return UUID 값을 해당되는 SEQ 반환
      */
     @Override
-    public List<Long> extractImgSeq(List<String> imgUUID) {
+    public List<Long> extractImgSeq(List<String> imgUUID) throws LevelUpToastEx {
         ArrayList<Long> imgSeqList = new ArrayList<>();
         for (String UUID : imgUUID)
             imgSeqList.add(imgRepository.findByImgUUID(UUID).getManageSeq());
@@ -47,7 +48,7 @@ public class SimpleImgAdapter implements ImgAdapter {
     }
 
     @Override
-    public Long extractImgSeq(String imgUUID) {
+    public Long extractImgSeq(String imgUUID) throws LevelUpToastEx {
         return imgRepository.findByImgUUID(imgUUID).getManageSeq();
     }
 }

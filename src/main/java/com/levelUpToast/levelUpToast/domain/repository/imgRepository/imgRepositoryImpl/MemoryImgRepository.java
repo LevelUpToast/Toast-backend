@@ -1,6 +1,7 @@
-package com.levelUpToast.levelUpToast.domain.repository.imgRepository;
+package com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryImpl;
 
 import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;

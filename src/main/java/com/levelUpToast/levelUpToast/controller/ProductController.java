@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.*;
 
 @Slf4j
@@ -33,11 +34,15 @@ public class ProductController {
      * @return 클라이언트에서 처리된 결과 값을 반환한다.
      */
     @PostMapping("/product")
-    public ResponseForm<String> registerProduct(@RequestBody ProductRequestForm form) {
+    public ResponseForm<String> registerProduct(@RequestBody ProductRequestForm form) throws SQLException {
         try {
             Member member = simpleMemberCheck.isMember(form.getVendorToken());
+
             log.info(String.valueOf(form));
-            String productSEQ =  simpleProductService.registerProduct(form, member.getManageSeq());
+            log.info("member ={}",member.getManageSeq());
+
+            // 지금 여기 form
+            Long productSEQ =  simpleProductService.registerProduct(form, member.getManageSeq());
             if (productSEQ == null)
                 throw new LevelUpToastEx("제품등록에 오류가 발생했습니다.", 142);
             log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
@@ -54,7 +59,7 @@ public class ProductController {
      * @return 요청한 데이터 처리 결과값을 반환해준다.
      */
     @GetMapping("/product/{productSeq}")
-    public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) {
+    public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) throws SQLException {
         try {
             Map<String, Object> data = new LinkedHashMap<>();
             Optional<ResponseProductTable> product = simpleProductInspection.isProduct(productSeq);
@@ -75,7 +80,7 @@ public class ProductController {
      * @return Product 수정을 완료한다면 처리 결과값을 반환해준다.
      */
     @PostMapping("/product/{productSeq}")
-    public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) {
+    public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) throws SQLException {
         try {
             Member member = simpleMemberCheck.isMember(form.getVendorToken());
             Optional<ResponseProductTable> originalProduct = simpleProductInspection.isProduct(changeProductSeq);
@@ -96,7 +101,7 @@ public class ProductController {
      * @return Product 삭제 처리 결과값을 반환해준다.
      */
     @DeleteMapping("/product")
-    public ResponseForm<Object> deleteProduct(@RequestBody ProductDeleteRequestForm form) {
+    public ResponseForm<Object> deleteProduct(@RequestBody ProductDeleteRequestForm form) throws SQLException {
         try {
             Member member = simpleMemberCheck.isMember(form.getVendorToken());
             Long productSeq = Long.parseLong(form.getProductSEQ());

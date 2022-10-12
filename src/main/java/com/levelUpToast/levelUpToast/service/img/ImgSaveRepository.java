@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.img.service.FullPathImg;
 import com.levelUpToast.levelUpToast.domain.UseCase.img.service.SaveRepositoryImg;
 import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.ImgRepository;
+import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

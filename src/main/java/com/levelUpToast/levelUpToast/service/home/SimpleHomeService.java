@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.home;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.BannerHome;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductListHome;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductTagHome;
@@ -37,12 +38,12 @@ public class SimpleHomeService implements HomeService {
     }
 
     @Override
-    public ArrayList<ProductListResponseForm> getProduct() {
+    public ArrayList<ProductListResponseForm> getProduct() throws LevelUpToastEx {
         return recommendation.recommendedProducts();
     }
 
     @Override
-    public List<ProductListResponseForm> getProductTag(Tag tag) {
+    public List<ProductListResponseForm> getProductTag(Tag tag) throws LevelUpToastEx {
         return simpleGetProductTag.getProductTag(tag);
     }
 

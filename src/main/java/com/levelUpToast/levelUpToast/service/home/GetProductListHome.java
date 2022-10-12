@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.home;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductListHome;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
@@ -20,7 +21,7 @@ public class GetProductListHome implements ProductListHome {
      * @return main 형식에 맞춰 10개의 리스트만 반환한다.
      */
     @Override
-    public List<ProductListResponseForm> getHomeProduct() {
+    public List<ProductListResponseForm> getHomeProduct() throws LevelUpToastEx {
         return productAdapter.changeProductList(
                 productAdapter.sizeController(productRepository.findAllProduct())
         );

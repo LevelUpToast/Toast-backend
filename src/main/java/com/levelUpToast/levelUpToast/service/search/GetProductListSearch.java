@@ -1,5 +1,6 @@
 package com.levelUpToast.levelUpToast.service.search;
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.search.SearchProduct;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
@@ -28,7 +29,7 @@ public class GetProductListSearch implements SearchProduct {
      * @return 검색된 정보를 리턴한다 메소드 형태는 List<Product> 형태로 리턴한다.
      */
     @Override
-    public List<ProductListResponseForm> Search(String inputKeyword, int index) {
+    public List<ProductListResponseForm> Search(String inputKeyword, int index) throws LevelUpToastEx {
         return productAdapter.changeProductList(Keyword(productAdapter.sizeController(productRepository.findAllProduct(), index), inputKeyword));
     }
 

@@ -1,6 +1,7 @@
 package com.levelUpToast.levelUpToast.service.product;
 
 
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.product.*;
 import com.levelUpToast.levelUpToast.domain.UseCase.product.InformationProduct;
 import com.levelUpToast.levelUpToast.domain.UseCase.util.recommendation.Recommendation;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -26,26 +28,26 @@ public class SimpleProductService implements ProductService {
 
 
     @Override
-    public String registerProduct(ProductRequestForm form, Long ManageSeq) {
-        return simpleRegisterProduct.registerProduct(form, ManageSeq).getProductSeq().toString();
+    public Long registerProduct(ProductRequestForm form, Long ManageSeq) throws LevelUpToastEx, SQLException {
+        return simpleRegisterProduct.registerProduct(form, ManageSeq).getProductSeq();
     }
     @Override
-    public void deleteProduct(Long seq) {
+    public void deleteProduct(Long seq) throws LevelUpToastEx {
         simpleDeleteProduct.deleteProduct(seq);
     }
 
     @Override
-    public Optional<ResponseProductTable> getProduct(Long seq) {
+    public Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx, SQLException {
         return simpleInformationProduct.getProduct(seq);
     }
 
     @Override
-    public ArrayList<ProductListResponseForm> recommendationProduct() {
+    public ArrayList<ProductListResponseForm> recommendationProduct() throws LevelUpToastEx {
         return recommendation.recommendedProducts();
     }
 
     @Override
-    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) {
+    public void updateProduct(Optional<ResponseProductTable> original, Long seq, ProductRequestForm form) throws LevelUpToastEx, SQLException {
         simpleUpdateProduct.updateProduct(original, seq, form);
     }
 
