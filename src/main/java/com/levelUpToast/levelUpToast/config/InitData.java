@@ -43,7 +43,7 @@ public class InitData {
 //        memberRepository.save(new Member("saac", "saac", Authority.ADMIN, "이삭",  "남", "---", "---", "seoul"));
 
         //init vendor
-        imgRepository.add(new ImgItem("용묵농업", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg"));
+//        imgRepository.add(new ImgItem("용묵농업", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg"));
         VendorTable testingDataBaseVendor = vendorService.registerVendor(16L, "김지용", "196f3226-0a90-4944-ad13-4a147ce323b6.jpeg", "용묵농업");
 
         //init img
