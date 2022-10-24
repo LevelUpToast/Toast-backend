@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Repository
+
 public class MemoryImgRepository implements ImgRepository {
     private final Map<Long, ImgItem> store = new ConcurrentHashMap<>();
     private long manageSeq = 0L;

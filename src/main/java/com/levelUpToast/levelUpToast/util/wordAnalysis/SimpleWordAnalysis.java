@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.util.wordAnalysis;
 
-import com.levelUpToast.levelUpToast.domain.UseCase.wordAnalysis.WordAnalysis;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.wordAnalysis.WordAnalysis;
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
 import kr.co.shineware.nlp.komoran.core.Komoran;
 
@@ -32,7 +32,7 @@ public class SimpleWordAnalysis implements WordAnalysis {
      * @return 분석된 KeyWord 단어가 중복 저장되어 있는 keyWordSet 단어의 빈도수 측정후 입력 받은 index 보다 같거나 크면 넣고 계산하고 조건에 맞는 단어 Return,
      */
     @Override
-    public ArrayList<String> wordCount(List<String> keyWord, int index) {
+    public String wordCount(List<String> keyWord, int index) {
         ArrayList<String> arrayList = new ArrayList<>();
         Set<String> keyWordSet = new HashSet<>(keyWord);
         Map<String, Integer> hashMap = new HashMap<>();
@@ -44,7 +44,7 @@ public class SimpleWordAnalysis implements WordAnalysis {
         for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
             if (entry.getValue() == maxValueInMap) arrayList.add(entry.getKey());
         }
-        return arrayList;
+        return arrayList.get(0);
     }
 
     /**
@@ -54,7 +54,7 @@ public class SimpleWordAnalysis implements WordAnalysis {
      * @return 분석이 완료된 데이터를 Return
      */
     @Override
-    public ArrayList<String> wordAnalysis(String text, int index) {
+    public String wordAnalysis(String text, int index) {
         return wordCount(extractionNouns(text), index);
     }
 
