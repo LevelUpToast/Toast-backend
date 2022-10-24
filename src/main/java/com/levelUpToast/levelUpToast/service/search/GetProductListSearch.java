@@ -22,6 +22,7 @@ public class GetProductListSearch implements SearchProduct {
     private final ProductRepository productRepository;
     private final ProductAdapter productAdapter;
 
+
     /**
      * 검색 내용을 요청받고 Product 내용을 반환하는 메소드
      * @param inputKeyword 검색할 Keyword 내용
@@ -30,23 +31,25 @@ public class GetProductListSearch implements SearchProduct {
      */
     @Override
     public List<ProductListResponseForm> Search(String inputKeyword, int index) throws LevelUpToastEx {
-        return productAdapter.changeProductList(Keyword(productAdapter.sizeController(productRepository.findAllProduct(), index), inputKeyword));
+        return productAdapter.changeProductList(productRepository.findProductByTitle(Keyword(inputKeyword)));
+
+//        return productAdapter.changeProductList(
+//                Keyword(productAdapter.sizeController(productRepository.findAllProduct()), inputKeyword));
     }
 
     /**
      * 사용자로 부터 word 받아 Product 해당 내용만 추출하는 메소드
-     * @param responseProductTable      정보를 추출할 product
      * @param inputKeyword 검색할 Keyword 내용
      * @return Keyword 데이터를 가공후 Return
      */
-    private List<ResponseProductTable> Keyword(List<ResponseProductTable> responseProductTable, String inputKeyword) {
+    private String Keyword( String inputKeyword) {
         SimpleWordAnalysis simpleWordAnalysis = new SimpleWordAnalysis();
-        ArrayList<String> searchKeyword = simpleWordAnalysis.wordAnalysis(inputKeyword, 2);
+        String searchKeyword = String.valueOf(simpleWordAnalysis.wordAnalysis(inputKeyword, 2));
         log.info("[SearchService log] 분석전 검색어 문장 = \"{}\"\t 추출된 명사 = {}", inputKeyword, searchKeyword);
-
-        return responseProductTable.stream().filter(p -> {
-            for (String text : searchKeyword) if (p.getTitle().contains(text)) return true;
-            return false;
-        }).collect(Collectors.toList());
+//        return responseProductTable.stream().filter(p -> {
+//            for (String text : searchKeyword) if (p.getTitle().contains(text)) return true;
+//            return false;
+//        }).collect(Collectors.toList());
+        return searchKeyword;
     }
 }
