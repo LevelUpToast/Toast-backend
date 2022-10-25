@@ -182,7 +182,8 @@ public class JdbcProductRepository implements ProductRepository {
     @Override
     public Optional<ResponseProductTable> findProductBySeq(Long productSeq) throws LevelUpToastEx, SQLException {
 
-        String productSql = "select * from Product_TB, Product_funding_information_TB, Product_information_TB, Product_review_TB where Product_TB.product_sequence = ?" +
+        String productSql =
+                "select * from Product_TB, Product_funding_information_TB, Product_information_TB, Product_review_TB where Product_TB.product_sequence = ?" +
                 " and Product_TB.product_sequence = Product_funding_information_TB.product_sequence" +
                 " and Product_TB.product_sequence = Product_information_TB.product_sequence" +
                 " and Product_TB.product_sequence = Product_review_TB.product_sequence;";
@@ -284,7 +285,7 @@ public class JdbcProductRepository implements ProductRepository {
             pstmt.setString(1, tag.toString());
             rs = pstmt.executeQuery();
             List<ResponseProductTable> responseProductTables = new ArrayList<>();
-            if (rs.next()) {
+            while (rs.next()) {
                 responseProductTables.add(findProductBySeq(rs.getLong(1)).get());
             }
             return responseProductTables;
@@ -301,7 +302,6 @@ public class JdbcProductRepository implements ProductRepository {
     public List<ResponseProductTable> findProductByTitle(String title) throws LevelUpToastEx {
 
         String sql = "select product_sequence from Product_TB where title like'%" + title + "%';";
-        log.info("입력받은 문장 = {}", sql);
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
