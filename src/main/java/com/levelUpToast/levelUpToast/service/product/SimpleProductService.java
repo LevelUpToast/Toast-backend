@@ -7,6 +7,7 @@ import com.levelUpToast.levelUpToast.domain.UseCase.product.InformationProduct;
 import com.levelUpToast.levelUpToast.domain.UseCase.util.recommendation.Recommendation;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductRequestForm;
+import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Service

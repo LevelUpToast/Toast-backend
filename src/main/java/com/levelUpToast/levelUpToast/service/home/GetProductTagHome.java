@@ -5,7 +5,7 @@ import com.levelUpToast.levelUpToast.domain.UseCase.home.ProductTagHome;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,6 +2,7 @@ package com.levelUpToast.levelUpToast.domain.repository.productRepository.produc
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
@@ -31,41 +32,16 @@ import java.util.stream.Collectors;
 public class JdbcProductRepository implements ProductRepository {
 
     private final ImgAdapter simpleImgAdapter;
+
+    private final ProductAdapter productAdapter;
     private final DataSource dataSource;
 
     private DataBaseProductTable changeImgToSEQ(ResponseProductTable responseProductTable) throws LevelUpToastEx {
-        return new DataBaseProductTable(
-                responseProductTable.getTitle(),
-                simpleImgAdapter.extractImgSeq(responseProductTable.getInitialImgUrl()),
-                responseProductTable.getTag(),
-                responseProductTable.getFunding(),
-                responseProductTable.getLike(),
-                responseProductTable.getVendorSeq(),
-                new DataBaseProductInfo(
-                        responseProductTable.getProductInfo().getText(),
-                        simpleImgAdapter.extractImgSeq(responseProductTable.getProductInfo().getProductImgUrl())
-                ),
-                responseProductTable.getBuyOption(),
-                responseProductTable.getReview()
-        );
+        return productAdapter.changeImgToSEQ(responseProductTable);
     }
 
     private ResponseProductTable changeImgToUUID(Long seq, DataBaseProductTable product) throws LevelUpToastEx {
-        ResponseProductTable changeResponseProductTable = new ResponseProductTable(
-                product.getTitle(),
-                simpleImgAdapter.extractImgUUID(product.getInitialImgUrl()),
-                product.getTag(),
-                product.getFunding(),
-                product.getLike(),
-                product.getVendorSeq(),
-                new ResponseProductInfo(
-                        product.getProductInfo().getText(),
-                        simpleImgAdapter.extractImgUUID(product.getProductInfo().getProductImgUrl())
-                ),
-                product.getBuyOption(),
-                product.getReview());
-        changeResponseProductTable.setProductSeq(seq);
-        return changeResponseProductTable;
+       return productAdapter.changeImgToUUID(seq, product);
     }
 
 

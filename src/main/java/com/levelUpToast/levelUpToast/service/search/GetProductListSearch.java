@@ -2,18 +2,15 @@ package com.levelUpToast.levelUpToast.service.search;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.search.SearchProduct;
-import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.util.wordAnalysis.SimpleWordAnalysis;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -33,8 +30,6 @@ public class GetProductListSearch implements SearchProduct {
     public List<ProductListResponseForm> Search(String inputKeyword, int index) throws LevelUpToastEx {
         return productAdapter.changeProductList(productRepository.findProductByTitle(Keyword(inputKeyword)));
 
-//        return productAdapter.changeProductList(
-//                Keyword(productAdapter.sizeController(productRepository.findAllProduct()), inputKeyword));
     }
 
     /**

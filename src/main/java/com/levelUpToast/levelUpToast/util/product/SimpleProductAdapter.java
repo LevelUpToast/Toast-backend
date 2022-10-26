@@ -1,8 +1,13 @@
 package com.levelUpToast.levelUpToast.util.product;
 
-import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductAdapter;
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
+import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
+import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
+import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.DataBaseProductInfo;
+import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +25,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class SimpleProductAdapter implements ProductAdapter {
+    private final ImgAdapter simpleImgAdapter;
 
     /**
      * Product 데이터를 받고 데이터를 10개로 데이터를 가공하는 함수
@@ -62,6 +68,43 @@ public class SimpleProductAdapter implements ProductAdapter {
         for (ResponseProductTable value : responseProductTable)
             list.add(new ProductListResponseForm(value.getProductSeq(), value.getTitle(), value.getInitialImgUrl(), value.getTag(), value.getFunding()));
         return list;
+    }
+
+    @Override
+    public DataBaseProductTable changeImgToSEQ(ResponseProductTable responseProductTable) throws LevelUpToastEx {
+        return new DataBaseProductTable(
+                responseProductTable.getTitle(),
+                simpleImgAdapter.extractImgSeq(responseProductTable.getInitialImgUrl()),
+                responseProductTable.getTag(),
+                responseProductTable.getFunding(),
+                responseProductTable.getLike(),
+                responseProductTable.getVendorSeq(),
+                new DataBaseProductInfo(
+                        responseProductTable.getProductInfo().getText(),
+                        simpleImgAdapter.extractImgSeq(responseProductTable.getProductInfo().getProductImgUrl())
+                ),
+                responseProductTable.getBuyOption(),
+                responseProductTable.getReview()
+        );
+    }
+
+    @Override
+    public ResponseProductTable changeImgToUUID(Long seq, DataBaseProductTable product) throws LevelUpToastEx {
+        ResponseProductTable changeResponseProductTable = new ResponseProductTable(
+                product.getTitle(),
+                simpleImgAdapter.extractImgUUID(product.getInitialImgUrl()),
+                product.getTag(),
+                product.getFunding(),
+                product.getLike(),
+                product.getVendorSeq(),
+                new ResponseProductInfo(
+                        product.getProductInfo().getText(),
+                        simpleImgAdapter.extractImgUUID(product.getProductInfo().getProductImgUrl())
+                ),
+                product.getBuyOption(),
+                product.getReview());
+        changeResponseProductTable.setProductSeq(seq);
+        return changeResponseProductTable;
     }
 
 

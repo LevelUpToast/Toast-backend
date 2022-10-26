@@ -1,4 +1,4 @@
-package com.levelUpToast.levelUpToast.domain.UseCase.product;
+package com.levelUpToast.levelUpToast.domain.UseCase.util.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
