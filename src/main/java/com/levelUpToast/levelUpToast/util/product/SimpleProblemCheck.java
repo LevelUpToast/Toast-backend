@@ -2,6 +2,7 @@ package com.levelUpToast.levelUpToast.util.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductService;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProductIsProduct;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProblemCheck;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class SimpleProblemCheck implements ProblemCheck {
     private final ProductService simpleProductService;
 
-    private final ProblemCheck simpleProductCheck;
+//    private final ProductIsProduct simpleProductIsProduct;
 
     /**
      * 요청한 클라이언트가 일치한지 확인하는 메소드
@@ -29,7 +30,11 @@ public class SimpleProblemCheck implements ProblemCheck {
      * @param requestSeq            수정을 요청한 클라이언트의 SEQ
      */
     public void isProductSEQ(Long originalProductVendor, Long requestSeq) throws LevelUpToastEx {
-        simpleProductCheck.isProductSEQ(originalProductVendor, requestSeq);
+        if (!Objects.equals(originalProductVendor, requestSeq)) { //삭제 요청한 Seq 판매자의 seq 같은지 확인한다.
+            log.warn("[ProductService log] 판매자 정보가 일치하지 않습니다. 요청된 판매자 seq = {}\t제품 판매자 seq = {}", requestSeq, originalProductVendor);
+            throw new LevelUpToastEx("판매자 정보가 일치하지 않습니다.", 54);
+        }
+//        simpleProductIsProduct.isProductSEQ(originalProductVendor, requestSeq);
     }
 
     /**

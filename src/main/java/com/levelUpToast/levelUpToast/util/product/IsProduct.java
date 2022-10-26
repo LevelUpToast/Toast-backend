@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
-@Service
 @Slf4j
 @RequiredArgsConstructor
 public class IsProduct implements ProductIsProduct {
