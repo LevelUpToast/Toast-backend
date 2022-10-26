@@ -2,6 +2,7 @@ package com.levelUpToast.levelUpToast.domain.repository.productRepository.produc
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
@@ -31,41 +32,16 @@ import java.util.stream.Collectors;
 public class JdbcProductRepository implements ProductRepository {
 
     private final ImgAdapter simpleImgAdapter;
+
+    private final ProductAdapter productAdapter;
     private final DataSource dataSource;
 
     private DataBaseProductTable changeImgToSEQ(ResponseProductTable responseProductTable) throws LevelUpToastEx {
-        return new DataBaseProductTable(
-                responseProductTable.getTitle(),
-                simpleImgAdapter.extractImgSeq(responseProductTable.getInitialImgUrl()),
-                responseProductTable.getTag(),
-                responseProductTable.getFunding(),
-                responseProductTable.getLike(),
-                responseProductTable.getVendorSeq(),
-                new DataBaseProductInfo(
-                        responseProductTable.getProductInfo().getText(),
-                        simpleImgAdapter.extractImgSeq(responseProductTable.getProductInfo().getProductImgUrl())
-                ),
-                responseProductTable.getBuyOption(),
-                responseProductTable.getReview()
-        );
+        return productAdapter.changeImgToSEQ(responseProductTable);
     }
 
     private ResponseProductTable changeImgToUUID(Long seq, DataBaseProductTable product) throws LevelUpToastEx {
-        ResponseProductTable changeResponseProductTable = new ResponseProductTable(
-                product.getTitle(),
-                simpleImgAdapter.extractImgUUID(product.getInitialImgUrl()),
-                product.getTag(),
-                product.getFunding(),
-                product.getLike(),
-                product.getVendorSeq(),
-                new ResponseProductInfo(
-                        product.getProductInfo().getText(),
-                        simpleImgAdapter.extractImgUUID(product.getProductInfo().getProductImgUrl())
-                ),
-                product.getBuyOption(),
-                product.getReview());
-        changeResponseProductTable.setProductSeq(seq);
-        return changeResponseProductTable;
+       return productAdapter.changeImgToUUID(seq, product);
     }
 
 
@@ -182,7 +158,8 @@ public class JdbcProductRepository implements ProductRepository {
     @Override
     public Optional<ResponseProductTable> findProductBySeq(Long productSeq) throws LevelUpToastEx, SQLException {
 
-        String productSql = "select * from Product_TB, Product_funding_information_TB, Product_information_TB, Product_review_TB where Product_TB.product_sequence = ?" +
+        String productSql =
+                "select * from Product_TB, Product_funding_information_TB, Product_information_TB, Product_review_TB where Product_TB.product_sequence = ?" +
                 " and Product_TB.product_sequence = Product_funding_information_TB.product_sequence" +
                 " and Product_TB.product_sequence = Product_information_TB.product_sequence" +
                 " and Product_TB.product_sequence = Product_review_TB.product_sequence;";
@@ -284,7 +261,7 @@ public class JdbcProductRepository implements ProductRepository {
             pstmt.setString(1, tag.toString());
             rs = pstmt.executeQuery();
             List<ResponseProductTable> responseProductTables = new ArrayList<>();
-            if (rs.next()) {
+            while (rs.next()) {
                 responseProductTables.add(findProductBySeq(rs.getLong(1)).get());
             }
             return responseProductTables;
@@ -301,7 +278,6 @@ public class JdbcProductRepository implements ProductRepository {
     public List<ResponseProductTable> findProductByTitle(String title) throws LevelUpToastEx {
 
         String sql = "select product_sequence from Product_TB where title like'%" + title + "%';";
-        log.info("입력받은 문장 = {}", sql);
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;

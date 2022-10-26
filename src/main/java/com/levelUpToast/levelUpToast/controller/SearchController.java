@@ -28,7 +28,7 @@ public class SearchController {
     @GetMapping("/search")
     public ResponseForm<Object> search() {
 
-        return new ResponseForm<>(-1, "", null);
+        return new ResponseForm<>(-1, "검색페이지 요청", null);
     }
 
     /**

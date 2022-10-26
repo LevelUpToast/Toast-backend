@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.util.recommendation;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
 import com.levelUpToast.levelUpToast.domain.UseCase.util.recommendation.Recommendation;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
 import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
