@@ -24,7 +24,6 @@ public class ProductController {
     private final ProductService simpleProductService;
     private final ProblemCheck simpleProductInspection;
     private final MemberCheck simpleMemberCheck;
-
     private final InfoVendor infoVendor;
 
     /**
