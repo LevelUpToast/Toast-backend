@@ -8,5 +8,5 @@ import java.sql.SQLException;
 
 
 public interface RegisterProduct {
-    ResponseProductTable registerProduct(ProductRequestForm form, Long ManageSeq) throws LevelUpToastEx, SQLException;
+    ResponseProductTable registerProductInfo(ProductRequestForm form, Long ManageSeq) throws LevelUpToastEx, SQLException;
 }

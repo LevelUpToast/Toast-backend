@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.service.img;
 
-import com.levelUpToast.levelUpToast.domain.UseCase.img.service.FullPathImg;
-import com.levelUpToast.levelUpToast.domain.UseCase.img.service.ImgService;
+import com.levelUpToast.levelUpToast.domain.UseCase.img.FullPathImg;
+import com.levelUpToast.levelUpToast.domain.UseCase.img.ImgService;
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.img.service.SaveRepositoryImg;
+import com.levelUpToast.levelUpToast.domain.UseCase.img.ImgSaveRepository;
 import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class SimpleImgService implements ImgService {
 
-    private final SaveRepositoryImg simpleSaveRepositoryImg;
+    private final ImgSaveRepository imgSaveRepository;
     private final FullPathImg fullPathImg;
 
     @Override
@@ -28,7 +28,7 @@ public class SimpleImgService implements ImgService {
 
     @Override
     public ImgItem saveImg(MultipartFile multipartFile) throws LevelUpToastEx, IOException {
-        return simpleSaveRepositoryImg.saveImg(multipartFile);
+        return imgSaveRepository.saveImg(multipartFile);
     }
 
 }

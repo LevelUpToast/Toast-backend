@@ -8,7 +8,7 @@ import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.Product
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
-import com.levelUpToast.levelUpToast.domain.UseCase.member.MemberCheck;
+import com.levelUpToast.levelUpToast.domain.UseCase.member.check.UserIntegrityVerification;
 import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProblemCheck;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.*;
 public class ProductController {
     private final ProductService simpleProductService;
     private final ProblemCheck simpleProductInspection;
-    private final MemberCheck simpleMemberCheck;
+    private final UserIntegrityVerification simpleUserIntegrityVerification;
     private final InfoVendor infoVendor;
 
     /**
@@ -34,7 +34,7 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseForm<String> registerProduct(@RequestBody ProductRequestForm form) throws SQLException {
         try {
-            Member member = simpleMemberCheck.isMember(form.getVendorToken());
+            Member member = simpleUserIntegrityVerification.isMember(form.getVendorToken());
 
             log.info(String.valueOf(form));
             log.info("member ={}",member.getManageSeq());
@@ -80,7 +80,7 @@ public class ProductController {
     @PostMapping("/product/{productSeq}")
     public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) throws SQLException {
         try {
-            Member member = simpleMemberCheck.isMember(form.getVendorToken());
+            Member member = simpleUserIntegrityVerification.isMember(form.getVendorToken());
             Optional<ResponseProductTable> originalProduct = simpleProductInspection.isProduct(changeProductSeq);
 
             simpleProductInspection.isProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
@@ -101,7 +101,7 @@ public class ProductController {
     @DeleteMapping("/product")
     public ResponseForm<Object> deleteProduct(@RequestBody ProductDeleteRequestForm form) throws SQLException {
         try {
-            Member member = simpleMemberCheck.isMember(form.getVendorToken());
+            Member member = simpleUserIntegrityVerification.isMember(form.getVendorToken());
             Long productSeq = Long.parseLong(form.getProductSEQ());
 
             simpleProductInspection.isProductSEQ(simpleProductInspection.isProduct(productSeq).orElseThrow().getVendorSeq(), member.getManageSeq());

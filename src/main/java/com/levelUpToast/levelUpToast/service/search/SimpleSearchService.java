@@ -20,8 +20,6 @@ public class SimpleSearchService implements SearchService {
 
     private final SearchProduct searchProduct;
 
-
-
     @Override
     public List<ProductListResponseForm> SearchProduct(String inputKeyword, int index) throws LevelUpToastEx {
         return searchProduct.Search(inputKeyword, index);

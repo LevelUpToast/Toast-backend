@@ -1,13 +1,12 @@
 package com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.ProductAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ImgAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.product.ProductAdapter;
 import com.levelUpToast.levelUpToast.domain.data.product.DataBaseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
 import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
 import com.levelUpToast.levelUpToast.domain.data.product.data.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.DataBaseProductInfo;
 import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
 import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
@@ -37,11 +36,11 @@ public class JdbcProductRepository implements ProductRepository {
     private final DataSource dataSource;
 
     private DataBaseProductTable changeImgToSEQ(ResponseProductTable responseProductTable) throws LevelUpToastEx {
-        return productAdapter.changeImgToSEQ(responseProductTable);
+        return productAdapter.toProductSEQ(responseProductTable);
     }
 
     private ResponseProductTable changeImgToUUID(Long seq, DataBaseProductTable product) throws LevelUpToastEx {
-       return productAdapter.changeImgToUUID(seq, product);
+       return productAdapter.toProductUUID(seq, product);
     }
 
 
