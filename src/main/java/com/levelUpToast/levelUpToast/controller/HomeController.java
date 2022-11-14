@@ -2,7 +2,7 @@ package com.levelUpToast.levelUpToast.controller;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.UseCase.home.HomeService;
-import com.levelUpToast.levelUpToast.domain.UseCase.member.MemberCheck;
+import com.levelUpToast.levelUpToast.domain.UseCase.member.check.UserIntegrityVerification;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.member.Member;
 import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
@@ -19,7 +19,7 @@ import java.util.*;
 @RestController
 @RequiredArgsConstructor
  class HomeController {
-    private final MemberCheck simpleMemberCheck;
+    private final UserIntegrityVerification simpleUserIntegrityVerification;
     private final HomeService simpleHomeService;
 
     /**
@@ -59,7 +59,7 @@ import java.util.*;
     @GetMapping("/home/{token}")
     public ResponseForm<Object> loggedMainPage(@PathVariable("token") String token) {
         try {
-            Member member = simpleMemberCheck.isMember(token);
+            Member member = simpleUserIntegrityVerification.isMember(token);
             log.info("[MainPageController log] : 로그인한 회원 메인 페이지 요청");
             return new ResponseForm<>(-1, "로그인 완료된 MainPage", mainPage(member));
         } catch (LevelUpToastEx e) {

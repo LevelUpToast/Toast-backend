@@ -3,7 +3,7 @@ package com.levelUpToast.levelUpToast.controller;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.img.ImgRequestForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
-import com.levelUpToast.levelUpToast.domain.UseCase.img.service.ImgService;
+import com.levelUpToast.levelUpToast.domain.UseCase.img.ImgService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;

@@ -7,5 +7,5 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public interface InformationProduct {
-    Optional<ResponseProductTable> getProduct(Long seq) throws LevelUpToastEx, SQLException;
+    Optional<ResponseProductTable> getProductByInfo(Long seq) throws LevelUpToastEx, SQLException;
 }

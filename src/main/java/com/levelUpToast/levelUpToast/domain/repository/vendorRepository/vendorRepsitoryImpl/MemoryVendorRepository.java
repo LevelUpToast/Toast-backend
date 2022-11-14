@@ -1,7 +1,7 @@
 package com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryImpl;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ImgAdapter;
 import com.levelUpToast.levelUpToast.domain.data.vendor.VendorTable;
 import com.levelUpToast.levelUpToast.domain.repository.vendorRepository.vendorRepsitoryInf.VendorRepository;
 import com.levelUpToast.levelUpToast.domain.data.vendor.DataBaseVendorTable;

@@ -3,7 +3,7 @@ package com.levelUpToast.levelUpToast.controller;
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.signUp.SignUpRequestForm;
-import com.levelUpToast.levelUpToast.domain.UseCase.member.signUp.SignupService;
+import com.levelUpToast.levelUpToast.domain.UseCase.member.signUp.SignUpService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SignUpController {
 
-    private final SignupService signUpService;
+    private final SignUpService signUpService;
 
     /**
      * signup 회원가입을 받고 요청하는 컨트롤러

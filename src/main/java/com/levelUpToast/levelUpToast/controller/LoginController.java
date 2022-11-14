@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.domain.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.login.LoginRequestFrom;
 import com.levelUpToast.levelUpToast.domain.data.member.Member;
-import com.levelUpToast.levelUpToast.domain.UseCase.login.LoginService;
+import com.levelUpToast.levelUpToast.domain.UseCase.member.login.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

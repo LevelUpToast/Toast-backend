@@ -1,18 +1,21 @@
 package com.levelUpToast.levelUpToast.util.img;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.img.adapter.ImgAdapter;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ImgAdapter;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ToImgSeq;
+import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ToImgUUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class SimpleImgAdapter implements ImgAdapter {
-    private final ImgRepository imgRepository;
+    private final ToImgUUID toImgUUID;
+    private final ToImgSeq toImgSeq;
 
     /**
      * 서버에 저장된 이미지 파일을 UUID 값으로 변환하는 메소드
@@ -22,33 +25,33 @@ public class SimpleImgAdapter implements ImgAdapter {
      */
     @Override
     public List<String> extractImgUUID(List<Long> imgSEQ) throws LevelUpToastEx {
-        List<String> imgUUIDList = new ArrayList<>();
-        for (Long SEQ : imgSEQ)
-            imgUUIDList.add(imgRepository.findBySeq(SEQ).getStoreFileName());
-        return imgUUIDList;
+        return toImgUUID.extractImgUUID(imgSEQ);
     }
 
     @Override
     public String extractImgUUID(Long imgSEQ) throws LevelUpToastEx {
-        return imgRepository.findBySeq(imgSEQ).getStoreFileName();
+        return toImgUUID.extractImgUUID(imgSEQ);
     }
 
     /**
      * 사용자로 부터 UUID 값을 받아 SEQ 변환하는 메소드
      *
      * @param imgUUID 변환을 원하는 UUID
-     * @return UUID 값을 해당되는 SEQ 반환
+     * @return UUID 값을 해당되는 SEQ LIST 반환
      */
     @Override
     public List<Long> extractImgSeq(List<String> imgUUID) throws LevelUpToastEx {
-        ArrayList<Long> imgSeqList = new ArrayList<>();
-        for (String UUID : imgUUID)
-            imgSeqList.add(imgRepository.findByImgUUID(UUID).getManageSeq());
-        return imgSeqList;
+       return toImgSeq.extractImgSeq(imgUUID);
     }
 
+    /**
+     * 사용자로 부터 UUID 값을 받아 SEQ 변환하는 메소드
+     *
+     * @param imgUUID 변환을 원하는 UUID
+     * @return UUID 값을 해당되는 SEQ  반환
+     */
     @Override
     public Long extractImgSeq(String imgUUID) throws LevelUpToastEx {
-        return imgRepository.findByImgUUID(imgUUID).getManageSeq();
+        return toImgSeq.extractImgSeq(imgUUID);
     }
 }
