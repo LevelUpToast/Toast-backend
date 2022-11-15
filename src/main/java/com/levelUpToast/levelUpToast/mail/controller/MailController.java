@@ -25,20 +25,18 @@ public class MailController {
     public ResponseForm<String> sendMail(@PathVariable("userMail") String userMail) {
         try {
             mailService.SendEmail(new Mail(userMail));
+            return new ResponseForm<>(-1, "[ " + userMail + " ] 으로 인증 메일을 발송했습니다", null);
         } catch (LevelUpToastEx e) {
-            return new ResponseForm<> (e.getERR_CODE(), e.getMessage(), null);
+            return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
         }
-        return new ResponseForm<> (-1, "[ " + userMail + " ] 으로 인증 메일을 발송했습니다", null);
     }
 
     @GetMapping("/mail/{userMail}/{code}")
-    public ResponseForm<String>  codeCheck(@PathVariable("userMail") String userMail, @PathVariable("code") String code) throws LevelUpToastEx {
+    public ResponseForm<String> codeCheck(@PathVariable("userMail") String userMail, @PathVariable("code") String code) throws LevelUpToastEx {
         try {
-            String successMail = mailService.sentCodeCheck(userMail, code);
-            mailService.expireCode(userMail);
-            return new ResponseForm<> (-1, "[ " + successMail + " ] 메일 주소가 인증 되었습니다.", null);
+            return new ResponseForm<>(-1, "[ " + mailService.sentCodeCheck(userMail, code) + " ] 메일 주소가 인증 되었습니다.", null);
         } catch (LevelUpToastEx e) {
-            return new ResponseForm<> (e.getERR_CODE(), e.getMessage(), null);
+            return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
         }
     }
 }

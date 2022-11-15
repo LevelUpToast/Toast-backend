@@ -22,9 +22,6 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService simpleProductService;
-    private final ProblemCheck simpleProductInspection;
-    private final UserIntegrityVerification simpleUserIntegrityVerification;
-    private final InfoVendor infoVendor;
 
     /**
      * 클라이언트로 부터 제품을 등록하기위한 컨트롤러
@@ -34,17 +31,7 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseForm<String> registerProduct(@RequestBody ProductRequestForm form) throws SQLException {
         try {
-            Member member = simpleUserIntegrityVerification.isMember(form.getVendorToken());
-
-            log.info(String.valueOf(form));
-            log.info("member ={}",member.getManageSeq());
-
-            // 지금 여기 form
-            Long productSEQ =  simpleProductService.registerProduct(form, member.getManageSeq());
-            if (productSEQ == null)
-                throw new LevelUpToastEx("제품등록에 오류가 발생했습니다.", 142);
-            log.info("[ProductService log] : 상품 등록이 완료 되었습니다.");
-            return new ResponseForm<>(-1, "상품 등록이 완료 되었습니다. 상품 등록된 SEQ 번호  : "  + productSEQ, null);
+            return new ResponseForm<>(-1, "상품 등록이 완료 되었습니다. 상품 등록된 SEQ 번호  : "  + simpleProductService.registerProduct(form), null);
         } catch (LevelUpToastEx e) {
             log.info("[ProductService log] : " + e.getMessage());
             return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
@@ -59,13 +46,7 @@ public class ProductController {
     @GetMapping("/product/{productSeq}")
     public ResponseForm<Object> getProduct(@PathVariable("productSeq") Long productSeq) throws SQLException {
         try {
-            Map<String, Object> data = new LinkedHashMap<>();
-            Optional<ResponseProductTable> product = simpleProductInspection.isProduct(productSeq);
-            data.put("Product", product);
-            data.put("recommendedProducts", simpleProductService.recommendationProduct());
-            data.put("vendorInfo", infoVendor.infoVendor(product.orElseThrow().getVendorSeq()));
-            log.info("[ProductService log] 제품 정보 요청이 되었습니다. SEQ = {}", productSeq);
-            return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, data);
+            return new ResponseForm<>(-1, "상품상세  productSeq : " + productSeq, simpleProductService.getProduct(productSeq));
         }catch (LevelUpToastEx e){
             return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
         }
@@ -80,13 +61,7 @@ public class ProductController {
     @PostMapping("/product/{productSeq}")
     public ResponseForm<Object> updateProduct(@PathVariable("productSeq") Long changeProductSeq, @RequestBody ProductRequestForm form) throws SQLException {
         try {
-            Member member = simpleUserIntegrityVerification.isMember(form.getVendorToken());
-            Optional<ResponseProductTable> originalProduct = simpleProductInspection.isProduct(changeProductSeq);
-
-            simpleProductInspection.isProductSEQ(originalProduct.orElseThrow().getVendorSeq(), member.getManageSeq());
-            simpleProductService.updateProduct(originalProduct, changeProductSeq, form);
-
-            log.info("[ProductService log] 제품 업데이트 완료 SEQ = {}", changeProductSeq);
+            simpleProductService.updateProduct(changeProductSeq, form);
             return new ResponseForm<>(-1, "상품업데이트 완료 : productSeq : " + changeProductSeq, null);
         } catch (LevelUpToastEx e) {
             return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
@@ -101,12 +76,7 @@ public class ProductController {
     @DeleteMapping("/product")
     public ResponseForm<Object> deleteProduct(@RequestBody ProductDeleteRequestForm form) throws SQLException {
         try {
-            Member member = simpleUserIntegrityVerification.isMember(form.getVendorToken());
-            Long productSeq = Long.parseLong(form.getProductSEQ());
-
-            simpleProductInspection.isProductSEQ(simpleProductInspection.isProduct(productSeq).orElseThrow().getVendorSeq(), member.getManageSeq());
-            log.info("[ProductService log] : 제품 삭제 완료!\t삭제요청한 판매자 SEQ = {},\t 삭제요청된 제품Seq = {}", member.getManageSeq(), productSeq);
-            simpleProductService.deleteProduct(productSeq);
+            simpleProductService.deleteProduct(form);
             return new ResponseForm<>(-1, "상품 삭제를 완료했습니다.", null);
         } catch (LevelUpToastEx e) {
             return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
