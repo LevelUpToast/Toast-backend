@@ -32,11 +32,13 @@ public class SimpleHomeService implements HomeService {
      * @return 메인화면에 뿌려질 데이터를 Return
      */
     public Map<String, Object> homeService(String token) throws LevelUpToastEx {
-        Member member = simpleUserIntegrityVerification.isMember(token);
         Map<String, Object> data = new LinkedHashMap<>();
         data.put("bannerImgUrl", getBanner());
-        if (member != null) data.put("myFundingProducts", myFundingProducts()); // 펀딩레포지토리 완성 이후 Token 통해 찾아서 넣을 예정
-        else data.put("myFundingProducts", null);
+        if (token != null){
+            Member member = simpleUserIntegrityVerification.isMember(token);
+            if (member != null) data.put("myFundingProducts", myFundingProducts()); // 펀딩레포지토리 완성 이후 Token 통해 찾아서 넣을 예정
+
+        } else data.put("myFundingProducts", null);
         data.put("recommendedProducts", getProduct());
         data.put("fruitProducts", getProductTag(Tag.FRUIT));
         data.put("vegetableProducts", getProductTag(Tag.VEGETABLE));

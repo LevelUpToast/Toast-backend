@@ -2,7 +2,6 @@ package com.levelUpToast.levelUpToast.img.controller;
 
 import com.levelUpToast.levelUpToast.bodyForm.requestForm.img.ImgRequestForm;
 import com.levelUpToast.levelUpToast.bodyForm.responseForm.ResponseForm;
-import com.levelUpToast.levelUpToast.img.domain.ImgItem;
 import com.levelUpToast.levelUpToast.img.service.imgServiceInf.ImgService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
