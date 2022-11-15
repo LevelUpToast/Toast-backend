@@ -1,8 +1,8 @@
 package com.levelUpToast.levelUpToast.util.img;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ToImgSeq;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
+import com.levelUpToast.levelUpToast.util.utilInf.adapter.Img.ToImgSeq;
+import com.levelUpToast.levelUpToast.img.repository.imgRepositoryInf.ImgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,51 @@
+package com.levelUpToast.levelUpToast.search.controller;
+
+import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
+import com.levelUpToast.levelUpToast.bodyForm.requestForm.product.ProductListResponseForm;
+import com.levelUpToast.levelUpToast.bodyForm.responseForm.ResponseForm;
+import com.levelUpToast.levelUpToast.search.service.SimpleSearchService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+@Slf4j
+@RestController
+@RequiredArgsConstructor
+public class SearchController {
+
+    private final SimpleSearchService simpleSearchService;
+
+    /**
+     * 검색페이지 요청 하는 메소드, 데이터는
+     * @return 요청이 끝나면 ResponseForm 반환한다.
+     */
+    @GetMapping("/search")
+    public ResponseForm<Object> search() {
+
+        return new ResponseForm<>(-1, "검색페이지 요청", null);
+    }
+
+    /**
+     * 클라이언트로 부터 요청 받은 내용으로 데이터 범위와 검색내용을 받는다.
+     * @param index 클라이언트로 요청 받은 인덱스 범위
+     * @param SearchKeyword 사용자가 검색할 내용을 받는다.
+     * @return 요청이 끝나면 ResponseForm 반환한다.
+     */
+    @GetMapping("/search/{index}/{SearchKeyword}")
+    public ResponseForm<Object> Search(@PathVariable("index") int index,@PathVariable("SearchKeyword") String SearchKeyword) throws LevelUpToastEx {
+        Map<String, Object> data = new LinkedHashMap<>();
+        log.info("[SearchController log] 입력받은 검색 요청 요청된 검색어 = \"{}\"\t 검색 index 범위 = {}", SearchKeyword, index);
+
+        List<ProductListResponseForm> searchResult = simpleSearchService.SearchProduct(SearchKeyword, index);
+        if (searchResult.isEmpty())
+            return new ResponseForm<>(-1, "검색 요청 데이터 없음", null);
+        data.put("SearchProduct", simpleSearchService.SearchProduct(SearchKeyword, index));
+        return new ResponseForm<>(-1, "검색내용 데이터 요청", data);
+    }
+}

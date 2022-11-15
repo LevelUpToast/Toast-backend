@@ -1,10 +1,9 @@
 package com.levelUpToast.levelUpToast.util.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProductIsProduct;
+import com.levelUpToast.levelUpToast.util.utilInf.ProductIsProduct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 

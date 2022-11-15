@@ -1,9 +1,9 @@
 package com.levelUpToast.levelUpToast.util.img;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ImgAdapter;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ToImgSeq;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.Img.ToImgUUID;
+import com.levelUpToast.levelUpToast.util.utilInf.adapter.Img.ImgAdapter;
+import com.levelUpToast.levelUpToast.util.utilInf.adapter.Img.ToImgSeq;
+import com.levelUpToast.levelUpToast.util.utilInf.adapter.Img.ToImgUUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,10 +1,9 @@
 package com.levelUpToast.levelUpToast.util.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductService;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProductIsProduct;
-import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProblemCheck;
+import com.levelUpToast.levelUpToast.product.service.productServiceInf.ProductService;
+import com.levelUpToast.levelUpToast.product.domain.ResponseProductTable;
+import com.levelUpToast.levelUpToast.util.utilInf.ProblemCheck;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
