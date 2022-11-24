@@ -1,6 +1,5 @@
 package com.levelUpToast.levelUpToast.search.service;
 
-import com.levelUpToast.levelUpToast.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.product.repository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.search.service.searchServiceInf.SearchService;
@@ -11,9 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -22,6 +20,8 @@ public class SimpleSearchService implements SearchService {
 
     private final ProductRepository productRepository;
     private final ProductAdapter productAdapter;
+
+    static Queue<String> keyword = new LinkedList<>();
 
 
     /**
@@ -32,7 +32,6 @@ public class SimpleSearchService implements SearchService {
      */
     private List<ProductListResponseForm> Search(String inputKeyword, int index) throws LevelUpToastEx {
         return productAdapter.toProductList(productRepository.findProductByTitle(Keyword(inputKeyword)));
-
     }
 
     /**
@@ -44,12 +43,16 @@ public class SimpleSearchService implements SearchService {
         SimpleWordAnalysis simpleWordAnalysis = new SimpleWordAnalysis();
         String searchKeyword = String.valueOf(simpleWordAnalysis.wordAnalysis(inputKeyword, 2));
         log.info("[SearchService log] 분석전 검색어 문장 = \"{}\"\t 추출된 명사 = {}", inputKeyword, searchKeyword);
-
+        keyword.remove(searchKeyword);
+        if (keyword.size() >= 10){
+            keyword.poll();
+        }
+        keyword.add(searchKeyword);
         return searchKeyword;
     }
 
     @Override
-    public Map<String, Object> SearchProduct(String inputKeyword, int index) throws LevelUpToastEx {
+    public Map<String, Object> getSearchProduct(String inputKeyword, int index) throws LevelUpToastEx {
         Map<String, Object> data = new LinkedHashMap<>();
         log.info("[SearchController log] 입력받은 검색 요청 요청된 검색어 = \"{}\"\t 검색 index 범위 = {}", inputKeyword, index);
 
@@ -61,5 +64,10 @@ public class SimpleSearchService implements SearchService {
         return data;
     }
 
-
+    @Override
+    public  Map<String, Object> getSearchKeyword(){
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("keyword", new ArrayList<>(keyword));
+        return data;
+    }
 }

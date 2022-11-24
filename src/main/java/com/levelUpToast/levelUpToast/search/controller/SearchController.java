@@ -4,10 +4,12 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.bodyForm.responseForm.ResponseForm;
 import com.levelUpToast.levelUpToast.search.service.searchServiceInf.SearchService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class SearchController {
      */
     @GetMapping("/search")
     public ResponseForm<Object> search() {
-        return new ResponseForm<>(-1, "검색페이지 요청", null);
+        return new ResponseForm<>(-1, "검색페이지 요청", searchService.getSearchKeyword());
     }
 
     /**
@@ -32,7 +34,7 @@ public class SearchController {
     @GetMapping("/search/{index}/{SearchKeyword}")
     public ResponseForm<Object> Search(@PathVariable("index") int index,@PathVariable("SearchKeyword") String SearchKeyword) throws LevelUpToastEx {
         try {
-            return new ResponseForm<>(-1, "검색내용 데이터 요청", searchService.SearchProduct(SearchKeyword, index));
+            return new ResponseForm<>(-1, "검색내용 데이터 요청", searchService.getSearchProduct(SearchKeyword, index));
         } catch (LevelUpToastEx e) {
             return new ResponseForm<>(e.getERR_CODE(), e.getMessage(), null);
         }
