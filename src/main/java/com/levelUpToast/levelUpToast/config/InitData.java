@@ -4,7 +4,7 @@ import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
 import com.levelUpToast.levelUpToast.vendor.domain.VendorTable;
 import com.levelUpToast.levelUpToast.img.repository.imgRepositoryInf.ImgRepository;
 import com.levelUpToast.levelUpToast.home.repository.HomeRepository;
-import com.levelUpToast.levelUpToast.member.repository.memberRepositoryInf.MemberRepository;
+import com.levelUpToast.levelUpToast.auth.repository.memberRepositoryInf.MemberRepository;
 import com.levelUpToast.levelUpToast.product.repository.productRepositoryInf.ProductRepository;
 import com.levelUpToast.levelUpToast.vendor.service.vendor.VendorService;
 import lombok.RequiredArgsConstructor;

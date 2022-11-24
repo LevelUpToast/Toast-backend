@@ -3,8 +3,8 @@ package com.levelUpToast.levelUpToast.product.service;
 
 import com.levelUpToast.levelUpToast.bodyForm.requestForm.product.ProductDeleteRequestForm;
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.member.domain.Member;
-import com.levelUpToast.levelUpToast.member.service.memberServiceInf.check.UserIntegrityVerification;
+import com.levelUpToast.levelUpToast.auth.domain.Member;
+import com.levelUpToast.levelUpToast.auth.service.memberServiceInf.check.UserIntegrityVerification;
 import com.levelUpToast.levelUpToast.product.domain.data.fundinginfo.FundingInfo;
 import com.levelUpToast.levelUpToast.product.domain.data.productinfo.ResponseProductInfo;
 import com.levelUpToast.levelUpToast.product.domain.data.reviwe.Review;

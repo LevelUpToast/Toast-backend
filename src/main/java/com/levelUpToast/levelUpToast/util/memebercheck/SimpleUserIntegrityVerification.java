@@ -1,10 +1,10 @@
 package com.levelUpToast.levelUpToast.util.memebercheck;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.member.service.memberServiceInf.check.MemberIsID;
-import com.levelUpToast.levelUpToast.member.service.memberServiceInf.check.UserIntegrityVerification;
-import com.levelUpToast.levelUpToast.member.service.memberServiceInf.check.MemberIsCheck;
-import com.levelUpToast.levelUpToast.member.domain.Member;
+import com.levelUpToast.levelUpToast.auth.service.memberServiceInf.check.MemberIsID;
+import com.levelUpToast.levelUpToast.auth.service.memberServiceInf.check.UserIntegrityVerification;
+import com.levelUpToast.levelUpToast.auth.service.memberServiceInf.check.MemberIsCheck;
+import com.levelUpToast.levelUpToast.auth.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

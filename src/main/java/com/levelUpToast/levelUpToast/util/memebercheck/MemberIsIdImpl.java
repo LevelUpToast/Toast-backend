@@ -1,8 +1,8 @@
 package com.levelUpToast.levelUpToast.util.memebercheck;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.member.service.memberServiceInf.check.MemberIsID;
-import com.levelUpToast.levelUpToast.member.repository.memberRepositoryInf.MemberRepository;
+import com.levelUpToast.levelUpToast.auth.service.memberServiceInf.check.MemberIsID;
+import com.levelUpToast.levelUpToast.auth.repository.memberRepositoryInf.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
