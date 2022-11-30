@@ -1,10 +1,10 @@
 package com.levelUpToast.levelUpToast.util.recommendation;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.adapter.product.ProductAdapter;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.recommendation.Recommendation;
-import com.levelUpToast.levelUpToast.domain.bodyForm.requestForm.product.ProductListResponseForm;
-import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
+import com.levelUpToast.levelUpToast.util.utilInf.adapter.product.ProductAdapter;
+import com.levelUpToast.levelUpToast.util.utilInf.recommendation.Recommendation;
+import com.levelUpToast.levelUpToast.bodyForm.requestForm.product.ProductListResponseForm;
+import com.levelUpToast.levelUpToast.product.repository.productRepositoryInf.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

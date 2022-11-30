@@ -1,27 +1,16 @@
 package com.levelUpToast.levelUpToast.config;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.data.img.ImgItem;
-import com.levelUpToast.levelUpToast.domain.data.member.Authority;
-import com.levelUpToast.levelUpToast.domain.data.member.Member;
-import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
-import com.levelUpToast.levelUpToast.domain.data.product.data.buyoption.BuyOption;
-import com.levelUpToast.levelUpToast.domain.data.product.data.fundinginfo.FundingInfo;
-import com.levelUpToast.levelUpToast.domain.data.product.data.productinfo.ResponseProductInfo;
-import com.levelUpToast.levelUpToast.domain.data.product.data.reviwe.Review;
-import com.levelUpToast.levelUpToast.domain.data.product.data.tag.Tag;
-import com.levelUpToast.levelUpToast.domain.data.vendor.VendorTable;
-import com.levelUpToast.levelUpToast.domain.repository.imgRepository.imgRepositoryInf.ImgRepository;
-import com.levelUpToast.levelUpToast.domain.repository.homeRepository.HomeRepository;
-import com.levelUpToast.levelUpToast.domain.repository.memberRepository.memberRepositoryInf.MemberRepository;
-import com.levelUpToast.levelUpToast.domain.repository.productRepository.productRepositoryInf.ProductRepository;
-import com.levelUpToast.levelUpToast.domain.UseCase.vendor.VendorService;
+import com.levelUpToast.levelUpToast.vendor.domain.VendorTable;
+import com.levelUpToast.levelUpToast.img.repository.imgRepositoryInf.ImgRepository;
+import com.levelUpToast.levelUpToast.home.repository.HomeRepository;
+import com.levelUpToast.levelUpToast.auth.repository.memberRepositoryInf.MemberRepository;
+import com.levelUpToast.levelUpToast.product.repository.productRepositoryInf.ProductRepository;
+import com.levelUpToast.levelUpToast.vendor.service.vendor.VendorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @Component
 @RequiredArgsConstructor

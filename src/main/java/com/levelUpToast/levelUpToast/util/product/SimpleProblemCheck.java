@@ -1,10 +1,10 @@
 package com.levelUpToast.levelUpToast.util.product;
 
 import com.levelUpToast.levelUpToast.config.exception.LevelUpToastEx;
-import com.levelUpToast.levelUpToast.domain.UseCase.product.ProductService;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProductIsProduct;
-import com.levelUpToast.levelUpToast.domain.data.product.ResponseProductTable;
-import com.levelUpToast.levelUpToast.domain.UseCase.util.product.ProblemCheck;
+import com.levelUpToast.levelUpToast.product.repository.productRepositoryInf.ProductRepository;
+import com.levelUpToast.levelUpToast.product.service.productServiceInf.ProductService;
+import com.levelUpToast.levelUpToast.product.domain.ResponseProductTable;
+import com.levelUpToast.levelUpToast.util.utilInf.ProblemCheck;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SimpleProblemCheck implements ProblemCheck {
-    private final ProductService simpleProductService;
+    private final ProductRepository productRepository;
 
 //    private final ProductIsProduct simpleProductIsProduct;
 
@@ -46,7 +46,7 @@ public class SimpleProblemCheck implements ProblemCheck {
      * @throws LevelUpToastEx 오류가 발생한다면 오류 코드와 메세지를 반환
      */
     public Optional<ResponseProductTable> isProduct(Long productSeq) throws LevelUpToastEx, SQLException {
-        Optional<ResponseProductTable> product = simpleProductService.getProduct(productSeq);
+        Optional<ResponseProductTable> product = productRepository.findProductBySeq(productSeq);
         if (product.isEmpty()) {
             log.info("[ProductService log] 요청된 제품 Seq 없거나 잘못된 번호입니다. SEQ = {}", productSeq);
             throw new LevelUpToastEx("요청된 제품 Seq 없거나 잘못된 번호입니다.", 53);

@@ -1,6 +1,6 @@
 package com.levelUpToast.levelUpToast.util.wordAnalysis;
 
-import com.levelUpToast.levelUpToast.domain.UseCase.util.wordAnalysis.WordAnalysis;
+import com.levelUpToast.levelUpToast.util.utilInf.wordAnalysis.WordAnalysis;
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
 import kr.co.shineware.nlp.komoran.core.Komoran;
 
